@@ -10,8 +10,6 @@
 
 <div align="center">
 
-![Ronaldo SUII](./ronaldo_suii.jpg)
-
 ### **SUIIIIIII — To infinity and beyond! 🌌⚽**
 
 ---
@@ -113,11 +111,6 @@ Then open your browser at `http://localhost:5173` 🚀
 
 ---
 
-## 👨‍🚀 Team
-
-Built with ❤️ and cosmic energy for **NASA Space Apps Challenge 2026**.
-
----
 
 <div align="center">
 

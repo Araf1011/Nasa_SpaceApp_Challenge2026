@@ -2,7 +2,6 @@
 
 <div align="center">
 
-![Team Banner](./team_banner.svg)
 
 </div>
 

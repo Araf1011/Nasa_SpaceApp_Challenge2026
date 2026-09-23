@@ -2,6 +2,14 @@
 
 <div align="center">
 
+![Team Banner](./team_banner.svg)
+
+</div>
+
+---
+
+<div align="center">
+
 ![Ronaldo SUII](./ronaldo_suii.jpg)
 
 ### **SUIIIIIII — To infinity and beyond! 🌌⚽**

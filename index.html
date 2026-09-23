@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230b3d91'/><ellipse cx='50' cy='50' rx='45' ry='15' fill='none' stroke='%23ffb703' stroke-width='4' transform='rotate(-25 50 50)'/><circle cx='50' cy='50' r='18' fill='%2300f0ff'/></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="COSMIC RELICS: NASA's Solar System Hardware Odyssey. An interactive 3D discovery portal chronicling the history, science, and legacy of hardware left across the Moon, Mars, and Deep Space for the 2026 NASA Space Apps Challenge." />
+    <title>COSMIC RELICS | NASA Space Apps Challenge 2026</title>
+  </head>
+  <body>
+    <!-- Fullscreen 3D Solar System Canvas -->
+    <div id="canvas-3d-container" aria-label="3D Interactive Solar System View"></div>
+
+    <!-- HUD Clean Overlay Container -->
+    <div id="app-overlay">
+      <!-- Minimalist Floating Top Header -->
+      <header class="clean-top-bar interactive-panel">
+        <div class="brand-group">
+          <div class="nasa-insignia">NASA</div>
+          <div class="brand-titles">
+            <h1 class="brand-main">COSMIC <span class="cyan-glow-text">RELICS</span></h1>
+          </div>
+        </div>
+
+        <!-- Quick Search & Select Dropdown -->
+        <div class="search-select-wrap">
+          <span class="search-icon">🔍</span>
+          <select id="quick-target-select" class="clean-select" aria-label="Quick Select Spacecraft">
+            <option value="" disabled selected>Explore Spacecraft / Relic...</option>
+            <!-- Populated dynamically by main.js -->
+          </select>
+        </div>
+
+        <!-- Right Quick Action Controls -->
+        <div class="top-actions">
+          <button class="icon-action-btn" id="nav-mute-toggle-btn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
+            <span id="mute-icon">🔊</span>
+          </button>
+          <button class="pill-action-btn" id="nav-labels-toggle-btn" title="Toggle Celestial Labels">
+            <span>🏷️</span> <span id="labels-btn-text">Labels ON</span>
+          </button>
+          <button class="pill-action-btn" id="nav-reset-camera-btn" title="Reset Solar System View">
+            <span>🌌</span> Reset View
+          </button>
+        </div>
+      </header>
+
+      <!-- Clean Floating Bottom Dock -->
+      <footer class="clean-bottom-dock interactive-panel">
+        <!-- Quick Spacecraft Showcase Pills -->
+        <div class="quick-relic-pills" id="quick-pills-row">
+          <!-- Populated by main.js -->
+        </div>
+
+        <!-- Compact Timeline Scrubber Drawer Trigger -->
+        <div class="dock-timeline-strip">
+          <button class="timeline-toggle-pill" id="timeline-toggle-btn">
+            <span>⏱️</span> <span id="timeline-year-label">Year: 2026 (All Missions)</span>
+          </button>
+          <div class="dock-slider-wrap hidden" id="dock-slider-wrap">
+            <span class="dock-year-min">1969</span>
+            <input type="range" id="dock-timeline-range" min="1969" max="2026" value="2026" class="dock-slider" />
+            <span class="dock-year-max">2026</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Clean Vertical Mission Storyline Drawer -->
+    <div id="mission-storyline-container" class="storyline-modal-container interactive-panel" role="dialog" aria-label="Mission Storyline"></div>
+
+    <!-- Cosmic Passport & Quiz Modal -->
+    <div id="passport-modal-container" class="passport-modal-container interactive-panel" role="region" aria-label="Cosmic Passport & Quiz">
+      <div class="dossier-backdrop" id="passport-backdrop"></div>
+      <div class="dossier-dialog" style="max-width: 780px;">
+        <button class="dossier-close-btn" id="passport-close-btn" aria-label="Close Passport">✕</button>
+        <div class="dossier-body" id="passport-content-slot"></div>
+      </div>
+    </div>
+
+    <!-- High-Resolution NASA Certificate Modal -->
+    <div id="certificate-modal" class="cert-modal-container interactive-panel" role="dialog" aria-label="Official Certificate">
+      <div class="dossier-backdrop" id="cert-backdrop"></div>
+      <div class="cert-dialog">
+        <button class="dossier-close-btn" id="certificate-close-btn" aria-label="Close Certificate">✕</button>
+        <div class="cert-canvas-wrap">
+          <canvas id="certificate-canvas"></canvas>
+        </div>
+        <div class="cert-actions">
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #94a3b8;">
+            ★ Certified by NASA Space Apps Challenge 2026
+          </span>
+          <button class="cert-download-btn" id="certificate-download-btn">
+            <span>📥</span> Download Certificate (PNG)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

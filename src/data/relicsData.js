@@ -647,6 +647,119 @@ export const RELICS_DATA = [
     badgeAwarded: 'lunar-archaeologist'
   },
   {
+    id: 'chandrayaan-3',
+    name: 'Chandrayaan-3 Vikram Lander & Pragyan Rover',
+    shortName: 'Chandrayaan-3',
+    category: 'moon',
+    domainLabel: 'The Moon (South Pole)',
+    launchYear: 2023,
+    landingYear: 2023,
+    launchDate: 'July 14, 2023',
+    arrivalDate: 'August 23, 2023',
+    arrivalEvent: 'First Human Spacecraft Landing at Lunar South Pole',
+    status: 'completed',
+    statusLabel: 'Mission Success // Resting at Shiv Shakti Point',
+    statusClass: 'status-completed',
+    location: 'Shiv Shakti Point (69.373° S, 32.319° E), Moon',
+    coordinates: '69.373° S, 32.319° E',
+    distanceAU: 0.00257,
+    baseDistanceKm: 384400,
+    speedKmS: 1.02,
+    oneWayLightSeconds: 1.28,
+    modelType: 'chandrayaan-3',
+    heroImage: '/chandrayaan3_surface.jpg',
+    heroColor: '#eab308',
+    galleryImages: [
+      { url: '/chandrayaan3_surface.jpg', caption: 'Vikram Lander on the lunar surface with Earth in the background' },
+      { url: '/pragyan_rover.jpg', caption: 'Pragyan Rover rolling across lunar regolith leaving wheel tracks' },
+      { url: '/chandrayaan3_launch.jpg', caption: 'LVM3-M4 rocket blasting off with twin S200 booster plumes from Sriharikota' }
+    ],
+    storyLine: {
+      construction: {
+        year: '2020-2023',
+        title: 'Built by ISRO at U R Rao Satellite Centre',
+        desc: 'Engineered in Bengaluru by the Indian Space Research Organisation (ISRO). Re-engineered with strengthened legs, upgraded hazard detection algorithms, expanded fuel capacity, and high-efficiency solar arrays covering all 4 faces to survive harsh polar angles.'
+      },
+      launch: {
+        year: '2023',
+        title: 'Launched from Sriharikota via LVM3-M4',
+        desc: 'Blasted into space on July 14, 2023 from Satish Dhawan Space Centre atop India\'s heaviest rocket, the LVM3-M4 "Bahubali".'
+      },
+      arrival: {
+        year: '2023',
+        title: 'Historic South Pole Touchdown',
+        desc: 'On August 23, 2023, Vikram executed four autonomous braking stages and touched down softly at 69.37° S near Manzinus C crater. Prime Minister Narendra Modi named the site "Shiv Shakti Point".'
+      },
+      hardware: {
+        icon: '🧊',
+        title: 'Vikram Lander & Pragyan 6-Wheel Rover',
+        desc: 'A 1,749-kg autonomous lander powered by 4 throttled 800N liquid bipropellant engines, carrying the 26-kg 6-wheeled Pragyan rover equipped with rocker-bogie suspension and solar wings.',
+        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg'
+      },
+      instruments: [
+        {
+          group: 'Surface Chemistry & Geology',
+          icon: '🔬',
+          items: [
+            {
+              name: 'LIBS (Laser Induced Breakdown Spectroscope)',
+              desc: 'Fired high-energy laser pulses at lunar soil, creating plasma flashes to discover elemental Sulfur (S), along with Aluminum, Calcium, Iron, and Titanium.',
+              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Pragyan_rover_rolling_out.jpg/800px-Pragyan_rover_rolling_out.jpg',
+              specs: { method: 'Laser ablation spectroscopy', pulse_energy: 'Nd:YAG laser', key_discovery: 'Direct detection of elemental Sulfur', carrier: 'Pragyan Rover' },
+              partKey: 'pragyan-rover'
+            },
+            {
+              name: 'APXS (Alpha Particle X-Ray Spectrometer)',
+              desc: 'Irradiated lunar regolith with Curium-244 radioactive source to detect major rock-forming minerals without destroying samples.',
+              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Pragyan_rover_rolling_out.jpg/800px-Pragyan_rover_rolling_out.jpg',
+              specs: { source: 'Curium-244 radioactive emitter', detection: 'X-ray fluorescence', elements: 'Si, Mg, Al, Ca, Fe', carrier: 'Pragyan Rover' },
+              partKey: 'pragyan-rover'
+            }
+          ]
+        },
+        {
+          group: 'Geophysics & Atmospheric Physics',
+          icon: '🌡️',
+          items: [
+            {
+              name: 'ChaSTE (Chandra\'s Surface Thermophysical Experiment)',
+              desc: 'Drove a thermal probe 10 cm deep into lunar soil, revealing a shocking temperature difference: +50°C at surface dropping to -10°C just 8 cm down!',
+              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg',
+              specs: { depth: '100 mm penetration', sensors: '10 platinum RTD temperature sensors', delta_temp: '60°C gradient over 8 cm', carrier: 'Vikram Lander' },
+              partKey: 'scientific-payloads'
+            },
+            {
+              name: 'RAMBHA-LP (Langmuir Probe)',
+              desc: 'Measured the density of near-surface lunar plasma, finding it surprisingly sparse (5 to 30 million electrons per cubic meter).',
+              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg',
+              specs: { sensor: 'Spherical titanium probe', bias_voltage: '±12V swept bias', detect: 'Solar UV-generated plasma sheath', carrier: 'Vikram Lander' },
+              partKey: 'scientific-payloads'
+            },
+            {
+              name: 'ILSA (Lunar Seismic Activity)',
+              desc: 'High-sensitivity MEMS seismometer that recorded natural moonquakes and the faint vibrations of Pragyan rover driving across regolith.',
+              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg',
+              specs: { type: 'Silicon MEMS accelerometer', resolution: 'Sub-micro-g acceleration', detected: 'Natural lunar seismic event + rover movements', carrier: 'Vikram Lander' },
+              partKey: 'scientific-payloads'
+            }
+          ]
+        }
+      ],
+      science: {
+        title: 'Groundbreaking Discovery of Sulfur at Lunar South Pole',
+        desc: 'Chandrayaan-3 confirmed the presence of elemental Sulfur (S) on the Moon\'s south pole for the first time via in-situ laser spectroscopy, offering clues into ancient lunar volcanism and volatile trapping.'
+      },
+      currentStatus: {
+        title: 'Eternal Guardians at Shiv Shakti Point',
+        desc: 'Completed all primary scientific objectives and hopped 40 cm in a historic re-ignition demonstration. Both Vikram and Pragyan entered sleep mode as the -200°C polar night fell.'
+      }
+    },
+    funFact: "Pragyan rover's wheels are stamped with the Ashoka Pillar Lion Capital and ISRO logo, permanently embossing India's symbols into the lunar soil with every turn!",
+    audioSimulation: 'satellite_awaken',
+    audioTitle: 'Chandrayaan-3 Vikram Telemetry & Discovery Transmission',
+    badgeAwarded: 'polar-pioneer'
+  },
+  {
     id: 'parker-solar-probe',
     name: 'Parker Solar Probe',
     shortName: 'Parker Solar Probe',

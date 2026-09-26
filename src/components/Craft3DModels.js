@@ -371,11 +371,224 @@ export function createParkerProbeModel() {
   return group;
 }
 
+// 7. Chandrayaan-3: Vikram Lander & Pragyan Rover Model (ISRO Lunar South Pole Mission)
+export function createChandrayaanModel() {
+  const group = new THREE.Group();
+
+  // Materials
+  const mkGold      = () => new THREE.MeshStandardMaterial({ color: 0xeab308, roughness: 0.28, metalness: 0.85 });
+  const mkAmberGold = () => new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.32, metalness: 0.9 });
+  const mkSolar     = () => new THREE.MeshStandardMaterial({ color: 0x0c2340, roughness: 0.18, metalness: 0.85 });
+  const mkBus       = () => new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.45, metalness: 0.3 });
+  const mkLeg       = () => new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.5, metalness: 0.75 });
+  const mkPad       = () => new THREE.MeshStandardMaterial({ color: 0xfbbf24, roughness: 0.3, metalness: 0.8 });
+  const mkNozzle    = () => new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.35, metalness: 0.95 });
+  const mkAntenna   = () => new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.3, metalness: 0.2 });
+  const mkPragyan   = () => new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.3, metalness: 0.8 });
+  const mkWheel     = () => new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.7, metalness: 0.3 });
+  const mkLaserGlow = () => new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.2, emissive: 0x10b981, emissiveIntensity: 0.8 });
+  const mkFlagTri   = () => new THREE.MeshStandardMaterial({ color: 0xff9933, roughness: 0.6 }); // Saffron
+
+  // ── VIKRAM LANDER ──
+  // Main Truncated Pyramid / Box Chassis
+  const landerBody = tag(new THREE.Mesh(new THREE.CylinderGeometry(1.5, 2.1, 1.5, 8), mkGold()), 'lander-chassis');
+  landerBody.position.y = 1.6;
+  group.add(landerBody);
+
+  // Top Equipment Deck
+  const topDeck = tag(new THREE.Mesh(new THREE.CylinderGeometry(1.52, 1.52, 0.12, 8), mkBus()), 'lander-chassis');
+  topDeck.position.y = 2.4;
+  group.add(topDeck);
+
+  // Side Solar Panels (Vikram has solar panels covering all 4 vertical faces)
+  for (let i = 0; i < 4; i++) {
+    const angle = (i * Math.PI) / 2;
+    const panel = tag(new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.25, 0.05), mkSolar()), 'solar-panels');
+    panel.position.set(Math.cos(angle) * 1.62, 1.6, Math.sin(angle) * 1.62);
+    panel.rotation.y = -angle + Math.PI / 2;
+    group.add(panel);
+
+    // Silver busbar grid lines on solar panel
+    const gridBar = tag(new THREE.Mesh(new THREE.BoxGeometry(1.56, 0.03, 0.06), mkBus()), 'solar-panels');
+    gridBar.position.set(Math.cos(angle) * 1.64, 1.6, Math.sin(angle) * 1.64);
+    gridBar.rotation.y = -angle + Math.PI / 2;
+    group.add(gridBar);
+  }
+
+  // 4 Main 800N Throttleable Rocket Engines
+  const engineCluster = [
+    [-0.5, -0.5], [0.5, -0.5], [-0.5, 0.5], [0.5, 0.5]
+  ];
+  engineCluster.forEach(([ex, ez]) => {
+    const nozzle = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.28, 0.55, 12), mkNozzle()), 'propulsion-thrusters');
+    nozzle.position.set(ex, 0.72, ez);
+    group.add(nozzle);
+
+    // Inner engine bell glow
+    const throat = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.16, 0.2, 8), new THREE.MeshBasicMaterial({ color: 0xff4500 })), 'propulsion-thrusters');
+    throat.position.set(ex, 0.62, ez);
+    group.add(throat);
+  });
+
+  // RCS Attitude Control Thruster Blocks (8 pods around top corners)
+  for (let r = 0; r < 4; r++) {
+    const rAngle = (r * Math.PI) / 2 + Math.PI / 4;
+    const rx = Math.cos(rAngle) * 1.45;
+    const rz = Math.sin(rAngle) * 1.45;
+    const pod = tag(new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), mkBus()), 'propulsion-thrusters');
+    pod.position.set(rx, 2.3, rz);
+    group.add(pod);
+
+    const quadNozzle = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.06, 0.1, 6), mkNozzle()), 'propulsion-thrusters');
+    quadNozzle.rotation.x = Math.PI / 2;
+    quadNozzle.position.set(rx * 1.08, 2.3, rz * 1.08);
+    group.add(quadNozzle);
+  }
+
+  // 4 Articulated Landing Struts & Footpads
+  for (let k = 0; k < 4; k++) {
+    const legAngle = (k * Math.PI) / 2 + Math.PI / 4;
+    const footX = Math.cos(legAngle) * 2.6;
+    const footZ = Math.sin(legAngle) * 2.6;
+
+    // Primary diagonal strut
+    const mainStrut = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.08, 2.2, 8), mkLeg()), 'landing-gear');
+    mainStrut.position.set(footX * 0.58, 0.95, footZ * 0.58);
+    mainStrut.rotation.z = Math.cos(legAngle) * -0.58;
+    mainStrut.rotation.x = Math.sin(legAngle) * 0.58;
+    group.add(mainStrut);
+
+    // Hydraulic shock absorber sleeve
+    const shockSleeve = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.9, 8), mkGold()), 'landing-gear');
+    shockSleeve.position.set(footX * 0.52, 1.1, footZ * 0.52);
+    shockSleeve.rotation.z = Math.cos(legAngle) * -0.58;
+    shockSleeve.rotation.x = Math.sin(legAngle) * 0.58;
+    group.add(shockSleeve);
+
+    // Circular honeycomb aluminum landing footpad
+    const pad = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.09, 14), mkPad()), 'landing-gear');
+    pad.position.set(footX, 0.05, footZ);
+    group.add(pad);
+  }
+
+  // High-Gain Communication Dish Antenna (Top Deck)
+  const dishSupport = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.45, 6), mkBus()), 'antenna');
+  dishSupport.position.set(0.4, 2.6, 0.3);
+  group.add(dishSupport);
+
+  const dish = tag(new THREE.Mesh(new THREE.SphereGeometry(0.38, 16, 8, 0, Math.PI * 2, 0, Math.PI * 0.4), mkAntenna()), 'antenna');
+  dish.rotation.x = Math.PI * 0.65;
+  dish.position.set(0.4, 2.8, 0.3);
+  group.add(dish);
+
+  // Omnidirectional Antenna Mast
+  const mast = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.8, 6), mkBus()), 'antenna');
+  mast.position.set(-0.6, 2.8, -0.5);
+  group.add(mast);
+
+  // NASA Laser Retroreflector Array (LRA) Dome on Top Deck
+  const lraDome = tag(new THREE.Mesh(new THREE.SphereGeometry(0.18, 12, 8), mkGold()), 'scientific-payloads');
+  lraDome.position.set(0, 2.52, 0);
+  group.add(lraDome);
+
+  // Hazard Detection & Avoidance Cameras (LHDAC)
+  const camPod = tag(new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.15, 0.15), mkBus()), 'scientific-payloads');
+  camPod.position.set(0, 2.45, 1.5);
+  group.add(camPod);
+
+  // ChaSTE Lunar Soil Thermal Probe (drilled down into regolith)
+  const chasteProbe = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.8, 6), mkLeg()), 'scientific-payloads');
+  chasteProbe.position.set(1.8, 0.35, -1.2);
+  group.add(chasteProbe);
+
+  // ── DEPLOYMENT RAMP ──
+  // Ramp leading down to lunar soil on the positive Z face
+  const ramp = tag(new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.04, 2.6), mkBus()), 'pragyan-rover');
+  ramp.position.set(0, 0.52, 2.4);
+  ramp.rotation.x = 0.42; // Sloping down to ground
+  group.add(ramp);
+
+  // Ramp Guide Rails
+  [-0.44, 0.44].forEach(rx => {
+    const rail = tag(new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.12, 2.6), mkLeg()), 'pragyan-rover');
+    rail.position.set(rx, 0.56, 2.4);
+    rail.rotation.x = 0.42;
+    group.add(rail);
+  });
+
+  // ── PRAGYAN ROVER (Deployed on Lunar Soil!) ──
+  const roverGroup = new THREE.Group();
+  roverGroup.position.set(0, 0.28, 4.2); // Positioned proudly just past the ramp
+
+  // Rover Chassis Box
+  const roverBody = tag(new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.32, 1.05), mkPragyan()), 'pragyan-rover');
+  roverBody.position.y = 0.2;
+  roverGroup.add(roverBody);
+
+  // Deployable Solar Panel Wing (tilted to catch polar sun)
+  const roverSolar = tag(new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.02, 0.95), mkSolar()), 'pragyan-rover');
+  roverSolar.position.set(0, 0.38, 0);
+  roverSolar.rotation.x = 0.18;
+  roverGroup.add(roverSolar);
+
+  // NAVCAM Stereo Mast
+  const roverMast = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.45, 6), mkLeg()), 'pragyan-rover');
+  roverMast.position.set(0.24, 0.55, 0.38);
+  roverGroup.add(roverMast);
+
+  const roverCamHead = tag(new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.1, 0.08), mkBus()), 'pragyan-rover');
+  roverCamHead.position.set(0.24, 0.78, 0.38);
+  roverGroup.add(roverCamHead);
+
+  // LIBS (Laser Induced Breakdown Spectroscope) Sensor Lens
+  const libsLaser = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8), mkLaserGlow()), 'pragyan-rover');
+  libsLaser.rotation.x = Math.PI / 2;
+  libsLaser.position.set(-0.2, 0.2, 0.54);
+  roverGroup.add(libsLaser);
+
+  // 6 Lunar Cleated Rover Wheels (Rocker-Bogie Mobility)
+  const wheelPositions = [
+    [-0.46, 0.0, -0.42], [0.46, 0.0, -0.42],
+    [-0.48, 0.0, 0.0],   [0.48, 0.0, 0.0],
+    [-0.46, 0.0, 0.42],  [0.46, 0.0, 0.42]
+  ];
+  wheelPositions.forEach(([wx, wy, wz]) => {
+    const wheel = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.1, 12), mkWheel()), 'pragyan-rover');
+    wheel.rotation.z = Math.PI / 2;
+    wheel.position.set(wx, wy, wz);
+    roverGroup.add(wheel);
+
+    // Rim hubcap
+    const hub = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.12, 8), mkPad()), 'pragyan-rover');
+    hub.rotation.z = Math.PI / 2;
+    hub.position.set(wx, wy, wz);
+    roverGroup.add(hub);
+  });
+
+  // Small Target Rock being analyzed by LIBS laser
+  const rock = tag(new THREE.Mesh(new THREE.DodecahedronGeometry(0.12, 1), new THREE.MeshStandardMaterial({ color: 0x64748b, roughness: 0.9 })), 'scientific-payloads');
+  rock.position.set(-0.2, 0.08, 1.1);
+  roverGroup.add(rock);
+
+  // Pulsing laser beam from LIBS to Rock
+  const laserBeam = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.55, 6), mkLaserGlow()), 'scientific-payloads');
+  laserBeam.position.set(-0.2, 0.14, 0.82);
+  laserBeam.rotation.x = Math.PI / 2;
+  roverGroup.add(laserBeam);
+
+  group.add(roverGroup);
+
+  return group;
+}
+
 /**
- * Factory helper: creates the appropriate 3D model for a relic
+ * Factory helper: creates the appropriate 3D model for a relic or surface expedition
  */
 export function createRelicModel(modelType) {
   switch (modelType) {
+    case 'chandrayaan-3':
+    case 'chandrayaan':
+      return createChandrayaanModel();
     case 'curiosity-rover':
     case 'perseverance-rover':
     case 'rover':

@@ -348,3 +348,314 @@ export function createSunTexture() {
   texture.wrapS = THREE.RepeatWrapping;
   return texture;
 }
+
+// 8. Ultra-Realistic Lunar Ground Diffuse Texture (High-Res Regolith)
+export function createLunarGroundTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 1024;
+  canvas.height = 1024;
+  const ctx = canvas.getContext('2d');
+
+  // Baseline fine grey regolith dust
+  ctx.fillStyle = '#64748b';
+  ctx.fillRect(0, 0, 1024, 1024);
+
+  // Micro-texture grain
+  const imgData = ctx.getImageData(0, 0, 1024, 1024);
+  const data = imgData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    const noise = (Math.random() - 0.5) * 35;
+    data[i]     = Math.min(255, Math.max(0, data[i] + noise));
+    data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + noise));
+    data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + noise));
+  }
+  ctx.putImageData(imgData, 0, 0);
+
+  // Dark Basalt Mare patches
+  ctx.fillStyle = 'rgba(30, 41, 59, 0.45)';
+  for (let b = 0; b < 12; b++) {
+    const bx = Math.random() * 1024;
+    const by = Math.random() * 1024;
+    const br = 70 + Math.random() * 120;
+    ctx.beginPath();
+    ctx.arc(bx, by, br, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Micro-craters with shaded interior and bright ejecta rims
+  for (let c = 0; c < 220; c++) {
+    const cx = Math.random() * 1024;
+    const cy = Math.random() * 1024;
+    const cr = 3 + Math.random() * 18;
+
+    // Dark crater bowl shadow
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.7)';
+    ctx.beginPath();
+    ctx.arc(cx, cy, cr, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Bright sunlit crater rim highlight
+    ctx.strokeStyle = 'rgba(226, 232, 240, 0.75)';
+    ctx.lineWidth = Math.max(1, cr * 0.22);
+    ctx.beginPath();
+    ctx.arc(cx - cr * 0.2, cy - cr * 0.2, cr, -Math.PI * 0.8, Math.PI * 0.2);
+    ctx.stroke();
+
+    // Ejecta rays
+    if (cr > 10) {
+      ctx.strokeStyle = 'rgba(241, 245, 249, 0.15)';
+      ctx.lineWidth = 1;
+      for (let ray = 0; ray < 6; ray++) {
+        const ang = Math.random() * Math.PI * 2;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(ang) * (cr * 2.5), cy + Math.sin(ang) * (cr * 2.5));
+        ctx.stroke();
+      }
+    }
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(4, 4);
+  return texture;
+}
+
+// 9. Lunar Surface Bump Map for 3D Depth
+export function createLunarBumpTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#808080';
+  ctx.fillRect(0, 0, 512, 512);
+
+  for (let c = 0; c < 140; c++) {
+    const cx = Math.random() * 512;
+    const cy = Math.random() * 512;
+    const cr = 4 + Math.random() * 16;
+
+    // Deep bowl
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, cr);
+    grad.addColorStop(0, '#101010');
+    grad.addColorStop(0.8, '#606060');
+    grad.addColorStop(1, '#e0e0e0'); // raised rim
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, cr, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(4, 4);
+  return texture;
+}
+
+// 10. Ultra-Realistic Martian Ground Diffuse Texture (Dunes & Oxide Sand)
+export function createMartianGroundTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 1024;
+  canvas.height = 1024;
+  const ctx = canvas.getContext('2d');
+
+  // Rich terracotta rust base
+  ctx.fillStyle = '#c2410c';
+  ctx.fillRect(0, 0, 1024, 1024);
+
+  // Oxidized sand dunes and wind ripple striations
+  ctx.fillStyle = 'rgba(180, 83, 9, 0.4)';
+  for (let w = 0; w < 1024; w += 28) {
+    ctx.beginPath();
+    ctx.moveTo(0, w);
+    ctx.bezierCurveTo(340, w + 15, 680, w - 18, 1024, w + 8);
+    ctx.lineTo(1024, w + 16);
+    ctx.bezierCurveTo(680, w - 2, 340, w + 31, 0, w + 16);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  // Dark volcanic basalt sand ripples
+  ctx.strokeStyle = 'rgba(67, 20, 7, 0.4)';
+  ctx.lineWidth = 3;
+  for (let r = 0; r < 60; r++) {
+    const ry = Math.random() * 1024;
+    ctx.beginPath();
+    ctx.moveTo(0, ry);
+    ctx.quadraticCurveTo(512, ry + 12, 1024, ry);
+    ctx.stroke();
+  }
+
+  // Surface pebbles and rocky aggregate
+  const imgData = ctx.getImageData(0, 0, 1024, 1024);
+  const data = imgData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    const grain = (Math.random() - 0.5) * 30;
+    data[i]     = Math.min(255, Math.max(0, data[i] + grain));
+    data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + grain * 0.7));
+    data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + grain * 0.3));
+  }
+  ctx.putImageData(imgData, 0, 0);
+
+  // Scattered basalt dark stones
+  for (let s = 0; s < 180; s++) {
+    const sx = Math.random() * 1024;
+    const sy = Math.random() * 1024;
+    const sr = 1 + Math.random() * 5;
+
+    ctx.fillStyle = '#451a03';
+    ctx.beginPath();
+    ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Sandy rim
+    ctx.strokeStyle = 'rgba(251, 146, 60, 0.5)';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(4, 4);
+  return texture;
+}
+
+// 11. Martian Surface Bump Map for Sand Dunes & Rocks
+export function createMartianBumpTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#808080';
+  ctx.fillRect(0, 0, 512, 512);
+
+  // Wavy dune ripples
+  ctx.strokeStyle = '#c0c0c0';
+  ctx.lineWidth = 8;
+  for (let d = 0; d < 512; d += 24) {
+    ctx.beginPath();
+    ctx.moveTo(0, d);
+    ctx.quadraticCurveTo(256, d + 14, 512, d);
+    ctx.stroke();
+  }
+
+  // Raised stones
+  ctx.fillStyle = '#ffffff';
+  for (let st = 0; st < 90; st++) {
+    const px = Math.random() * 512;
+    const py = Math.random() * 512;
+    ctx.beginPath();
+    ctx.arc(px, py, 2 + Math.random() * 4, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(4, 4);
+  return texture;
+}
+
+// 12. Modern Brushed Stainless Steel Aerospace Rocket Panels Texture
+export function createRocketHullTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+
+  // Base metallic gradient
+  const grad = ctx.createLinearGradient(0, 0, 512, 0);
+  grad.addColorStop(0, '#e2e8f0');
+  grad.addColorStop(0.2, '#f8fafc');
+  grad.addColorStop(0.5, '#cbd5e1');
+  grad.addColorStop(0.8, '#f1f5f9');
+  grad.addColorStop(1, '#94a3b8');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 512, 512);
+
+  // Subtle brushed metal streaks
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+  for (let s = 0; s < 300; s++) {
+    const y = Math.random() * 512;
+    ctx.fillRect(0, y, 512, 1);
+  }
+
+  // Horizontal weld panel seams
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 2;
+  for (let seam = 64; seam < 512; seam += 64) {
+    ctx.beginPath();
+    ctx.moveTo(0, seam);
+    ctx.lineTo(512, seam);
+    ctx.stroke();
+
+    // Rivet dots along seams
+    ctx.fillStyle = '#64748b';
+    for (let r = 8; r < 512; r += 16) {
+      ctx.beginPath();
+      ctx.arc(r, seam - 3, 1, 0, Math.PI * 2);
+      ctx.arc(r, seam + 3, 1, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // NASA Red Worm Accent Stripe
+  ctx.fillStyle = '#ef4444';
+  ctx.fillRect(180, 200, 150, 8);
+  ctx.fillStyle = '#1e3a8a';
+  ctx.fillRect(180, 212, 150, 4);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  return texture;
+}
+
+// 13. Hexagonal Ceramic Heatshield Tiles Texture
+export function createHeatshieldTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 256;
+  canvas.height = 256;
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, 256, 256);
+
+  // Hexagonal tile grid
+  ctx.strokeStyle = '#334155';
+  ctx.lineWidth = 1.5;
+  const hexRadius = 14;
+  const h = hexRadius * Math.sin(Math.PI / 3);
+
+  for (let row = -1; row < 256 / (h * 1.5) + 1; row++) {
+    for (let col = -1; col < 256 / (hexRadius * 3) + 1; col++) {
+      const cx = col * (hexRadius * 3) + ((row % 2) * hexRadius * 1.5);
+      const cy = row * h;
+
+      ctx.beginPath();
+      for (let k = 0; k < 6; k++) {
+        const a = (k * Math.PI) / 3;
+        const x = cx + hexRadius * Math.cos(a);
+        const y = cy + hexRadius * Math.sin(a);
+        if (k === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.stroke();
+
+      // Subtle center texture on tile
+      ctx.fillStyle = Math.random() > 0.5 ? '#111827' : '#1e293b';
+      ctx.fill();
+    }
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(3, 3);
+  return texture;
+}
+

@@ -243,6 +243,157 @@ class SoundEngine {
     });
   }
 
+  // 7. Rocket Booster Ignition & Ascent Rumble
+  playRocketLaunch() {
+    if (this.isMuted) return;
+    this.init();
+    this.stopCurrentAudio();
+
+    try {
+      // 1. Synthesize Rocket Engine White Noise Rumble
+      const bufferSize = this.ctx.sampleRate * 4;
+      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+
+      const noise = this.ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(160, this.ctx.currentTime);
+      filter.frequency.linearRampToValueAtTime(700, this.ctx.currentTime + 2.5);
+      filter.frequency.linearRampToValueAtTime(250, this.ctx.currentTime + 4.0);
+
+      const gain = this.ctx.createGain();
+      gain.gain.setValueAtTime(0.01, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.35, this.ctx.currentTime + 1.2);
+      gain.gain.linearRampToValueAtTime(0.2, this.ctx.currentTime + 3.0);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 4.2);
+
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      // 2. Sub-bass engine throttle vibration
+      const subOsc = this.ctx.createOscillator();
+      const subGain = this.ctx.createGain();
+      subOsc.type = 'sawtooth';
+      subOsc.frequency.setValueAtTime(55, this.ctx.currentTime);
+      subOsc.frequency.linearRampToValueAtTime(95, this.ctx.currentTime + 2.0);
+
+      subGain.gain.setValueAtTime(0.05, this.ctx.currentTime);
+      subGain.gain.exponentialRampToValueAtTime(0.25, this.ctx.currentTime + 1.0);
+      subGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 3.8);
+
+      subOsc.connect(subGain);
+      subGain.connect(this.ctx.destination);
+
+      noise.start();
+      subOsc.start();
+      noise.stop(this.ctx.currentTime + 4.2);
+      subOsc.stop(this.ctx.currentTime + 3.8);
+
+      this.activeLoopNodes.push(noise, subOsc);
+    } catch (e) {
+      console.warn('Audio launch FX fallback', e);
+    }
+  }
+
+  // 8. Touchdown & Surface Contact Chime
+  playTouchdown() {
+    if (this.isMuted) return;
+    this.init();
+    this.stopCurrentAudio();
+
+    try {
+      // Thruster cutoff puff
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(320, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(60, this.ctx.currentTime + 0.5);
+
+      gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.5);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.5);
+
+      // Triumphant double-chime (Major 6th)
+      const t = this.ctx.currentTime + 0.35;
+      [587.33, 880.00, 1174.66].forEach((f, idx) => {
+        const chime = this.ctx.createOscillator();
+        const cGain = this.ctx.createGain();
+        chime.type = 'sine';
+        chime.frequency.setValueAtTime(f, t + idx * 0.12);
+
+        cGain.gain.setValueAtTime(0.15, t + idx * 0.12);
+        cGain.gain.exponentialRampToValueAtTime(0.001, t + idx * 0.12 + 0.9);
+
+        chime.connect(cGain);
+        cGain.connect(this.ctx.destination);
+        chime.start(t + idx * 0.12);
+        chime.stop(t + idx * 0.12 + 0.9);
+      });
+    } catch (e) {
+      console.warn('Touchdown audio error', e);
+    }
+  }
+
+  // 9. Spacecraft & Satellite System Activation Ping (Futuristic Hologram Awakening)
+  playSatelliteAwaken() {
+    if (this.isMuted) return;
+    this.init();
+    try {
+      const freqs = [440, 659.25, 880, 1318.5, 1760];
+      const startT = this.ctx.currentTime;
+      freqs.forEach((freq, idx) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, startT + idx * 0.08);
+
+        gain.gain.setValueAtTime(0.12, startT + idx * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, startT + idx * 0.08 + 0.5);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(startT + idx * 0.08);
+        osc.stop(startT + idx * 0.08 + 0.5);
+      });
+    } catch (e) {
+      console.warn('Satellite awaken audio error', e);
+    }
+  }
+
+  // 10. Holographic Telemetry Typing Chirp
+  playHoloTypewriter() {
+    if (this.isMuted) return;
+    this.init();
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      const rndFreq = 1600 + Math.random() * 800;
+      osc.frequency.setValueAtTime(rndFreq, this.ctx.currentTime);
+      gain.gain.setValueAtTime(0.03, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0005, this.ctx.currentTime + 0.03);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.03);
+    } catch (e) {
+      // ignore
+    }
+  }
+
   playRelicAudio(simulationType) {
     switch (simulationType) {
       case 'laser_pulse':
@@ -253,6 +404,9 @@ class SoundEngine {
         break;
       case 'plasma_waves':
         this.playPlasmaWaves();
+        break;
+      case 'satellite_awaken':
+        this.playSatelliteAwaken();
         break;
       case 'radio_carrier':
       case 'radio_chime':

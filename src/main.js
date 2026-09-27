@@ -6,6 +6,7 @@
 
 import './style.css';
 import { RELICS_DATA } from './data/relicsData.js';
+import { PLANET_DATA } from './data/planetData.js';
 import { SolarSystemScene } from './components/SolarSystem3D.js';
 import { MissionStoryline } from './components/MissionStoryline.js';
 import { MissionGame } from './components/MissionGame.js';
@@ -75,26 +76,73 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 3. Initialize Photorealistic 3D Solar System
-  const solarScene = new SolarSystemScene(canvasContainer, (selectedRelic) => {
-    storylineDrawer.open(selectedRelic);
-  });
+  let surfaceExplorer = null;
+  const solarScene = new SolarSystemScene(
+    canvasContainer, 
+    (selectedRelic) => {
+      storylineDrawer.open(selectedRelic);
+    },
+    (planetId) => {
+      if (storylineDrawer.isOpen && storylineDrawer.isOpen()) storylineDrawer.close();
+      if (planetId === 'earth') return;
+      if (PLANET_DATA[planetId] && surfaceExplorer) {
+        surfaceExplorer.enter(planetId, PLANET_DATA[planetId]);
+      }
+    }
+  );
   solarScene.setRelics(RELICS_DATA);
 
-  // 4. Populate Quick Search Dropdown
+  // 4. Initialize Planetary Surface Explorer (Realistic 3D Ground & Expeditions)
+  surfaceExplorer = new PlanetSurfaceExplorer(
+    solarScene.scene,
+    solarScene.camera,
+    solarScene,
+    () => {
+      solarScene.exitSurfaceMode();
+    }
+  );
+  solarScene.surfaceExplorer = surfaceExplorer;
+
+  // 5. Populate Quick Search Dropdown with Planets & Relics
+  const planetOptGroup = document.createElement('optgroup');
+  planetOptGroup.label = '🪐 Planetary Missions (Click to Launch Rocket)';
+  
+  const moonOpt = document.createElement('option');
+  moonOpt.value = 'planet:moon';
+  moonOpt.textContent = '🚀 Launch to The Moon (Apollo & Artemis)';
+  planetOptGroup.appendChild(moonOpt);
+
+  const marsOpt = document.createElement('option');
+  marsOpt.value = 'planet:mars';
+  marsOpt.textContent = '🚀 Launch to Mars (Viking, Curiosity & Perseverance)';
+  planetOptGroup.appendChild(marsOpt);
+
+  quickSelect.appendChild(planetOptGroup);
+
+  const relicOptGroup = document.createElement('optgroup');
+  relicOptGroup.label = '🛰️ Deep Spacecraft & Relics';
   RELICS_DATA.forEach(relic => {
     const opt = document.createElement('option');
-    opt.value = relic.id;
+    opt.value = `relic:${relic.id}`;
     opt.textContent = `${relic.name} (${relic.domainLabel})`;
-    quickSelect.appendChild(opt);
+    relicOptGroup.appendChild(opt);
   });
+  quickSelect.appendChild(relicOptGroup);
 
   quickSelect.addEventListener('change', (e) => {
-    const relicId = e.target.value;
-    const relic = RELICS_DATA.find(r => r.id === relicId);
-    if (relic) {
+    const val = e.target.value;
+    if (val.startsWith('planet:')) {
+      const pid = val.replace('planet:', '');
       soundFX.playClick();
-      solarScene.flyToRelic(relic.id);
-      storylineDrawer.open(relic);
+      solarScene.launchMission(pid);
+    } else if (val.startsWith('relic:')) {
+      const relicId = val.replace('relic:', '');
+      const relic = RELICS_DATA.find(r => r.id === relicId);
+      if (relic) {
+        soundFX.playClick();
+        solarScene.flyToRelic(relic.id);
+        storylineDrawer.open(relic);
+      }
     }
   });
 
@@ -245,6 +293,27 @@ document.addEventListener('DOMContentLoaded', () => {
     soundFX.playClick();
     solarScene.resetOverview();
   });
+
+  // Cosmic Passport Modal Trigger & Close Listeners
+  const navPassportBtn = document.querySelector('#nav-passport-btn');
+  if (navPassportBtn) {
+    navPassportBtn.addEventListener('click', () => {
+      soundFX.playClick();
+      passportModal.classList.add('active');
+      passport.render();
+    });
+  }
+  if (passportCloseBtn) {
+    passportCloseBtn.addEventListener('click', () => {
+      soundFX.playClick();
+      passportModal.classList.remove('active');
+    });
+  }
+  if (passportBackdrop) {
+    passportBackdrop.addEventListener('click', () => {
+      passportModal.classList.remove('active');
+    });
+  }
 
   // Welcome audio gesture listener
   const unlockAudio = () => {

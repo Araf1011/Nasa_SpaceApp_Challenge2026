@@ -15,11 +15,13 @@ import {
   createSunTexture 
 } from '../utils/textureGenerator.js';
 import { createRelicModel } from './Craft3DModels.js';
+import { RocketMissionFlight } from './RocketMissionFlight.js';
 
 export class SolarSystemScene {
-  constructor(containerElement, onSelectRelicCallback) {
+  constructor(containerElement, onSelectRelicCallback, onSelectPlanetCallback = null) {
     this.container = containerElement;
     this.onSelectRelic = onSelectRelicCallback;
+    this.onSelectPlanet = onSelectPlanetCallback;
     this.relics = [];
     this.relicObjects = [];
     this.celestialBodies = {};
@@ -31,6 +33,8 @@ export class SolarSystemScene {
     this.isOrbiting = true;
     this.timeScale = 1.0;
     this.elapsedTime = 0;
+    this.isSurfaceMode = false;
+    this.surfaceExplorer = null;
 
     // Camera tweening state
     this.targetCameraPos = null;
@@ -40,6 +44,11 @@ export class SolarSystemScene {
     this.startCameraPos = new THREE.Vector3();
     this.startLookAt = new THREE.Vector3();
     this.currentLookAt = new THREE.Vector3(0, 0, 0);
+
+    // Planet tracking state — camera follows a clicked planet
+    this.trackedPlanetId = null;
+    this.trackingOffset = new THREE.Vector3();
+    this.isTracking = false;
 
     // Initial cinematic camera framing
     this.isDragging = false;
@@ -57,6 +66,17 @@ export class SolarSystemScene {
     this.initAsteroidBelt();
     this.initLabelsOverlay();
     this.initEventListeners();
+
+    // Rocket Mission Launch & Touchdown Controller
+    this.missionFlight = new RocketMissionFlight(
+      this.scene,
+      this.camera,
+      this,
+      (targetPlanetId) => {
+        this.onPlanetTouchdown(targetPlanetId);
+      }
+    );
+
     this.animate = this.animate.bind(this);
     this.animationFrameId = requestAnimationFrame(this.animate);
   }
@@ -296,6 +316,7 @@ export class SolarSystemScene {
 
       const planetMesh = new THREE.Mesh(geom, mat);
       planetMesh.position.x = cfg.orbitRadius;
+      planetMesh.userData = { isPlanet: true, planetId: cfg.name, name: cfg.label };
       pivot.add(planetMesh);
 
       // Earth Cloud Layer & Atmospheric Glow
@@ -349,6 +370,7 @@ export class SolarSystemScene {
         });
         moonMesh = new THREE.Mesh(moonGeom, moonMat);
         moonMesh.position.x = 9.0;
+        moonMesh.userData = { isPlanet: true, planetId: 'moon', name: 'The Moon' };
         moonPivot.add(moonMesh);
 
         // Moon Orbit circle
@@ -461,22 +483,25 @@ export class SolarSystemScene {
       this.createPinForObject(markerGroup, relic.shortName || relic.name, relic.category, relic);
     });
 
-    // Also add pins for Earth, Mars, Jupiter, and Saturn
+    // Also add pins for Earth, Moon, Mars, Jupiter, and Saturn
     if (this.celestialBodies['earth']) {
-      this.createPinForObject(this.celestialBodies['earth'].mesh, 'Earth', 'planet-pin');
+      this.createPinForObject(this.celestialBodies['earth'].mesh, 'Earth 🌍', 'planet-pin', null, 'earth');
+      if (this.celestialBodies['earth'].moonMesh) {
+        this.createPinForObject(this.celestialBodies['earth'].moonMesh, 'Moon 🌕', 'planet-pin moon-pin', null, 'moon');
+      }
     }
     if (this.celestialBodies['mars']) {
-      this.createPinForObject(this.celestialBodies['mars'].mesh, 'Mars', 'planet-pin');
+      this.createPinForObject(this.celestialBodies['mars'].mesh, 'Mars 🔴', 'planet-pin mars-pin', null, 'mars');
     }
     if (this.celestialBodies['jupiter']) {
-      this.createPinForObject(this.celestialBodies['jupiter'].mesh, 'Jupiter', 'planet-pin');
+      this.createPinForObject(this.celestialBodies['jupiter'].mesh, 'Jupiter 🪐', 'planet-pin', null, 'jupiter');
     }
     if (this.celestialBodies['saturn']) {
-      this.createPinForObject(this.celestialBodies['saturn'].mesh, 'Saturn', 'planet-pin');
+      this.createPinForObject(this.celestialBodies['saturn'].mesh, 'Saturn 🪐', 'planet-pin', null, 'saturn');
     }
   }
 
-  createPinForObject(mesh, title, categoryClass, relicData = null) {
+  createPinForObject(mesh, title, categoryClass, relicData = null, celestialId = null) {
     const pin = document.createElement('div');
     pin.className = `celestial-pin ${categoryClass}`;
     pin.innerHTML = `
@@ -488,6 +513,15 @@ export class SolarSystemScene {
       if (relicData && this.onSelectRelic) {
         this.flyToRelic(relicData.id);
         this.onSelectRelic(relicData);
+      } else if (celestialId) {
+        if (celestialId === 'moon' || celestialId === 'mars') {
+          this.launchMission(celestialId);
+        } else {
+          this.flyToPlanet(celestialId);
+          if (this.onSelectPlanet) {
+            this.onSelectPlanet(celestialId);
+          }
+        }
       } else {
         // Fly to planet
         const worldPos = new THREE.Vector3();
@@ -502,7 +536,7 @@ export class SolarSystemScene {
     });
 
     this.labelsContainer.appendChild(pin);
-    this.labelsMap.set(mesh, { el: pin, yOffset: relicData ? 3.5 : 5.5 });
+    this.labelsMap.set(mesh, { el: pin, yOffset: relicData ? 3.5 : (celestialId === 'moon' ? 2.5 : 5.5) });
   }
 
   positionRelicMarker(markerGroup, relic) {
@@ -655,6 +689,11 @@ export class SolarSystemScene {
     this.container.addEventListener('mousedown', (e) => {
       this.isDragging = true;
       this.previousMousePosition = { x: e.clientX, y: e.clientY };
+      // Stop planet tracking when user manually drags
+      if (this.isTracking) {
+        this.isTracking = false;
+        this.trackedPlanetId = null;
+      }
     });
 
     window.addEventListener('mousemove', (e) => {
@@ -734,6 +773,14 @@ export class SolarSystemScene {
         });
       });
 
+      // Add Moon & Planet meshes for direct 3D clicks
+      if (this.celestialBodies['earth'] && this.celestialBodies['earth'].moonMesh) {
+        interactiveMeshes.push(this.celestialBodies['earth'].moonMesh);
+      }
+      Object.values(this.celestialBodies).forEach(body => {
+        if (body.mesh) interactiveMeshes.push(body.mesh);
+      });
+
       const intersects = this.raycaster.intersectObjects(interactiveMeshes, false);
       if (intersects.length > 0) {
         const hit = intersects[0];
@@ -743,6 +790,29 @@ export class SolarSystemScene {
           if (this.onSelectRelic) {
             this.flyToRelic(relic.id);
             this.onSelectRelic(relic);
+          }
+          return;
+        }
+
+        // Hit a planet or moon mesh
+        if (hit.object.userData && hit.object.userData.planetId) {
+          const pid = hit.object.userData.planetId;
+          if (pid === 'moon' || pid === 'mars') {
+            // First click flies close and tracks; second click launches mission
+            if (this.trackedPlanetId === pid && !this.isTransitioning) {
+              this.isTracking = false;
+              this.trackedPlanetId = null;
+              this.launchMission(pid);
+            } else {
+              this.flyToPlanet(pid, true);
+              if (this.onSelectPlanet) this.onSelectPlanet(pid);
+            }
+          } else {
+            // For other planets: fly to and track with camera
+            this.flyToPlanet(pid, true);
+            if (this.onSelectPlanet) {
+              this.onSelectPlanet(pid);
+            }
           }
         }
       }
@@ -761,6 +831,16 @@ export class SolarSystemScene {
     this.animationFrameId = requestAnimationFrame(this.animate);
     this.elapsedTime += 0.016;
 
+    // Rocket Mission Flight Update
+    if (this.missionFlight && this.missionFlight.isActive) {
+      this.missionFlight.update(0.016);
+    }
+
+    // Planetary Surface Explorer Beacons Update
+    if (this.surfaceExplorer) {
+      this.surfaceExplorer.update(this.camera, 0.016);
+    }
+
     // 1. Planetary Orbits & Axial Rotations
     if (this.isOrbiting) {
       Object.values(this.celestialBodies).forEach(body => {
@@ -774,7 +854,7 @@ export class SolarSystemScene {
         }
 
         if (body.moonPivot) {
-          body.moonPivot.rotation.y += 0.04 * this.timeScale;
+          body.moonPivot.rotation.y += 0.012 * this.timeScale;
         }
       });
 
@@ -827,6 +907,24 @@ export class SolarSystemScene {
       // Smooth cubic ease-in-out
       const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
+      // If we're tracking a planet, update the target live
+      if (this.isTracking && this.trackedPlanetId) {
+        const body = this.celestialBodies[this.trackedPlanetId] ||
+          (this.trackedPlanetId === 'moon' && this.celestialBodies['earth']);
+        let trackedMesh = null;
+        if (this.trackedPlanetId === 'moon' && this.celestialBodies['earth']) {
+          trackedMesh = this.celestialBodies['earth'].moonMesh;
+        } else if (this.celestialBodies[this.trackedPlanetId]) {
+          trackedMesh = this.celestialBodies[this.trackedPlanetId].mesh;
+        }
+        if (trackedMesh) {
+          const livePos = new THREE.Vector3();
+          trackedMesh.getWorldPosition(livePos);
+          this.targetLookAt = livePos.clone();
+          this.targetCameraPos = livePos.clone().add(this.trackingOffset);
+        }
+      }
+
       this.camera.position.lerpVectors(this.startCameraPos, this.targetCameraPos, ease);
       this.currentLookAt.lerpVectors(this.startLookAt, this.targetLookAt, ease);
       this.camera.lookAt(this.currentLookAt);
@@ -838,6 +936,25 @@ export class SolarSystemScene {
         this.spherical.radius = offset.length();
         this.spherical.phi = Math.acos(Math.max(-1, Math.min(1, offset.y / this.spherical.radius)));
         this.spherical.theta = Math.atan2(offset.x, offset.z);
+      }
+    }
+
+    // 4b. Live planet tracking (after initial transition ends)
+    if (this.isTracking && !this.isTransitioning && this.trackedPlanetId) {
+      let trackedMesh = null;
+      if (this.trackedPlanetId === 'moon' && this.celestialBodies['earth']) {
+        trackedMesh = this.celestialBodies['earth'].moonMesh;
+      } else if (this.celestialBodies[this.trackedPlanetId]) {
+        trackedMesh = this.celestialBodies[this.trackedPlanetId].mesh;
+      }
+      if (trackedMesh) {
+        const livePos = new THREE.Vector3();
+        trackedMesh.getWorldPosition(livePos);
+        // Smoothly keep camera locked on moving planet
+        this.currentLookAt.lerp(livePos, 0.06);
+        const desiredCamPos = livePos.clone().add(this.trackingOffset);
+        this.camera.position.lerp(desiredCamPos, 0.06);
+        this.camera.lookAt(this.currentLookAt);
       }
     }
 

@@ -5,8 +5,10 @@
 
 import confetti from 'canvas-confetti';
 import { BADGES_CATALOG, QUIZ_QUESTIONS } from '../data/quizData.js';
+import { RELICS_DATA } from '../data/relicsData.js';
 import { generateExplorerCertificate } from '../utils/certificateCanvas.js';
 import { soundFX } from './AudioEffects.js';
+import { getTotalXp, getCompletedMissionIds } from '../utils/gameProgress.js';
 
 export class CosmicPassport {
   constructor(containerElement, onOpenRelicCallback) {
@@ -219,6 +221,18 @@ export class CosmicPassport {
           <div class="passport-score-counter">
             <span class="score-number">${earnedCount} / ${totalBadges}</span>
             <span class="score-label">BADGES UNLOCKED</span>
+          </div>
+        </div>
+
+        <!-- Mission Game Stats -->
+        <div class="passport-game-stats-row">
+          <div class="passport-game-stat">
+            <span class="passport-game-stat-value">${getTotalXp().toLocaleString()}</span>
+            <span class="passport-game-stat-label">Total XP</span>
+          </div>
+          <div class="passport-game-stat">
+            <span class="passport-game-stat-value">${getCompletedMissionIds().length} / ${RELICS_DATA.length}</span>
+            <span class="passport-game-stat-label">Missions Completed</span>
           </div>
         </div>
 

@@ -591,6 +591,7 @@ export function createRelicModel(modelType) {
       return createChandrayaanModel();
     case 'curiosity-rover':
     case 'perseverance-rover':
+    case 'mer-rover':
     case 'rover':
       return createCuriosityRoverModel();
     case 'voyager-probe':
@@ -598,6 +599,7 @@ export function createRelicModel(modelType) {
     case 'jwst-telescope':
       return createJWSTModel();
     case 'apollo-lander':
+    case 'stationary-lander':
       return createApolloLanderModel();
     case 'ingenuity-helicopter':
       return createIngenuityHelicopterModel();

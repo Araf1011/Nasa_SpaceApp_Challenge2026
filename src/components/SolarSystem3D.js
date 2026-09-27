@@ -630,37 +630,26 @@ export class SolarSystemScene {
     this._transitionSpeed = relic.category === 'deep-space' ? 0.018 : 0.025;
   }
 
-  flyToPlanet(planetId, enableTracking = false) {
-    let targetMesh = null;
-    let offset = new THREE.Vector3(14, 9, 16);
+  /**
+   * Cinematic camera approach toward a planet (used by the World Selector dock).
+   * @param {'moon'|'mars'} planetKey
+   */
+  flyToPlanet(planetKey) {
+    let targetMesh, offset;
 
-    if (planetId === 'mars') {
+    if (planetKey === 'moon') {
+      const earth = this.celestialBodies['earth'];
+      if (!earth || !earth.moonMesh) return;
+      targetMesh = earth.moonMesh;
+      offset = new THREE.Vector3(7, 4, 8);
+    } else if (planetKey === 'mars') {
       const mars = this.celestialBodies['mars'];
-      if (mars) {
-        targetMesh = mars.mesh;
-        offset = new THREE.Vector3(7.5, 4.5, 9.0);
-      }
-    } else if (planetId === 'moon') {
-      const earth = this.celestialBodies['earth'];
-      if (earth && earth.moonMesh) {
-        targetMesh = earth.moonMesh;
-        offset = new THREE.Vector3(3.8, 2.2, 4.5);
-      }
-    } else if (planetId === 'earth') {
-      const earth = this.celestialBodies['earth'];
-      if (earth) {
-        targetMesh = earth.mesh;
-        offset = new THREE.Vector3(12.0, 7.0, 14.0);
-      }
-    } else if (this.celestialBodies[planetId]) {
-      targetMesh = this.celestialBodies[planetId].mesh;
-      // Scale offset based on planet size
-      const cfg = this.celestialBodies[planetId].config;
-      const d = (cfg.size || 5) * 3.5;
-      offset = new THREE.Vector3(d, d * 0.6, d * 1.1);
+      if (!mars) return;
+      targetMesh = mars.mesh;
+      offset = new THREE.Vector3(11, 6, 13);
+    } else {
+      return;
     }
-
-    if (!targetMesh) return;
 
     const worldPos = new THREE.Vector3();
     targetMesh.getWorldPosition(worldPos);
@@ -671,63 +660,9 @@ export class SolarSystemScene {
     this.targetLookAt = worldPos.clone();
     this.targetCameraPos = worldPos.clone().add(offset);
 
-    // Enable live tracking so camera follows orbiting planet
-    if (enableTracking) {
-      this.trackedPlanetId = planetId;
-      this.trackingOffset.copy(offset);
-      this.isTracking = true;
-    } else {
-      // Stop previous tracking when doing a different non-tracked fly-to
-      this.isTracking = false;
-      this.trackedPlanetId = null;
-    }
-
     this.isTransitioning = true;
     this.transitionProgress = 0;
-    this._transitionSpeed = 0.028;
-  }
-
-  launchMission(planetId, fromPlanetId = 'earth', fromPos = null) {
-    if (planetId !== 'moon' && planetId !== 'mars' && planetId !== 'earth') {
-      this.flyToPlanet(planetId);
-      if (this.onSelectPlanet) this.onSelectPlanet(planetId);
-      return;
-    }
-
-    this.isOrbiting = false;
-    this.showLabels = false;
-    // Stop planet tracking when launching a mission
-    this.isTracking = false;
-    this.trackedPlanetId = null;
-    if (this.labelsContainer) this.labelsContainer.style.display = 'none';
-
-    this.missionFlight.startFlight(planetId, fromPlanetId, fromPos);
-  }
-
-  onPlanetTouchdown(planetId) {
-    if (planetId === 'earth') {
-      // Completed homeward return flight to Earth!
-      this.exitSurfaceMode();
-      this.flyToPlanet('earth');
-      return;
-    }
-
-    this.isSurfaceMode = true;
-    this.flyToPlanet(planetId);
-
-    if (this.onSelectPlanet) {
-      this.onSelectPlanet(planetId);
-    }
-  }
-
-  exitSurfaceMode() {
-    this.isSurfaceMode = false;
-    this.isOrbiting = true;
-    this.showLabels = true;
-    this.isTracking = false;
-    this.trackedPlanetId = null;
-    if (this.labelsContainer) this.labelsContainer.style.display = 'block';
-    this.resetOverview();
+    this._transitionSpeed = 0.02;
   }
 
   resetOverview() {
@@ -912,10 +847,10 @@ export class SolarSystemScene {
         body.currentAngle += body.config.speed * 0.2 * this.timeScale;
         body.mesh.position.x = Math.cos(body.currentAngle) * body.config.orbitRadius;
         body.mesh.position.z = Math.sin(body.currentAngle) * body.config.orbitRadius;
-        body.mesh.rotation.y += 0.003;
+        body.mesh.rotation.y += 0.015 * this.timeScale;
 
         if (body.cloudsMesh) {
-          body.cloudsMesh.rotation.y += 0.001;
+          body.cloudsMesh.rotation.y += 0.005 * this.timeScale;
         }
 
         if (body.moonPivot) {

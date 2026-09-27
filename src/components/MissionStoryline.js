@@ -8,12 +8,14 @@ import * as THREE from 'three';
 import { createRelicModel, highlightPart } from './Craft3DModels.js';
 import { soundFX } from './AudioEffects.js';
 import { formatNumberWithCommas, calculateCurrentTelemetry } from '../utils/orbitalMath.js';
+import { RELICS_DATA } from '../data/relicsData.js';
 
 export class MissionStoryline {
-  constructor(containerElement, onFlyToCallback, onAwardBadgeCallback) {
+  constructor(containerElement, onFlyToCallback, onAwardBadgeCallback, onPlayGameCallback) {
     this.container = containerElement;
     this.onFlyTo = onFlyToCallback;
     this.onAwardBadge = onAwardBadgeCallback;
+    this.onPlayGame = onPlayGameCallback;
     this.currentRelic = null;
     this.miniScene = null;
     this.miniCamera = null;
@@ -243,6 +245,13 @@ export class MissionStoryline {
         <!-- ── VERTICAL CINEMATIC FLOW ── -->
         <div class="storyline-flow-container" id="storyline-flow">
 
+          ${s.opening ? `
+          <div class="flow-step">
+            <p class="storyline-opening-line">${s.opening}</p>
+          </div>
+          <div class="flow-connector-line"><span class="flow-pulse-dot"></span></div>
+          ` : ''}
+
           <!-- LAUNCH -->
           <div class="flow-step">
             <div class="flow-year-node" style="--node-color:${heroColor}">${s.launch.year}</div>
@@ -288,6 +297,34 @@ export class MissionStoryline {
           </div>
 
           <div class="flow-connector-line"><span class="flow-pulse-dot"></span></div>
+
+          ${(relic.plannedValue != null && relic.actualValue != null) ? `
+          <!-- WOW MOMENT: PLANNED VS ACTUAL DURATION -->
+          <div class="flow-step">
+            <div class="flow-arrow-down">↓</div>
+            <div class="flow-card wow-duration-card">
+              <div class="card-icon-title">
+                <span class="step-icon">⏳</span>
+                <span class="step-title">Planned vs. Actual Mission</span>
+              </div>
+              <div class="wow-duration-row">
+                <div class="wow-duration-block">
+                  <span class="wow-duration-label">Planned</span>
+                  <span class="wow-duration-value planned" data-count-to="${relic.plannedValue}">0</span>
+                  <span class="wow-duration-label">${relic.unitLabel || 'Sols'}</span>
+                </div>
+                <span class="wow-duration-arrow">→</span>
+                <div class="wow-duration-block">
+                  <span class="wow-duration-label">Actual</span>
+                  <span class="wow-duration-value actual" data-count-to="${relic.actualValue}">0</span>
+                  <span class="wow-duration-label">${relic.unitLabel || 'Sols'}</span>
+                </div>
+              </div>
+              <p class="wow-duration-caption">"I stayed ${Math.round(relic.actualValue / relic.plannedValue)}× longer than anyone expected."</p>
+            </div>
+          </div>
+          <div class="flow-connector-line"><span class="flow-pulse-dot"></span></div>
+          ` : ''}
 
           <!-- INSTRUMENTS — INTERACTIVE SPEC & 3D HARDWARE EXPLORER -->
           <div class="flow-step">
@@ -417,6 +454,45 @@ export class MissionStoryline {
 
           <div class="flow-connector-line"><span class="flow-pulse-dot"></span></div>
 
+          ${s.finalMoment ? `
+          <!-- FINAL MOMENT -->
+          <div class="flow-step">
+            <div class="flow-arrow-down">↓</div>
+            <div class="flow-card final-moment-card">
+              <div class="card-icon-title">
+                <span class="step-icon">🌑</span>
+                <span class="step-title">My Final Moment</span>
+              </div>
+              <div class="science-breakthrough-title">${s.finalMoment.title}</div>
+              <p class="step-desc">${s.finalMoment.desc}</p>
+            </div>
+          </div>
+          <div class="flow-connector-line"><span class="flow-pulse-dot"></span></div>
+          ` : ''}
+
+          ${s.legacy ? `
+          <!-- WOW MOMENT: MISSION ENDED, LEGACY CONTINUES -->
+          <div class="flow-step">
+            <div class="flow-arrow-down">↓</div>
+            <div class="flow-card legacy-card">
+              <div class="card-icon-title">
+                <span class="legacy-ended-tag">MISSION ENDED</span>
+                <span class="legacy-continues-tag">LEGACY CONTINUES →</span>
+              </div>
+              <div class="science-breakthrough-title">${s.legacy.title}</div>
+              <p class="step-desc">${s.legacy.desc}</p>
+              ${(s.legacy.connectsTo && s.legacy.connectsTo.length) ? `
+              <div class="legacy-connections-row">
+                ${s.legacy.connectsTo.map(id => {
+                  const linked = RELICS_DATA.find(r => r.id === id);
+                  return linked ? `<button class="legacy-connect-chip" data-linked-relic="${linked.id}">→ ${linked.shortName}</button>` : '';
+                }).join('')}
+              </div>` : ''}
+            </div>
+          </div>
+          <div class="flow-connector-line"><span class="flow-pulse-dot"></span></div>
+          ` : ''}
+
           <!-- FUN FACT TERMINAL -->
           ${relic.funFact ? `
           <div class="flow-step">
@@ -436,6 +512,9 @@ export class MissionStoryline {
 
         <!-- Action Bar -->
         <div class="storyline-action-bar">
+          <button class="storyline-btn game-play-btn" id="storyline-play-game-btn">
+            <span>🎮</span> Play as Mission Game
+          </button>
           <button class="storyline-btn audio-btn" id="storyline-play-sound-btn">
             <span>🔊</span> Mission Audio
           </button>
@@ -459,6 +538,40 @@ export class MissionStoryline {
     /* ── Event Listeners ──────────────────────────────────────────── */
     this.container.querySelector('#storyline-close-btn').addEventListener('click', () => this.close());
     this.container.querySelector('#storyline-backdrop').addEventListener('click', () => this.close());
+
+    /* ── Legacy Connection Chips → Jump to Linked Mission ─────────── */
+    this.container.querySelectorAll('.legacy-connect-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const linked = RELICS_DATA.find(r => r.id === chip.dataset.linkedRelic);
+        if (linked) {
+          soundFX.playClick();
+          this.open(linked);
+        }
+      });
+    });
+
+    /* ── Planned vs Actual Count-Up Animation ──────────────────────── */
+    const countEls = this.container.querySelectorAll('[data-count-to]');
+    if (countEls.length) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = parseInt(el.dataset.countTo, 10) || 0;
+          const duration = 1200;
+          const start = performance.now();
+          const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = formatNumberWithCommas(Math.round(target * eased));
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          obs.unobserve(el);
+        });
+      }, { root: this.container.querySelector('#storyline-flow'), threshold: 0.4 });
+      countEls.forEach(el => obs.observe(el));
+    }
 
     /* ── Instrument Tabs ─────────────────────────────────────────── */
     const tabBar = this.container.querySelector(`#inst-tab-bar-${relic.id}`);
@@ -570,6 +683,12 @@ export class MissionStoryline {
     this.container.querySelector('#storyline-fly-camera-btn').addEventListener('click', () => {
       if (this.onFlyTo) this.onFlyTo(relic.id);
       this.close();
+    });
+
+    // Play as Mission Game
+    this.container.querySelector('#storyline-play-game-btn').addEventListener('click', () => {
+      this.close();
+      if (this.onPlayGame) this.onPlayGame(relic);
     });
 
     // Gallery lightbox

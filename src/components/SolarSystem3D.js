@@ -596,6 +596,41 @@ export class SolarSystemScene {
     this._transitionSpeed = relic.category === 'deep-space' ? 0.018 : 0.025;
   }
 
+  /**
+   * Cinematic camera approach toward a planet (used by the World Selector dock).
+   * @param {'moon'|'mars'} planetKey
+   */
+  flyToPlanet(planetKey) {
+    let targetMesh, offset;
+
+    if (planetKey === 'moon') {
+      const earth = this.celestialBodies['earth'];
+      if (!earth || !earth.moonMesh) return;
+      targetMesh = earth.moonMesh;
+      offset = new THREE.Vector3(7, 4, 8);
+    } else if (planetKey === 'mars') {
+      const mars = this.celestialBodies['mars'];
+      if (!mars) return;
+      targetMesh = mars.mesh;
+      offset = new THREE.Vector3(11, 6, 13);
+    } else {
+      return;
+    }
+
+    const worldPos = new THREE.Vector3();
+    targetMesh.getWorldPosition(worldPos);
+
+    this.startCameraPos.copy(this.camera.position);
+    this.startLookAt.copy(this.currentLookAt);
+
+    this.targetLookAt = worldPos.clone();
+    this.targetCameraPos = worldPos.clone().add(offset);
+
+    this.isTransitioning = true;
+    this.transitionProgress = 0;
+    this._transitionSpeed = 0.02;
+  }
+
   resetOverview() {
     this.startCameraPos.copy(this.camera.position);
     this.startLookAt.copy(this.currentLookAt);
@@ -732,10 +767,10 @@ export class SolarSystemScene {
         body.currentAngle += body.config.speed * 0.2 * this.timeScale;
         body.mesh.position.x = Math.cos(body.currentAngle) * body.config.orbitRadius;
         body.mesh.position.z = Math.sin(body.currentAngle) * body.config.orbitRadius;
-        body.mesh.rotation.y += 0.015;
+        body.mesh.rotation.y += 0.015 * this.timeScale;
 
         if (body.cloudsMesh) {
-          body.cloudsMesh.rotation.y += 0.005;
+          body.cloudsMesh.rotation.y += 0.005 * this.timeScale;
         }
 
         if (body.moonPivot) {

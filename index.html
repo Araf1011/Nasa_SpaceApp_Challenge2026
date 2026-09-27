@@ -33,6 +33,9 @@
 
         <!-- Right Quick Action Controls -->
         <div class="top-actions">
+          <button class="pill-action-btn" id="nav-passport-btn" title="Open Cosmic Explorer Passport">
+            <span>🛂</span> Passport
+          </button>
           <button class="icon-action-btn" id="nav-mute-toggle-btn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
             <span id="mute-icon">🔊</span>
           </button>
@@ -47,20 +50,54 @@
 
       <!-- Clean Floating Bottom Dock -->
       <footer class="clean-bottom-dock interactive-panel">
-        <!-- Quick Spacecraft Showcase Pills -->
+
+        <!-- World Selector: Approach a Planet -->
+        <div class="world-selector-row" id="world-selector-row">
+          <button class="world-select-btn active" data-planet="all" title="View all NASA hardware">
+            <span class="world-select-icon">🌌</span> All Worlds
+          </button>
+          <button class="world-select-btn" data-planet="moon" title="Explore the Moon">
+            <span class="world-select-icon">🌕</span> Moon
+          </button>
+          <button class="world-select-btn" data-planet="mars" title="Explore Mars">
+            <span class="world-select-icon">🔴</span> Mars
+          </button>
+        </div>
+
+        <!-- Dynamic Planet Info Line -->
+        <div class="world-info-line" id="world-info-line">
+          <span id="world-info-title">All Worlds</span>
+          <span class="world-info-dot">·</span>
+          <span id="world-info-stats">12 Explorers Across the Solar System</span>
+        </div>
+
+        <!-- Quick Spacecraft Showcase Pills (auto-updates with world selection) -->
         <div class="quick-relic-pills" id="quick-pills-row">
           <!-- Populated by main.js -->
         </div>
 
-        <!-- Compact Timeline Scrubber Drawer Trigger -->
-        <div class="dock-timeline-strip">
-          <button class="timeline-toggle-pill" id="timeline-toggle-btn">
-            <span>⏱️</span> <span id="timeline-year-label">Year: 2026 (All Missions)</span>
-          </button>
-          <div class="dock-slider-wrap hidden" id="dock-slider-wrap">
-            <span class="dock-year-min">1969</span>
-            <input type="range" id="dock-timeline-range" min="1969" max="2026" value="2026" class="dock-slider" />
-            <span class="dock-year-max">2026</span>
+        <!-- Compact Scrubber Drawer Triggers -->
+        <div class="dock-toggles-row">
+          <div class="dock-timeline-strip">
+            <button class="timeline-toggle-pill" id="timeline-toggle-btn">
+              <span>⏱️</span> <span id="timeline-year-label">Year: 2026 (All Missions)</span>
+            </button>
+            <div class="dock-slider-wrap hidden" id="dock-slider-wrap">
+              <span class="dock-year-min">1969</span>
+              <input type="range" id="dock-timeline-range" min="1969" max="2026" value="2026" class="dock-slider" />
+              <span class="dock-year-max">2026</span>
+            </div>
+          </div>
+
+          <div class="dock-timeline-strip">
+            <button class="timeline-toggle-pill" id="speed-toggle-btn">
+              <span>🌀</span> <span id="speed-value-label">Rotation Speed: 1×</span>
+            </button>
+            <div class="dock-slider-wrap hidden" id="speed-slider-wrap">
+              <span class="dock-year-min">⏸</span>
+              <input type="range" id="speed-range" min="0" max="3" step="0.1" value="1" class="dock-slider" />
+              <span class="dock-year-max">3×</span>
+            </div>
           </div>
         </div>
       </footer>
@@ -68,6 +105,9 @@
 
     <!-- Clean Vertical Mission Storyline Drawer -->
     <div id="mission-storyline-container" class="storyline-modal-container interactive-panel" role="dialog" aria-label="Mission Storyline"></div>
+
+    <!-- Chapter-Gated Mission Game Drawer -->
+    <div id="mission-game-container" class="storyline-modal-container interactive-panel" role="dialog" aria-label="Mission Game"></div>
 
     <!-- Cosmic Passport & Quiz Modal -->
     <div id="passport-modal-container" class="passport-modal-container interactive-panel" role="region" aria-label="Cosmic Passport & Quiz">

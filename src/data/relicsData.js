@@ -745,6 +745,425 @@ export const RELICS_DATA = [
     audioSimulation: 'plasma_waves',
     audioTitle: 'Parker Solar Wind Magnetic Reconnection Plasma Audio',
     badgeAwarded: 'sun-diver'
+  },
+  {
+    id: 'opportunity-mer-b',
+    name: 'Opportunity Mars Exploration Rover',
+    shortName: 'Opportunity Rover',
+    category: 'mars',
+    domainLabel: 'Mars',
+    launchYear: 2003,
+    landingYear: 2004,
+    launchDate: 'July 7, 2003',
+    arrivalDate: 'January 25, 2004',
+    arrivalEvent: 'Bounced to a stop inside Eagle Crater, Meridiani Planum',
+    status: 'retired',
+    statusLabel: 'Mission Ended — Lost in Dust Storm',
+    statusClass: 'status-retired',
+    location: 'Perseverance Valley, Endeavour Crater, Mars',
+    coordinates: '2.28° S, 5.53° W',
+    distanceAU: 1.45,
+    baseDistanceKm: 217000000,
+    speedKmS: 24.1,
+    oneWayLightSeconds: 720,
+    modelType: 'mer-rover',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/1280px-Opportunity_at_Victoria_Crater.jpg',
+    heroColor: '#c1440e',
+    galleryImages: [
+      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/1280px-Opportunity_at_Victoria_Crater.jpg', caption: 'Opportunity at the rim of Victoria Crater' },
+      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg/1024px-Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg', caption: "Phobos eclipsing the Sun, seen from Mars" }
+    ],
+    plannedValue: 90,
+    actualValue: 5111,
+    unitLabel: 'Martian Sols',
+    plannedDuration: '90 Sols (about 3 months)',
+    actualDuration: '5,111 Sols (nearly 15 years)',
+    storyLine: {
+      opening: "I was designed to survive only 90 Martian days. I lasted almost fifteen years.",
+      launch: {
+        year: '2003',
+        title: 'Launched from Cape Canaveral',
+        desc: 'I lifted off on a Delta II rocket, the second of NASA\'s twin Mars Exploration Rovers, three weeks after my twin Spirit.'
+      },
+      arrival: {
+        year: '2004',
+        title: 'Bounced to a Stop in Eagle Crater',
+        desc: 'Wrapped in airbags, I bounced 26 times across Meridiani Planum before rolling to rest — and landed inside a small crater that immediately exposed bedrock scientists had hoped to spend weeks searching for.'
+      },
+      hardware: {
+        icon: '🤖',
+        title: 'Mars Exploration Rover Chassis',
+        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/1280px-Opportunity_at_Victoria_Crater.jpg',
+        desc: 'A 185-kg solar-powered, golf-cart-sized rover with a 6-wheel rocker-bogie suspension and a robotic arm carrying a microscope and spectrometers.'
+      },
+      instruments: [
+        {
+          group: 'Cameras & Optics',
+          icon: '📷',
+          items: [
+            {
+              name: 'Panoramic Camera (Pancam)',
+              desc: 'Stereo, multi-spectral camera on the mast that captured sweeping color panoramas of crater rims and dust devils.',
+              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/800px-Opportunity_at_Victoria_Crater.jpg',
+              specs: { resolution: '1024×1024 px', filters: '8 per eye', mass: '3.9 kg' },
+              partKey: 'mast'
+            },
+            {
+              name: 'Microscopic Imager',
+              desc: 'Arm-mounted microscope that revealed tiny spherical "blueberries" of hematite scattered across the plains — a mineral that typically forms in water.',
+              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg/800px-Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg',
+              specs: { resolution: '31 microns/pixel', field_of_view: '31×31 mm', mass: '0.26 kg' },
+              partKey: 'arm'
+            }
+          ]
+        },
+        {
+          group: 'Spectrometers',
+          icon: '🔬',
+          items: [
+            {
+              name: 'Mössbauer Spectrometer',
+              desc: 'Identified iron-bearing minerals in rocks and soil, confirming the hematite "blueberries" formed in ancient acidic groundwater.',
+              specs: { target: 'Iron minerals', source: 'Cobalt-57', mass: '0.5 kg' },
+              partKey: 'arm'
+            },
+            {
+              name: 'Rock Abrasion Tool (RAT)',
+              desc: 'A grinding wheel that ground into rock surfaces to expose fresh, unweathered material for the spectrometers to analyze.',
+              specs: { grind_depth: '5 mm', diameter: '45 mm', mass: '0.72 kg' },
+              partKey: 'arm'
+            }
+          ]
+        }
+      ],
+      science: {
+        title: 'Direct Evidence That Mars Was Once Wet',
+        desc: 'Found hematite "blueberries" and layered sedimentary rock proving that Meridiani Planum was once soaked by acidic, salty ancient water — the first ground-truth evidence of a watery Martian past.'
+      },
+      currentStatus: {
+        title: 'Resting on the Rim of Perseverance Valley',
+        desc: 'Opportunity remains exactly where it stopped, silent since 2018, its solar panels buried under a thin coat of Martian dust on the western rim of Endeavour Crater.'
+      },
+      finalMoment: {
+        title: 'Swallowed by a Planet-Wide Dust Storm',
+        desc: 'In June 2018, a global dust storm blotted out the Martian sky, blocking sunlight from reaching my solar panels. I sent one last message: "My battery is low and it\'s getting dark." I never recharged. NASA tried over 835 times to reconnect before formally ending the mission on February 13, 2019.'
+      },
+      legacy: {
+        title: 'Proved Long-Duration Solar Rovers Work',
+        desc: 'I was built for a 90-day errand and delivered a 15-year expedition, driving the first marathon distance (45.16 km) ever run by a robot on another world. Every rover after me — Curiosity, Perseverance — inherited engineering lessons from my unexpectedly long life.',
+        connectsTo: ['curiosity-msl', 'perseverance-ingenuity']
+      }
+    },
+    funFact: "Opportunity drove 45.16 kilometers on Mars — farther than any other off-world vehicle, officially beating the Soviet Lunokhod 2's distance record.",
+    audioSimulation: 'radio_carrier',
+    audioTitle: 'Opportunity Final Transmission Simulation',
+    badgeAwarded: 'martian-vanguard'
+  },
+  {
+    id: 'spirit-mer-a',
+    name: 'Spirit Mars Exploration Rover',
+    shortName: 'Spirit Rover',
+    category: 'mars',
+    domainLabel: 'Mars',
+    launchYear: 2003,
+    landingYear: 2004,
+    launchDate: 'June 10, 2003',
+    arrivalDate: 'January 4, 2004',
+    arrivalEvent: 'Airbag landing in Gusev Crater',
+    status: 'retired',
+    statusLabel: 'Mission Ended — Stuck & Frozen',
+    statusClass: 'status-retired',
+    location: 'Troy sand trap, Gusev Crater, Mars',
+    coordinates: '14.57° S, 175.47° E',
+    distanceAU: 1.45,
+    baseDistanceKm: 217000000,
+    speedKmS: 24.1,
+    oneWayLightSeconds: 720,
+    modelType: 'mer-rover',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Spirit_at_Bonneville_crater.jpg/1280px-Spirit_at_Bonneville_crater.jpg',
+    heroColor: '#c1440e',
+    galleryImages: [
+      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Spirit_at_Bonneville_crater.jpg/1280px-Spirit_at_Bonneville_crater.jpg', caption: 'Spirit at the rim of Bonneville Crater' }
+    ],
+    plannedValue: 90,
+    actualValue: 2210,
+    unitLabel: 'Martian Sols',
+    plannedDuration: '90 Sols (about 3 months)',
+    actualDuration: '2,210 Sols (over 6 years)',
+    storyLine: {
+      opening: "I was my twin's trailblazer. I found fire in the Martian soil — proof of ancient hot springs — before the cold finally caught me.",
+      launch: {
+        year: '2003',
+        title: 'First of the Twin Rovers to Launch',
+        desc: 'I launched three weeks ahead of my twin Opportunity, both of us riding Delta II rockets toward opposite sides of Mars.'
+      },
+      arrival: {
+        year: '2004',
+        title: 'Landed in Gusev Crater',
+        desc: 'I touched down in a crater scientists believed once held a lake, bouncing safely inside airbags onto the crater floor.'
+      },
+      hardware: {
+        icon: '🤖',
+        title: 'Mars Exploration Rover Chassis',
+        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Spirit_at_Bonneville_crater.jpg/1280px-Spirit_at_Bonneville_crater.jpg',
+        desc: 'Identical in design to Opportunity — a 185-kg solar-powered rover built to survey Gusev Crater\'s volcanic plains and the Columbia Hills.'
+      },
+      instruments: [
+        {
+          group: 'Cameras & Optics',
+          icon: '📷',
+          items: [
+            {
+              name: 'Panoramic Camera (Pancam)',
+              desc: 'Captured the Columbia Hills in sweeping color, later revealing bright silica-rich soil kicked up by my own dragging wheel.',
+              specs: { resolution: '1024×1024 px', filters: '8 per eye', mass: '3.9 kg' },
+              partKey: 'mast'
+            }
+          ]
+        },
+        {
+          group: 'Spectrometers',
+          icon: '🔬',
+          items: [
+            {
+              name: 'Miniature Thermal Emission Spectrometer',
+              desc: 'Detected nearly pure silica deposits near "Home Plate" — a mineral signature that on Earth only forms around hot springs or steam vents.',
+              specs: { target: 'Mineral composition', wavelength: 'thermal infrared', mass: '2.4 kg' },
+              partKey: 'chassis'
+            }
+          ]
+        }
+      ],
+      science: {
+        title: 'Evidence of Ancient Hydrothermal Activity',
+        desc: 'A dragging, broken wheel accidentally plowed up bright silica-rich soil — a mineral fingerprint of ancient hot springs or steam vents, hinting Gusev Crater once hosted a habitable, geothermally active environment.'
+      },
+      currentStatus: {
+        title: 'Resting at Troy, Gusev Crater',
+        desc: 'Spirit remains stuck in soft sand at a site nicknamed "Troy," tilted away from the Sun, silent since 2010.'
+      },
+      finalMoment: {
+        title: 'Trapped in Sand, Frozen by Martian Winter',
+        desc: 'In May 2009, my wheels broke through a crusty surface into soft, hidden sand and I became permanently stuck. Engineers tried for months to free me, but I could not tilt my solar panels enough to survive the coming Martian winter. My last signal reached Earth on March 22, 2010.'
+      },
+      legacy: {
+        title: 'A Broken Wheel Became a Discovery Tool',
+        desc: 'My failure taught NASA as much as my success: a dragging wheel accidentally exposed silica evidence of ancient hot springs, and my sand entrapment directly shaped the hazard-avoidance software used by Curiosity and Perseverance.',
+        connectsTo: ['curiosity-msl', 'perseverance-ingenuity']
+      }
+    },
+    funFact: "Spirit's right-front wheel stopped turning in 2006, so engineers drove it backward for the rest of the mission — and that dragging wheel accidentally dug up the silica deposits that became one of the mission's biggest discoveries.",
+    audioSimulation: 'radio_carrier',
+    audioTitle: 'Spirit Final Transmission Simulation',
+    badgeAwarded: 'martian-vanguard'
+  },
+  {
+    id: 'phoenix-lander',
+    name: 'Phoenix Mars Lander',
+    shortName: 'Phoenix Lander',
+    category: 'mars',
+    domainLabel: 'Mars',
+    launchYear: 2007,
+    landingYear: 2008,
+    launchDate: 'August 4, 2007',
+    arrivalDate: 'May 25, 2008',
+    arrivalEvent: 'Rocket-powered touchdown in the Martian arctic',
+    status: 'retired',
+    statusLabel: 'Mission Ended — Entombed in Ice',
+    statusClass: 'status-retired',
+    location: 'Green Valley, Vastitas Borealis, Mars (Arctic Plains)',
+    coordinates: '68.22° N, 234.25° E',
+    distanceAU: 1.45,
+    baseDistanceKm: 217000000,
+    speedKmS: 24.1,
+    oneWayLightSeconds: 720,
+    modelType: 'stationary-lander',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/PIA10202_Phoenix%27s_Home_for_the_Summer.jpg/1280px-PIA10202_Phoenix%27s_Home_for_the_Summer.jpg',
+    heroColor: '#4fa8d8',
+    galleryImages: [
+      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/PIA10202_Phoenix%27s_Home_for_the_Summer.jpg/1280px-PIA10202_Phoenix%27s_Home_for_the_Summer.jpg', caption: "Phoenix's robotic arm trenching Martian arctic soil" }
+    ],
+    plannedValue: 90,
+    actualValue: 157,
+    unitLabel: 'Sols',
+    plannedDuration: '90 Sols (3 months)',
+    actualDuration: '157 Sols (about 5 months)',
+    storyLine: {
+      opening: "I dug into the Martian arctic and found ice under my own landing thrusters. Then winter came for me, exactly as planned.",
+      launch: {
+        year: '2007',
+        title: 'Launched Toward the Martian Arctic',
+        desc: 'I launched on a Delta II rocket, targeting a polar region no rover had ever attempted to reach.'
+      },
+      arrival: {
+        year: '2008',
+        title: 'First Powered Landing Since Viking',
+        desc: 'Unlike airbag rovers, I fired retro-rockets all the way to the ground — the first fully successful powered Mars landing in over 30 years.'
+      },
+      hardware: {
+        icon: '🦾',
+        title: 'Stationary Lander with Robotic Arm',
+        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/PIA10202_Phoenix%27s_Home_for_the_Summer.jpg/1280px-PIA10202_Phoenix%27s_Home_for_the_Summer.jpg',
+        desc: 'A fixed, solar-powered lander with a 2.35-meter robotic arm built to dig trenches into the icy Martian soil and deliver samples to onboard ovens.'
+      },
+      instruments: [
+        {
+          group: 'Digging & Sample Delivery',
+          icon: '⛏️',
+          items: [
+            {
+              name: 'Robotic Arm',
+              desc: 'Dug trenches into the polar soil and exposed a bright, hard layer just centimeters down that vaporized within days — confirmed as water ice.',
+              specs: { reach: '2.35 m', dig_depth: '0.5 m', mass: '11 kg' },
+              partKey: 'arm'
+            }
+          ]
+        },
+        {
+          group: 'Chemistry Lab',
+          icon: '🧪',
+          items: [
+            {
+              name: 'TEGA (Thermal & Evolved Gas Analyzer)',
+              desc: 'Miniature ovens that baked soil samples and sniffed the vapors, discovering calcium carbonate and perchlorate salts in the soil.',
+              specs: { ovens: '8 single-use cells', max_temp: '1000°C', mass: '9.5 kg' },
+              partKey: 'chassis'
+            },
+            {
+              name: 'Surface Stereo Imager & Lidar',
+              desc: 'A mast-mounted camera and laser instrument that detected snow falling from Martian clouds, evaporating before it reached the ground.',
+              specs: { detection: 'Water-ice snow in clouds', range: 'up to 20 km', mass: '4.5 kg' },
+              partKey: 'mast'
+            }
+          ]
+        }
+      ],
+      science: {
+        title: 'Confirmed Water Ice Just Below the Surface',
+        desc: 'Directly exposed and confirmed water ice a few centimeters under the Martian arctic soil, and detected snow falling from Martian clouds — the first direct proof that water ice is accessible near the surface at Mars\'s poles.'
+      },
+      currentStatus: {
+        title: 'Entombed Beneath Arctic Frost',
+        desc: 'Phoenix still sits at Green Valley, its solar panels almost certainly cracked by accumulated carbon-dioxide ice, buried under seasonal frost every Martian winter since 2008.'
+      },
+      finalMoment: {
+        title: 'A Death Written Into the Mission Plan',
+        desc: 'Unlike Spirit or Opportunity, my end was expected from day one: I landed too far north to survive the brutal polar winter. As autumn darkened the sky in November 2008, my batteries drained and I sent a final, faint signal before falling silent — exactly on schedule.'
+      },
+      legacy: {
+        title: 'Rewrote Where We Look for Habitability',
+        desc: 'Confirming accessible ice at the poles reshaped NASA\'s search for habitable environments and in-situ water resources, directly informing how InSight and future human-exploration planners think about Martian ice and climate.',
+        connectsTo: ['insight-lander']
+      }
+    },
+    funFact: "Phoenix watched snow fall from Martian clouds at night — the first time snowfall had ever been observed on another planet — though the flakes vaporized before touching the ground.",
+    audioSimulation: 'radio_carrier',
+    audioTitle: 'Phoenix Arctic Descent Telemetry Simulation',
+    badgeAwarded: 'martian-vanguard'
+  },
+  {
+    id: 'insight-lander',
+    name: 'InSight Mars Lander',
+    shortName: 'InSight Lander',
+    category: 'mars',
+    domainLabel: 'Mars',
+    launchYear: 2018,
+    landingYear: 2018,
+    launchDate: 'May 5, 2018',
+    arrivalDate: 'November 26, 2018',
+    arrivalEvent: 'Powered touchdown in Elysium Planitia',
+    status: 'retired',
+    statusLabel: 'Mission Ended — Buried in Dust',
+    statusClass: 'status-retired',
+    location: 'Elysium Planitia, Mars',
+    coordinates: '4.5° N, 135.9° E',
+    distanceAU: 1.45,
+    baseDistanceKm: 217000000,
+    speedKmS: 24.1,
+    oneWayLightSeconds: 720,
+    modelType: 'stationary-lander',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg/1280px-PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg',
+    heroColor: '#e0a23b',
+    galleryImages: [
+      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg/1280px-PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg', caption: 'InSight self-portrait with seismometer deployed' }
+    ],
+    plannedValue: 708,
+    actualValue: 1440,
+    unitLabel: 'Sols',
+    plannedDuration: '708 Sols (1 Mars year / ~2 Earth years)',
+    actualDuration: '~1,440 Sols (over 4 years)',
+    storyLine: {
+      opening: "I never drove a single meter. I didn't need to — I listened, and Mars told me what was hiding beneath its skin.",
+      launch: {
+        year: '2018',
+        title: 'Launched on the First Interplanetary Mission from the West Coast',
+        desc: 'I lifted off on an Atlas V from Vandenberg, California — the first interplanetary launch ever from the U.S. West Coast.'
+      },
+      arrival: {
+        year: '2018',
+        title: 'Touched Down on the Flattest Place on Mars',
+        desc: 'I landed on the smooth plains of Elysium Planitia, deliberately chosen as one of the flattest, most boring-looking places on Mars — perfect for a stationary geophysics lab.'
+      },
+      hardware: {
+        icon: '🎧',
+        title: 'Stationary Geophysical Observatory',
+        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg/1280px-PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg',
+        desc: 'A fixed lander carrying a dome-shielded seismometer, a self-hammering heat probe, and radio equipment to measure the wobble of the entire planet.'
+      },
+      instruments: [
+        {
+          group: 'Seismology',
+          icon: '🌐',
+          items: [
+            {
+              name: 'SEIS Seismometer',
+              desc: 'A dome-covered seismometer so sensitive it could detect ground motion smaller than a hydrogen atom, recording over 1,300 marsquakes.',
+              specs: { sensitivity: 'sub-nanometer', marsquakes_detected: '1,300+', mass: '29.1 kg with shield' },
+              partKey: 'chassis'
+            }
+          ]
+        },
+        {
+          group: 'Heat & Radio Science',
+          icon: '🌡️',
+          items: [
+            {
+              name: 'HP3 "Mole" Heat Probe',
+              desc: 'A self-hammering probe designed to burrow 5 meters down to measure heat flow from Mars\'s interior — it stalled in unexpectedly clumpy soil and never reached target depth.',
+              specs: { target_depth: '5 m', achieved_depth: '<0.4 m', mass: '3 kg' },
+              partKey: 'arm'
+            },
+            {
+              name: 'RISE Radio Science',
+              desc: 'Tracked tiny wobbles in InSight\'s radio signal caused by Mars\'s rotation, revealing the size and liquid state of the planet\'s core.',
+              specs: { measures: 'planetary wobble', reveals: 'core size & density', mass: 'integrated in bus' },
+              partKey: 'bus'
+            }
+          ]
+        }
+      ],
+      science: {
+        title: 'The First Seismic Map of Another Planet\'s Interior',
+        desc: 'Detected over 1,300 marsquakes and meteorite impacts, revealing that Mars has a surprisingly large, liquid iron core, a thin crust, and a mantle layered differently from Earth\'s.'
+      },
+      currentStatus: {
+        title: 'Silent and Dust-Covered at Elysium Planitia',
+        desc: 'InSight still sits upright at its landing site, its solar panels now buried under a thick coat of Martian dust that no wind ever cleared away.'
+      },
+      finalMoment: {
+        title: 'Slowly Starved of Sunlight',
+        desc: 'With no wind gust ever sweeping my solar panels clean, years of settling dust steadily cut my power output. On December 21, 2022, after two consecutive missed check-ins, NASA declared the mission over — I simply ran out of energy to keep listening.'
+      },
+      legacy: {
+        title: 'Mars Finally Has an Interior Map',
+        desc: 'My seismic data gave scientists the first direct measurements of another rocky planet\'s deep interior, a foundational dataset now used to plan future Mars geophysics missions and to compare Mars\'s formation history with Earth\'s and the Moon\'s.',
+        connectsTo: ['phoenix-lander']
+      }
+    },
+    funFact: "InSight's heat probe, nicknamed 'the Mole,' was designed to hammer itself 5 meters underground — but Martian soil clumped instead of collapsing around it, so it barely dug 40 centimeters before engineers gave up on it in 2021.",
+    audioSimulation: 'radio_carrier',
+    audioTitle: 'InSight Marsquake Seismic Data Sonification',
+    badgeAwarded: 'martian-vanguard'
   }
 ];
 

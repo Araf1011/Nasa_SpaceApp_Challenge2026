@@ -1,0 +1,74 @@
+/**
+ * Random Popup Display for WP Popup Maker
+ * 
+ * This script randomly determines whether to display a popup when a user
+ * is browsing the site. It uses session cookies to track whether the
+ * decision has already been made for the current session.
+ */
+(function($, document) {
+    if (typeof popupData !== 'undefined') {
+    var popupId = popupData.popupId; // popup ID
+    var randomChance = popupData.randomChance; // % chance to show the popup
+    var sessionCookieName = 'pum_random_display_decision';
+    
+    // Check if we've already made a decision for this session
+    function getSessionDecision() {
+        if ($.pm_cookie === undefined) {
+            return null;
+        }
+        
+        var decision = $.pm_cookie(sessionCookieName) || null;
+        return decision;
+    }
+    
+    // Set the session decision
+    function setSessionDecision(show) {
+        if ($.pm_cookie === undefined) {
+            return;
+        }
+        
+        // Use empty cookie time parameter for session cookie
+        $.pm_cookie(sessionCookieName, show ? 'show' : 'hide', '', '/');
+    }
+    
+    // Make a random decision whether to show the popup
+    function makeRandomDecision() {
+        return Math.random() < randomChance;
+    }
+    
+    // Handle the popup display logic
+    function handlePopupDisplay() {
+        var decision = getSessionDecision();
+        
+        // If we haven't made a decision yet, make one and save it
+        if (decision === null) {
+            decision = makeRandomDecision() ? 'show' : 'hide';
+            setSessionDecision(decision === 'show');
+        }
+        
+        // Get the popup by ID
+        var $popup = $('#pum-' + popupId);
+        
+        if (!$popup.length) {
+            return;
+        }
+        
+        // If decision is to hide, prevent the popup from opening
+        if (decision === 'hide') {
+            $popup.addClass('preventOpen');
+            
+            // Also handle any triggers that might try to open it
+            $(document).on('pumBeforeOpen', '#pum-' + popupId, function(event) {
+                event.preventDefault();
+                return false;
+            });
+        } 
+    }
+    
+    // Initialize on document ready
+    $(document).ready(function() {
+        handlePopupDisplay();
+    });
+}
+    
+}(jQuery, document));

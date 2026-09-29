@@ -1,0 +1,90 @@
+document.addEventListener('DOMContentLoaded', function () {
+	// Check for 'type-stma' or 'hubble-science-release' classes
+	if (document.querySelector('.type-stma') || document.querySelector('.hubble-science-release')) {
+
+		// Featured Link List override
+		const featuredLinkList = document.querySelector('.hds-featured-link-list');
+		if (featuredLinkList) {
+			// Add the 'large-image-layout' class
+			featuredLinkList.classList.add('large-image-layout');
+
+			// Remove all 'flex-align-center' classes in 'featuredLinkList'
+			const flexAlignCenters = featuredLinkList.querySelectorAll('.flex-align-center');
+			flexAlignCenters.forEach(element => {
+				element.classList.remove('flex-align-center');
+			});
+
+			// Replace block title
+			const blockTitle = featuredLinkList.querySelector('.heading-22');
+			if (blockTitle) {
+				blockTitle.classList.remove('heading-22');
+				blockTitle.classList.add('block-heading');
+			}
+
+			// Replace item titles
+			const itemTitles = featuredLinkList.querySelectorAll('.heading-36');
+			itemTitles.forEach(element => {
+				element.classList.remove('heading-36');
+				element.classList.add('list-item-heading');
+			});
+
+			// Each 'width-full' class inside 'featured-link-list-row' should be replaced with 'width-125px'
+			const fullWidthElements = featuredLinkList.querySelectorAll('.featured-link-list-row .width-full');
+			fullWidthElements.forEach(element => {
+				element.classList.remove('width-full');
+				element.classList.add('width-125px');
+			});
+
+			// Remove 'radius-pill' class from image wrapper
+			const coverWrappers = featuredLinkList.querySelectorAll('.hds-cover-wrapper');
+			coverWrappers.forEach(wrapper => {
+				wrapper.classList.remove('radius-pill');
+			});
+
+			// Find and replace classes based on layout conditions
+			const gridCols2 = featuredLinkList.querySelectorAll('.grid-col-2');
+			gridCols2.forEach(col => {
+				// Check if the element has the 'display-flex' class
+				if (col.classList.contains('display-flex')) {
+					// Adjust for icon column
+					col.classList.remove('grid-col-2', 'desktop:grid-col-1');
+					col.classList.add('icon-column');
+				} else {
+					// Adjust for flex-fit column
+					col.classList.remove('grid-col-2', 'desktop:grid-col-1', 'tablet:padding-right-3', 'desktop:padding-right-5');
+					col.classList.add('flex-fit-col');
+				}
+			});
+
+			// Find and replace 'grid-col-8' with 'flex-fill-col'
+			const gridCols8 = featuredLinkList.querySelectorAll('.grid-col-8');
+			gridCols8.forEach(col => {
+				col.classList.remove('grid-col-8', 'desktop:grid-col-10');
+				col.classList.add('flex-fill-col');
+			});
+
+			// Target '.flex-fill-col .grid-row'
+			const flexFillRows = featuredLinkList.querySelectorAll('.flex-fill-col .grid-row');
+			flexFillRows.forEach(row => {
+				row.style.width = '100%';
+
+				// Find all 'grid-col-12 desktop:grid-col-6' elements inside 'grid-row'
+				const gridCols = row.querySelectorAll('.grid-col-12.desktop\\:grid-col-6');
+
+				// Replace classes for the first element
+				if (gridCols[0]) {
+					gridCols[0].classList.remove('desktop:grid-col-6');
+					gridCols[0].classList.add('desktop:grid-col-7', 'desktop:padding-left-5', 'desktop:padding-right-5');
+				}
+
+				// Replace classes for the second element
+				if (gridCols[1]) {
+					gridCols[1].classList.remove('desktop:grid-col-6');
+					gridCols[1].classList.add('desktop:grid-col-5', 'desktop:padding-right-5');
+				}
+			});
+
+		}
+
+	}
+});

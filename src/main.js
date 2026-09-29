@@ -5,12 +5,14 @@
  */
 
 import './style.css';
+import './tailwind.css';
 import { RELICS_DATA } from './data/relicsData.js';
 import { PLANET_DATA } from './data/planetData.js';
 import { SolarSystemScene } from './components/SolarSystem3D.js';
 import { MissionStoryline } from './components/MissionStoryline.js';
 import { MissionGame } from './components/MissionGame.js';
 import { CosmicPassport } from './components/CosmicPassport.js';
+import { PlanetSurfaceExplorer } from './components/PlanetSurfaceExplorer.js';
 import { soundFX } from './components/AudioEffects.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -293,27 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
     soundFX.playClick();
     solarScene.resetOverview();
   });
-
-  // Cosmic Passport Modal Trigger & Close Listeners
-  const navPassportBtn = document.querySelector('#nav-passport-btn');
-  if (navPassportBtn) {
-    navPassportBtn.addEventListener('click', () => {
-      soundFX.playClick();
-      passportModal.classList.add('active');
-      passport.render();
-    });
-  }
-  if (passportCloseBtn) {
-    passportCloseBtn.addEventListener('click', () => {
-      soundFX.playClick();
-      passportModal.classList.remove('active');
-    });
-  }
-  if (passportBackdrop) {
-    passportBackdrop.addEventListener('click', () => {
-      passportModal.classList.remove('active');
-    });
-  }
 
   // Welcome audio gesture listener
   const unlockAudio = () => {

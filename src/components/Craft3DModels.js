@@ -107,7 +107,7 @@ export function createCuriosityRoverModel() {
     strut.rotation.z = pos[0] > 0 ? -0.4 : 0.4;
     group.add(strut);
   });
-
+  group.scale.set(0.69, 0.69, 0.69);
   return group;
 }
 

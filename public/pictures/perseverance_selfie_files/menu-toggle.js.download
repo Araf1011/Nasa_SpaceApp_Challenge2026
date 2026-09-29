@@ -1,0 +1,6 @@
+jQuery(($) => {
+	$('.hds-toggle').click(function() {
+	  $(this).toggleClass('hds-toggle-open');
+	  $(this).siblings('.hds-toggle-content.hds-toggle-content-mobile').toggle(300);
+	});
+  });

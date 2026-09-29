@@ -1,0 +1,782 @@
+jQuery( ($) => {
+
+	// If we're on mobile, add the "global-nav__mobile" class to the global nav.
+	const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+	if ( isMobile ) {
+		$( '#global-navigation' ).addClass( 'global-nav__mobile' );
+	}
+
+	// We need checks later to see which menu is open based on screen size.
+	let mobileMenu  = window.matchMedia("only screen and (max-width: 800px)").matches;
+	let tabletMenu  = window.matchMedia("only screen and (min-width: 801px) and (max-width: 1023px)").matches;
+	let desktopMenu = window.matchMedia("only screen and (min-width: 1024px)").matches;
+
+	// On window resize, check if we're on mobile or not and add the class if we are.
+	// On window resize update our menu booleans.
+	$( window ).on('resize', function() {
+		const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+		mobileMenu = window.matchMedia("only screen and (max-width: 800px)").matches;
+		tabletMenu = window.matchMedia("only screen and (min-width: 801px) and (max-width: 1023px)").matches;
+		desktopMenu = window.matchMedia("only screen and (min-width: 1024px)").matches;
+		if ( isMobile ) {
+			$( '#global-navigation' ).addClass( 'global-nav__mobile' );
+		} else {
+			$( '#global-navigation' ).removeClass( 'global-nav__mobile' );
+		}
+	});
+
+	// Upon clicking the "#global-nav-trigger", add the "hidden" attribute on the "#global-navigation" element if we have it, or remove it if we don't.
+	$( '.hds-explore-nav-trigger' ).on( 'click', function() {
+
+		// Get the button within the clicked element.
+		const hdsExploreButton = this.querySelector( 'button' );
+
+		// If the "aria-expanded" attribute is false, open the explore nav.
+		if ( 'false' === hdsExploreButton.getAttribute( 'aria-expanded' ) ) {
+			setupTabFlow( 'desktopTrigger' );
+			openExploreNav();
+		} else {
+			closeExploreNav();
+		}
+	} );
+
+	// Upon clicking .hds-global-menu-toggle, check if aria-expanded is true or false and open or close the menu accordingly.
+	$( '#global-navigation-trigger--mobile' ).on( 'click', function( e ) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		// We don't need to get the button here because it's on the clicked element.
+		const hdsGlobalMenuButton = e.currentTarget;
+
+		// If the "aria-expanded" attribute is false, open the explore nav.
+		if ( 'false' === hdsGlobalMenuButton.getAttribute( 'aria-expanded' ) ) {
+			setupTabFlow( 'mobileTrigger' );
+			openExploreNav();
+		} else {
+			closeExploreNav();
+		}
+	} );
+
+	// Open the explore nav.
+	function openExploreNav() {
+		// Open the global navigation.
+		$( '#global-navigation' ).attr( 'hidden', false );
+		$( '#global-navigation' ).attr( 'aria-expanded', 'true' );
+
+		// aria-expand the hds-explore-nav-trigger button.
+		$( '.hds-explore-nav-trigger button' ).attr( 'aria-expanded', 'true' );
+		$( '.hds-global-menu-toggle' ).attr( 'aria-expanded', 'true' );
+
+		// Add or remove the hds global menu toggle class.
+		$( '.hds-global-menu-toggle' ).addClass( 'menu-toggle-active' );
+		$( '.hds-global-menu-toggle' ).attr( 'data-menu-action', 'open' );
+
+		// Add a class to the body to prevent scrolling.
+		$( 'html' ).addClass( 'html-fixed' );
+
+		if ( ! mobileMenu ) {
+			initHomeTabFlow();
+		}
+	}
+
+	function closeExploreNav() {
+		$( '#global-navigation' ).attr( 'hidden', 'hidden' );
+		$( '#global-navigation' ).attr( 'aria-expanded', 'false' );
+
+		// aria-expand the hds-explore-nav-trigger button.
+		$( '.hds-explore-nav-trigger button' ).attr( 'aria-expanded', 'false' );
+		$( '.hds-global-menu-toggle' ).attr( 'aria-expanded', 'false' );
+
+		// Add or remove the hds global menu toggle class.
+		$( '.hds-global-menu-toggle' ).removeClass( 'menu-toggle-active' );
+		$( '.hds-global-menu-toggle' ).attr( 'data-menu-action', 'closed' );
+
+		// Remove the body class.
+		$( 'html' ).removeClass( 'html-fixed' );
+	}
+
+	// On click of ".global-nav__primary .usa-nav__submenu-item", log "Global Nav Clicked".
+	$( '.global-nav__primary-list .hds-global-menu-item-trigger' ).on( 'click', function(e) {
+		// Prevent default and stop propagation.
+		e.preventDefault();
+		e.stopPropagation();
+
+		// Get the "submenu-id" of the clicked element.
+		const submenuId = $( this ).attr( 'submenu-id' );
+
+		// If the submenu ID is 'home', do the home actions.
+		if ( 'global-nav-home' === submenuId ) {
+
+			// Show the global nav home submenu.
+			$( '.global-nav__home' ).attr( "hidden", false );
+
+			// Hide the other columns.
+			$( '.global-nav__secondary, .global-nav__tertiary' ).attr( 'hidden', 'hidden' );
+			$( '.global-nav__secondary, .global-nav__tertiary' ).removeClass( 'global-nav__open' );
+
+			// Add a global-nav__open class to the global-nav__home element.
+			$( '.global-nav__home' ).addClass( 'global-nav__open' );
+
+			// Remove "usa-current" class from all ".usa-nav__submenu-item" and add it to the clicked element.
+			$( '.global-nav__primary-list .hds-global-menu-item-trigger' ).removeClass( 'usa-current' );
+			$( this ).addClass( 'usa-current' );
+
+			// If the clicked element has a parent of global-nav__primary, open the primary menu.
+			if ( $( this ).parents( '.global-nav__primary' ).length ) {
+				$( '.global-nav__primary, .global-nav__secondary' ).addClass( 'global-nav__open' );
+			} else {
+				$( '.global-nav__primary, .global-nav__secondary' ).removeClass( 'global-nav__open' );
+			}
+
+			// Remove active classes from primary and secondary submenu.
+			$( '.global-nav__primary-submenu' ).removeClass( 'usa-active' );
+			$( '.global-nav__secondary-submenu' ).removeClass( 'usa-active' );
+
+			// Set tab flow for Desktop / Tablet
+			// Mobile never displays this menu.
+			if ( ! mobileMenu ) {
+				const thisLink = $( this ).find('a').first();
+				const firstLink = $( '.global-nav__home' ).find('a').first();
+				const lastLink = $( '.global-nav__home' ).find('a').last();
+				const nextLink = $( this ).next().find('a').first();
+
+				setTabIntoSubmenu( thisLink, firstLink );
+				getTabReturnPath( thisLink, firstLink );
+				setTabNextPath( nextLink, lastLink );
+			}
+
+		} else {
+
+			// Hide the global nav home submenu.
+			$( '.global-nav__home' ).attr( 'hidden', 'hidden' );
+
+			// Remove the hidden class from the secondary and tertiary columns.
+			$( '.global-nav__secondary, .global-nav__tertiary' ).attr( 'hidden', false );
+
+			// Remove "usa-current" class from all ".usa-nav__submenu-item" and add it to the clicked element.
+			$( '.global-nav__primary-list .hds-global-menu-item-trigger' ).removeClass( 'usa-current' );
+			$( this ).addClass( 'usa-current' );
+
+			// Remove the "usa-active" class from all "global_nav__secondary" elements and add it to the matching "submenu-id".
+			$( '.global-nav__secondary-submenu' ).removeClass( 'usa-active' );
+			$( '.global-nav__secondary-submenu[submenu-id="' + submenuId + '"]' ).addClass( 'usa-active' );
+
+			// Do the same thing with the tertiary submenu.
+			$( '.global-nav__tertiary-submenu' ).removeClass( 'usa-active' );
+			$( '.global-nav__tertiary-submenu[submenu-id="' + submenuId + '"]' ).addClass( 'usa-active' );
+
+			// If the clicked element has a parent of global-nav__primary, open the primary menu.
+			if ( $( this ).parents( '.global-nav__primary' ).length ) {
+				$( '.global-nav__primary, .global-nav__secondary' ).addClass( 'global-nav__open' );
+			} else {
+				$( '.global-nav__primary, .global-nav__secondary' ).removeClass( 'global-nav__open' );
+			}
+
+			// Set tab flow for Desktop / Tablet / Mobile
+			const thisLink = $( this ).find('a').first();
+
+			if ( ! mobileMenu ) {
+				const firstLink = $( '.global-nav__secondary-submenu[submenu-id="' + submenuId + '"]' ).find('a').first();
+				const nextLink = $( this ).next().find('a').first();
+				const lastLink = $( '.global-nav__tertiary-submenu[submenu-id="' + submenuId + '"]' ).find('a').last();
+
+				setTabIntoSubmenu( thisLink, firstLink );
+				getTabReturnPath( thisLink, firstLink );
+				setTabNextPath( nextLink, lastLink );
+			}
+
+			if ( mobileMenu ) {
+				const backButton = $( '.global-nav__back' ).first();
+				const lastSecondaryLink = $( '.global-nav__secondary-submenu[submenu-id="' + submenuId + '"]' ).find('a').last();
+				setupBackButton( thisLink, backButton );
+				setupLoopMenu( backButton, lastSecondaryLink );
+			}
+		}
+	} );
+
+	//Mark all scrollers as passive
+    jQuery.event.special.touchstart = {
+        setup: function( _, ns, handle ) {
+            this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
+        }
+    };
+    jQuery.event.special.touchmove = {
+        setup: function( _, ns, handle ) {
+            this.addEventListener("touchmove", handle, { passive: !ns.includes("noPreventDefault") });
+        }
+    };
+
+	// Add a click event listener to the document
+	$(document).click(function(e) {
+
+		// Check if the clicked element is a button or a submenu
+		if ( ! $(e.target).parents('.hds-nav__inner').length ) {
+
+			// Close all nav menus
+			closeNavSubMenus();
+		}
+
+		// Check if the clicked element is a button or a submenu
+		if ( ! $(e.target).parents('.global-nav__primary-wrapper, .hds-global-menu-toggle, .hds-explore-nav-trigger, #global-navigation').length ) {
+
+			// Close the explore menu.
+			closeExploreNav();
+		}
+
+	});
+
+	// On click of ".global-nav__primary .usa-nav__submenu-item", log "Global Nav Clicked".
+	// Add a click event listener to each menu item with a submenu
+	$('.hds-nav-has-submenu button').click(function(e) {
+		// Prevent the default behavior of clicking a link
+		e.preventDefault();
+	  
+		const thisButton = this;
+		const thisSubmenu = this.parentElement.querySelector('.hds-nav__submenu');
+
+		// Check if the menu is open.
+		const isOpen = thisButton.getAttribute( 'aria-expanded' ) == 'true';
+
+		// close all nav menus
+		closeNavSubMenus();
+	  
+		if ( ! isOpen ) {
+		  thisButton.setAttribute('aria-expanded', "true");
+		  thisSubmenu.removeAttribute('hidden');
+		}
+	  
+	});
+	  
+	function closeNavSubMenus() {
+		let subMenulis = document.querySelectorAll('.hds-nav-has-submenu');
+
+		subMenulis.forEach(subMenu => {
+
+			const linkButton = subMenu.querySelector('button');
+			const subMenuLi = subMenu.querySelector('.hds-nav__submenu');
+
+			// If there is a button.
+			if (linkButton) {
+				linkButton.setAttribute('aria-expanded', "false");
+
+				// Adding this check so the console doesn't throw errors when it doesn't exist.
+				if (subMenuLi) {
+					subMenuLi.setAttribute('hidden', "true");
+				}
+			}
+		});
+	}
+
+	// Handling Search Panel
+	// Upon clicking hds-search-panel-mobile-trigger, add the "hds-active" class to .hds-search-panel-mobile.
+	$('.hds-search-panel-mobile-trigger').on('click', function(e) {
+		// Prevent default.
+		e.preventDefault();
+
+		$('.hds-search-panel-mobile').removeClass('hds-inactive');
+		$('.hds-search-panel-mobile').addClass('hds-active');
+
+		// Wait until after the animation.
+		setTimeout(function(){
+			$('html').addClass('html-fixed');
+			// Focus on the search input. after the animation.
+			$('#search-field-en-small--mobile').focus();
+		}, 401);
+	});
+  
+	// Upon clicking .hds-search-panel-bar-close-icon, remove the "hds-active" class from the search panel.
+	$('.hds-search-panel-bar-close-icon').on('click', function(e) {
+		// Prevent default.
+		e.preventDefault();
+
+		$('.hds-search-panel-mobile').removeClass('hds-active');
+		$('.hds-search-panel-mobile').addClass('hds-inactive');
+
+		// Remove the html-fixed class from the html.
+		$('html').removeClass('html-fixed');
+
+		// Wait until after the animation.
+		setTimeout(function() {
+			$('.hds-search-panel-mobile').removeClass('hds-inactive');
+			// Focus on the search icon. after the animation.
+			$('.hds-search-panel-mobile-trigger').focus();
+		}, 401);
+	});
+
+
+	// Function to control direction flow when expand menu is opened.
+	function setupTabFlow(trigger) {
+
+		if ( 'desktopTrigger' === trigger) {
+			$( '#global-navigation-trigger' ).on( 'keydown', desktopTabExplore );
+			$( '.hds-global-menu-item' ).on( 'keydown', desktopTabFlow );
+			desktopSetupSkipToContent();
+		}
+
+		if ( 'mobileTrigger' === trigger) {
+			$( '#global-navigation-trigger--mobile' ).on( 'keydown', mobileTabExplore );
+			$( '.hds-global-menu-item' ).on( 'keydown', mobileTabFlow );
+			mobileSetupSkipToContent();
+		}
+	}
+
+	/* Functions that need to update continuously. */
+
+	// Desktop
+	$( '#search-field-en-small--desktop' ).on( 'keydown', desktopGoToLastItem );
+	// Mobile
+
+	$( '#mobile-header-logo' ).on( 'keydown', mobileGoToLastItem );
+
+	// override HomeLink on mobile only.
+	if ( mobileMenu ) {
+		overrideHomeLink();
+	}
+
+
+	/* .on() callback functions */
+
+	// removes global-nav__open on all menus and sets focus to the clickedItem.
+	function handleBackButton(e, clickedItem) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		$( '.global-nav__primary, .global-nav__secondary' ).removeClass( 'global-nav__open' );
+
+		// Wait until after the animation to set focus.
+		setTimeout(function() {
+			clickedItem.focus()
+		}, 401);
+	}
+
+	// Go from the desktop search to the last menu item.
+	function desktopGoToLastItem(e) {
+		let flag = false;
+		const desktopExpandButton = $( '#global-navigation-trigger' ).attr( 'aria-expanded' );
+
+		if ( 'true' === desktopExpandButton ) {;
+			if ( 'Tab' === e.key ) {
+				if ( e.shiftKey ) {
+					const menuItems = $( '.hds-global-menu-item-trigger' ).not( '.hds-global-menu-item-mobile' );
+					const lastItem = menuItems[ menuItems.length - 1 ];
+
+					$( lastItem ).find('a').first().focus();
+					lastItem.focus();
+					flag = true;
+				}
+			}
+		}
+
+		if ( flag ) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+	}
+
+	// Go from mobile Logo to last item in menu, only if expanded.
+	function mobileGoToLastItem(e) {
+		let flag = false;
+		const mobileExpandButton = $( '#global-navigation-trigger--mobile' ).attr( 'aria-expanded' );
+
+		if ( 'true' === mobileExpandButton ) {
+			if ( 'Tab' === e.key ) {
+				switch (e.shiftKey) {
+					case true:
+						let menuItems = $( '.hds-global-menu-item' );
+
+						if ( ! mobileMenu ) {
+							menuItems = $( '.hds-global-menu-item-trigger' );
+						}
+
+						const lastItem = menuItems[ menuItems.length - 1 ];
+						$( lastItem ).find('a').first().focus();
+						flag = true;
+						break;
+					default:
+						break;
+				}
+			}
+		}
+
+		if ( flag ) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+	}
+
+	// If tab is pressed while on the explore menu.
+	function desktopTabExplore(e) {
+		let flag = false;
+
+		// Skip if the menu is not expanded.
+		if ( 'true' === e.currentTarget.getAttribute( 'aria-expanded' ) ) {
+			// Skip if tab is not pressed.
+			if ( 'Tab' === e.key ) {
+				// get all menu items that expand out. And note the first item.
+				const menuItems = $( '.hds-global-menu-item-trigger' );
+				const firstItem = menuItems[0];
+				// Skip if shift is being held.
+				if ( ! e.shiftKey ) {
+					// Set focus to first expanded item a tag.
+					$( firstItem ).find('a').first().focus();
+					flag = true;
+				}
+			}
+		}
+
+		if ( flag ) {
+			e.stopPropagation();
+            e.preventDefault();
+        }
+	}
+
+	// If tab is pressed while on the menu icon.
+	function mobileTabExplore(e) {
+		let flag = false;
+
+		// Skip if the menu is not open.
+		if ( 'true' === e.currentTarget.getAttribute( 'aria-expanded' ) ) {
+			// Skip is 'Tab' is not being pushed.
+			if ( 'Tab' === e.key ) {
+				// get all menu items that expand out. And note hte first item.
+				const menuItems = $( '.hds-global-menu-item' );
+				const firstItem = menuItems[0];
+
+				if ( ! e.shiftKey ) {
+					// Set focus to first expanded item a tag.
+					$( firstItem ).find('a').first().focus();
+					flag = true;
+				}
+			}
+		}
+
+		if ( flag ) {
+			e.stopPropagation();
+            e.preventDefault();
+        }
+	}
+
+	// Desktop: if tab or shift tab is pressed on menu items.
+	function desktopTabFlow(e) {
+		let flag = false;
+		const currItem = e.currentTarget;
+
+		const menuItems = $( '.hds-global-menu-item-trigger' ).not( '.hds-global-menu-item-mobile' );
+		const firstItem = menuItems[0];
+		const lastItem = menuItems[ menuItems.length - 1 ];
+		const nextItem = $( '#search-field-en-small--desktop' );
+
+		if ( 'Tab' === e.key ) {
+			switch ( currItem ) {
+				case firstItem:
+					// if reverse go to open / close
+					if ( e.shiftKey ) {
+						let menuExpander = $( '#global-navigation-trigger' ) ;
+						// Check for mobile width
+						if ( tabletMenu ) {
+							menuExpander = $( '#global-navigation-trigger--mobile' );
+						}
+
+						menuExpander.focus();
+						flag = true;
+					}
+					break;
+				case lastItem:
+					if ( ! e.shiftKey ) {
+						// go to next header item (the logo).
+						nextItem.focus();
+						flag = true;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+
+		if ( flag ) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+	}
+
+	// Mobile: if tab or shift tab is pressed on menu items.
+	function mobileTabFlow(e) {
+		let flag = false;
+		const currItem = e.currentTarget;
+		let menuItems = $( '.hds-global-menu-item' );
+
+		if ( ! mobileMenu ) {
+			menuItems = $( '.hds-global-menu-item-trigger' );
+		}
+
+		const firstItem = menuItems[0];
+		const lastItem = menuItems[ menuItems.length - 1 ];
+		const nextItem = $( '#mobile-header-logo' );
+
+		if ( 'Tab' === e.key ) {
+			switch ( currItem ) {
+				case firstItem:
+					// if reverse go to open / close
+					if ( e.shiftKey ) {
+						let menuExpander = $( '#global-navigation-trigger' ) ;
+						// Check for mobile width
+						if ( mobileMenu || tabletMenu ) {
+							menuExpander = $( '#global-navigation-trigger--mobile' );
+						}
+
+						menuExpander.focus();
+						flag = true;
+					}
+					break;
+				case lastItem:
+					if ( ! e.shiftKey ) {
+						// go to next header item (the logo).
+						nextItem.focus();
+						flag = true;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+
+		if ( flag ) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+	}
+
+	// Closes the explorer Nav when at the end of the Header and Pushing 'Tab'
+	function mobileSkipToContent(e) {
+		const mobileExpandButton = $( '#global-navigation-trigger--mobile' ).attr( 'aria-expanded' );
+
+		if ( 'true' === mobileExpandButton ) {
+			if ( 'Tab' === e.key ) {
+				if ( ! e.shiftKey ) {
+					closeExploreNav();
+				}
+			}
+		}
+	}
+
+	// Closes the explorer Nav when at the end of the Header and pushing 'Tab'
+	function skipToContent(e) {
+		const desktopExpandButton = $( '#global-navigation-trigger' ).attr( 'aria-expanded' );
+
+		if ( 'true' === desktopExpandButton ) {
+			if ( 'Tab' === e.key ) {
+				if ( ! e.shiftKey ) {
+					closeExploreNav();
+				}
+			}
+		}
+	}
+
+	/* Helper Functions */
+
+	// If you are on the mobile search trigger and you hit tab
+	// close the explore menu and continue to the content.
+	function mobileSetupSkipToContent() {
+		const searchButton = $( '.hds-search-panel-mobile-trigger' );
+		$( searchButton ).on( 'keydown', mobileSkipToContent );
+	}
+
+	// At the end of the header menu close the explore menu
+	// and go to the first tab in the content.
+	function desktopSetupSkipToContent() {
+		const lastHeaderItem = $( '.usa-nav' ).find('a').last();
+		$( lastHeaderItem ).on( 'keydown', skipToContent );
+	}
+
+	// setup Home button to goto '/'
+	function overrideHomeLink() {
+		const homeButton = $( '.hds-global-menu-item-trigger[submenu-id="global-nav-home"]' );
+		homeButton.off('click');
+	}
+
+	// setup backButton to go back to the clickedItem.
+	function setupBackButton( clickedItem, backButton) {
+		backButton.on( 'click', function(e) {
+			handleBackButton(e, clickedItem);
+		} );
+
+		// Wait until animation is over to set new focus.
+		setTimeout(function() {
+			backButton.focus();
+		}, 401);
+	}
+
+	// Keep focus in the current opened menu.
+	function setupLoopMenu( firstLink, lastLink ) {
+
+		firstLink.on( 'keydown', function(e) {
+			let flag = false;
+			if ( 'Tab' === e.key ) {
+				if ( e.shiftKey ) {
+					lastLink.focus();
+					flag = true;
+				}
+			}
+
+			if ( flag ) {
+				e.stopPropagation();
+				e.preventDefault();
+			}
+		});
+
+		lastLink.on( 'keydown', function(e) {
+			let flag = false;
+			if ( 'Tab' === e.key ) {
+				if ( ! e.shiftKey ) {
+					firstLink.focus();
+					flag = true;
+				}
+			}
+
+			if ( flag ) {
+				e.stopPropagation();
+				e.preventDefault();
+			}
+		});
+	}
+
+	// Sets the tab ordering for the 'Home (Highlights)'
+	// called when explore menu opens.
+	function initHomeTabFlow() {
+		const priMenu = $( '.hds-global-menu-primary' );
+		const activeLiItem = priMenu.find('.usa-current');
+		const submenuId = activeLiItem.attr( 'submenu-id' );
+		const isHighlightsActive = 'global-nav-home' === submenuId ? true : false;
+
+		if ( isHighlightsActive ) {
+			const firstLink = $( '.global-nav__home' ).find('a').first();
+			const lastLink = $( '.global-nav__home' ).find('a').last();
+			const nextLink = activeLiItem.next().find('a').first();
+			const clickedItem = activeLiItem.find('a').first();
+			setTabIntoSubmenu( clickedItem, firstLink );
+			getTabReturnPath( clickedItem, firstLink );
+			setTabNextPath( nextLink, lastLink );
+		}
+	}
+
+	// Sets tab order into the block.
+	function setTabIntoSubmenu( clickedItem, firstItem ) {
+		$( clickedItem ).on( 'keydown', function(e) {
+			let flag = false;
+			const doTab = clickedItem.parent().hasClass( 'usa-current' );
+			if ( doTab ) {
+				if ( 'Tab' === e.key ) {
+					if ( ! e.shiftKey ) {
+						$( firstItem ).focus();
+						flag = true;
+					}
+
+					if ( flag ) {
+						e.stopPropagation();
+						e.preventDefault();
+					}
+				}
+			}
+		});
+	}
+
+	// Sets the tab from the firstItem to the clickedItem
+	function getTabReturnPath( clickedItem, firstItem ) {
+		$( firstItem ).on( 'keydown', function(e) {
+			let flag = false;
+
+			if ( 'Tab' === e.key ) {
+				if ( e.shiftKey ) {
+					$( clickedItem ).focus();
+					flag = true;
+				}
+			}
+
+			if ( flag ) {
+				e.stopPropagation();
+				e.preventDefault();
+			}
+		});
+	}
+
+	// Sets the tab from the lastItem to the nextItem.
+	function setTabNextPath( nextItem, lastItem ) {
+		// If next item is blank set it to
+		// desktop: search Bar
+		// mobile: header logo
+		if ( 0 === nextItem.length ) {
+			nextItem = $( '#search-field-en-small--desktop' );
+
+			if ( ! desktopMenu ) {
+				nextItem = $( '#mobile-header-logo' );
+			}
+		}
+
+		$( lastItem ).on( 'keydown', function(e) {
+			let flag = false;
+
+			if ( 'Tab' === e.key ) {
+				if ( ! e.shiftKey ) {
+					$( nextItem ).focus();
+					flag = true;
+				}
+			}
+
+			if ( flag ) {
+				e.stopPropagation();
+				e.preventDefault();
+			}
+		});
+	}
+
+	/** JSON Endpoint: Is Live */
+    $.getJSON("https://plus.nasa.gov/wp-json/nasaplus/v1/live" )
+    .done(function(json) {
+        if( true == json) {
+            $('body').addClass('is-live');
+        }
+    })
+    .fail(function(jqxhr, textStatus, error) {
+        console.log(error);
+    });
+
+	/** Image Fix to the Blog migration CPT */
+	$(document).ready(function() {
+		$('.nasa-blog-template-default .alignnone img, .nasa-blog-template-default .alignleft img, .nasa-blog-template-default .alignright img, .nasa-blog-template-default .aligncenter img, .blogs-migration-template-default figure.aligncenter img, .blogs-migration-template-default figure.alignnone img, .blogs-migration-template-default figure.alignleft img, .blogs-migration-template-default figure.alignright img').each(function(i, item) {
+			//The image
+			let img = $(this);
+
+			// If the image loads normally
+			if (this.complete) {
+				//Get the width of the image
+				let w = img.width();
+				//Apply the width of the image to the wrapping figure element
+				if (w > 0) {
+					$(item).closest('figure').css('width', w + 'px');
+				}
+			} else {
+				//The document load was too soon and didn't complete, wait for the image...
+				img.on('load', function() {
+					//Get the width of the image
+					let w = img.width();
+					//Apply the width of the image to the wrapping figure element
+					if (w > 0) {
+						$(item).closest('figure').css('width', w + 'px');
+					}
+				});
+			}
+
+		});
+		//Targets images with no figure element - adds editorial class
+		$('.nasa-blog-template-default .single-blog-content img:not(figure img), .blogs-migration-template-default .single-blog-content img:not(figure img)').each(function(i, item) {
+			//The image
+			let img = $(this);
+			//Wrap the image
+			$(img).wrap('<div class="editorial-img-wrap"></div>');
+		});
+		//Remove the disable styles button 
+		$('#edac-highlight-disable-styles').remove();
+		
+	});
+
+} );

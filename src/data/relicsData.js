@@ -6,1278 +6,2012 @@
 
 export const RELICS_DATA = [
   {
-    id: 'curiosity-msl',
-    name: 'Curiosity Mars Science Laboratory',
-    shortName: 'Curiosity Rover',
-    category: 'mars',
-    domainLabel: 'Mars',
+    id: "curiosity-msl",
+    name: "Curiosity Mars Science Laboratory",
+    shortName: "Curiosity Rover",
+    category: "mars",
+    domainLabel: "Mars",
     launchYear: 2011,
     landingYear: 2012,
-    launchDate: 'November 26, 2011',
-    arrivalDate: 'August 6, 2012',
-    arrivalEvent: 'Landed in Gale Crater, Mars via Sky Crane',
-    status: 'active',
-    statusLabel: 'Active & Climbing Mount Sharp',
-    statusClass: 'status-active',
-    location: 'Gale Crater & Mount Sharp, Mars',
-    coordinates: '4.5895° S, 137.4417° E',
+    launchDate: "November 26, 2011",
+    arrivalDate: "August 6, 2012",
+    arrivalEvent: "Landed in Gale Crater, Mars via Sky Crane",
+    status: "active",
+    statusLabel: "Active & Climbing Mount Sharp",
+    statusClass: "status-active",
+    location: "Gale Crater & Mount Sharp, Mars",
+    coordinates: "4.5895° S, 137.4417° E",
     distanceAU: 1.45,
     baseDistanceKm: 217000000,
     speedKmS: 24.1,
     oneWayLightSeconds: 720,
-    modelType: 'curiosity-rover',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg/1280px-Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg',
-    heroColor: '#c1440e',
+    modelType: "curiosity-rover",
+    heroImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg/1280px-Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg",
+    heroColor: "#c1440e",
     galleryImages: [
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg/1024px-Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg', caption: 'Curiosity robotic arm on Mars' },
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/PIA16239_High-Resolution_Self-Portrait_by_Curiosity_Rover_Arm_Camera.jpg/1024px-PIA16239_High-Resolution_Self-Portrait_by_Curiosity_Rover_Arm_Camera.jpg', caption: 'Self-portrait in Gale Crater' }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg/1024px-Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg",
+        caption: "Curiosity robotic arm on Mars",
+      },
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/PIA16239_High-Resolution_Self-Portrait_by_Curiosity_Rover_Arm_Camera.jpg/1024px-PIA16239_High-Resolution_Self-Portrait_by_Curiosity_Rover_Arm_Camera.jpg",
+        caption: "Self-portrait in Gale Crater",
+      },
     ],
     storyLine: {
       launch: {
-        year: '2011',
-        title: 'Launched from Cape Canaveral',
-        desc: 'Blasted into space atop an Atlas V 541 rocket carrying humanity\'s most ambitious robotic laboratory.'
+        year: "2011",
+        title: "Launched from Cape Canaveral",
+        desc: "Blasted into space atop an Atlas V 541 rocket carrying humanity's most ambitious robotic laboratory.",
       },
       arrival: {
-        year: '2012',
-        title: 'Landed in Gale Crater, Mars',
-        desc: 'Executed the legendary "Seven Minutes of Terror", lowered to the Martian dust by a rocket-powered Sky Crane.'
+        year: "2012",
+        title: "Landed in Gale Crater, Mars",
+        desc: 'Executed the legendary "Seven Minutes of Terror", lowered to the Martian dust by a rocket-powered Sky Crane.',
       },
       hardware: {
-        icon: '🤖',
-        title: 'Curiosity Rover Chassis',
-        desc: 'A 900-kg car-sized mobile robot powered by a Plutonium-238 nuclear battery (MMRTG), equipped with a 2-meter robotic arm and 6-wheel rocker-bogie mobility system.',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Curiosity%27s_MAHLI_Arm_Camera.jpg/1280px-Curiosity%27s_MAHLI_Arm_Camera.jpg'
+        icon: "🤖",
+        title: "Curiosity Rover Chassis",
+        desc: "A 900-kg car-sized mobile robot powered by a Plutonium-238 nuclear battery (MMRTG), equipped with a 2-meter robotic arm and 6-wheel rocker-bogie mobility system.",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Curiosity%27s_MAHLI_Arm_Camera.jpg/1280px-Curiosity%27s_MAHLI_Arm_Camera.jpg",
       },
-      instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Curiosity%27s_MAHLI_Arm_Camera.jpg/1280px-Curiosity%27s_MAHLI_Arm_Camera.jpg',
+      instrumentsHeroImage:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Curiosity%27s_MAHLI_Arm_Camera.jpg/1280px-Curiosity%27s_MAHLI_Arm_Camera.jpg",
       instruments: [
         {
-          group: 'Cameras',
-          icon: '📷',
+          group: "Cameras",
+          icon: "📷",
           items: [
             {
-              name: 'Mastcam',
-              desc: 'High-resolution true-color stereo cameras mounted on the 2-meter Remote Sensing Mast, capturing panoramas and video of Mars terrain.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/PIA16105-Curiosity-Mastcam-20120903.jpg/800px-PIA16105-Curiosity-Mastcam-20120903.jpg',
-              specs: { resolution: '1600×1200 px', focal_length: '100mm / 34mm', fps: '10 fps video', mass: '2.3 kg' },
-              partKey: 'mast'
+              name: "Mastcam",
+              desc: "High-resolution true-color stereo cameras mounted on the 2-meter Remote Sensing Mast, capturing panoramas and video of Mars terrain.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/PIA16105-Curiosity-Mastcam-20120903.jpg/800px-PIA16105-Curiosity-Mastcam-20120903.jpg",
+              specs: {
+                resolution: "1600×1200 px",
+                focal_length: "100mm / 34mm",
+                fps: "10 fps video",
+                mass: "2.3 kg",
+              },
+              partKey: "mast",
             },
             {
-              name: 'MAHLI',
-              desc: 'Mars Hand Lens Imager on the robotic arm delivers close-up microscope-quality images of rocks and soil, resolving grains as small as 12.5 µm.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg/800px-Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg',
-              specs: { resolution: '1600×1200 px', min_focus: '2.1 cm', depth_of_field: '0.5mm–∞', mass: '0.17 kg' },
-              partKey: 'arm'
+              name: "MAHLI",
+              desc: "Mars Hand Lens Imager on the robotic arm delivers close-up microscope-quality images of rocks and soil, resolving grains as small as 12.5 µm.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg/800px-Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg",
+              specs: {
+                resolution: "1600×1200 px",
+                min_focus: "2.1 cm",
+                depth_of_field: "0.5mm–∞",
+                mass: "0.17 kg",
+              },
+              partKey: "arm",
             },
             {
-              name: 'MARDI',
-              desc: 'Mars Descent Imager filmed the ground rushing up during the Sky Crane landing, creating a movie of the descent trajectory.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/PIA16239_High-Resolution_Self-Portrait_by_Curiosity_Rover_Arm_Camera.jpg/800px-PIA16239_High-Resolution_Self-Portrait_by_Curiosity_Rover_Arm_Camera.jpg',
-              specs: { resolution: '1600×1200 px', fps: '4 fps', field_of_view: '90°', mass: '0.17 kg' },
-              partKey: 'chassis'
-            }
-          ]
+              name: "MARDI",
+              desc: "Mars Descent Imager filmed the ground rushing up during the Sky Crane landing, creating a movie of the descent trajectory.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/PIA16239_High-Resolution_Self-Portrait_by_Curiosity_Rover_Arm_Camera.jpg/800px-PIA16239_High-Resolution_Self-Portrait_by_Curiosity_Rover_Arm_Camera.jpg",
+              specs: {
+                resolution: "1600×1200 px",
+                fps: "4 fps",
+                field_of_view: "90°",
+                mass: "0.17 kg",
+              },
+              partKey: "chassis",
+            },
+          ],
         },
         {
-          group: 'Spectrometers & Lasers',
-          icon: '🔬',
+          group: "Spectrometers & Lasers",
+          icon: "🔬",
           items: [
             {
-              name: 'ChemCam',
-              desc: 'Vaporizes rocks up to 7 meters away with a 1-million-watt laser pulse and analyzes the resulting glowing plasma with a spectrometer — like a chemistry lab on a laser beam.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Chemcam_mast_unit.jpg/800px-Chemcam_mast_unit.jpg',
-              specs: { laser: 'Nd:YAG 1064nm', power: '1 MW peak', range: '1–7 m', mass: '10 kg' },
-              partKey: 'mast'
+              name: "ChemCam",
+              desc: "Vaporizes rocks up to 7 meters away with a 1-million-watt laser pulse and analyzes the resulting glowing plasma with a spectrometer — like a chemistry lab on a laser beam.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Chemcam_mast_unit.jpg/800px-Chemcam_mast_unit.jpg",
+              specs: {
+                laser: "Nd:YAG 1064nm",
+                power: "1 MW peak",
+                range: "1–7 m",
+                mass: "10 kg",
+              },
+              partKey: "mast",
             },
             {
-              name: 'APXS',
-              desc: 'Alpha Particle X-Ray Spectrometer placed directly against rocks measures the abundances of 10+ major elements crucial for understanding Martian geology.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg/800px-Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg',
-              specs: { elements: '10+ major elements', source: '³Cm-244 radioactive', integration: '15 min nominal', mass: '0.17 kg' },
-              partKey: 'arm'
+              name: "APXS",
+              desc: "Alpha Particle X-Ray Spectrometer placed directly against rocks measures the abundances of 10+ major elements crucial for understanding Martian geology.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg/800px-Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg",
+              specs: {
+                elements: "10+ major elements",
+                source: "³Cm-244 radioactive",
+                integration: "15 min nominal",
+                mass: "0.17 kg",
+              },
+              partKey: "arm",
             },
             {
-              name: 'SAM Suite',
-              desc: 'Sample Analysis at Mars — a miniature organic chemistry laboratory with ovens, gas chromatograph, mass spectrometer, and tunable laser detecting life-essential compounds.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/MSL_SAM_instrument.jpg/800px-MSL_SAM_instrument.jpg',
-              specs: { mass: '38 kg', volume: '15.1 L', temp_range: 'up to 1000°C', channels: 'GC-MS + TLS + QMS' },
-              partKey: 'chassis'
-            }
-          ]
+              name: "SAM Suite",
+              desc: "Sample Analysis at Mars — a miniature organic chemistry laboratory with ovens, gas chromatograph, mass spectrometer, and tunable laser detecting life-essential compounds.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/MSL_SAM_instrument.jpg/800px-MSL_SAM_instrument.jpg",
+              specs: {
+                mass: "38 kg",
+                volume: "15.1 L",
+                temp_range: "up to 1000°C",
+                channels: "GC-MS + TLS + QMS",
+              },
+              partKey: "chassis",
+            },
+          ],
         },
         {
-          group: 'Radiation & Subsurface',
-          icon: '☢️',
+          group: "Radiation & Subsurface",
+          icon: "☢️",
           items: [
             {
-              name: 'RAD',
-              desc: 'Radiation Assessment Detector measured cosmic ray and solar energetic particle doses for future human Mars missions during both cruise and surface operations.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Curiosity%27s_MAHLI_Arm_Camera.jpg/960px-Curiosity%27s_MAHLI_Arm_Camera.jpg',
-              specs: { energy_range: '0.1–100 MeV', particle_types: 'protons, He, Fe', dose_rate: 'µGy/day', mass: '0.19 kg' },
-              partKey: 'chassis'
+              name: "RAD",
+              desc: "Radiation Assessment Detector measured cosmic ray and solar energetic particle doses for future human Mars missions during both cruise and surface operations.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Curiosity%27s_MAHLI_Arm_Camera.jpg/960px-Curiosity%27s_MAHLI_Arm_Camera.jpg",
+              specs: {
+                energy_range: "0.1–100 MeV",
+                particle_types: "protons, He, Fe",
+                dose_rate: "µGy/day",
+                mass: "0.19 kg",
+              },
+              partKey: "chassis",
             },
             {
-              name: 'DAN',
-              desc: 'Dynamic Albedo of Neutrons fires pulses into the ground and times returning neutrons to reveal subsurface hydrogen and water ice within 1 meter of the surface.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/PIA16105-Curiosity-Mastcam-20120903.jpg/960px-PIA16105-Curiosity-Mastcam-20120903.jpg',
-              specs: { depth: '0.5–1 m', neutron_energy: '14.1 MeV', sensitivity: '0.1% H₂O', mass: '4.2 kg' },
-              partKey: 'chassis'
-            }
-          ]
+              name: "DAN",
+              desc: "Dynamic Albedo of Neutrons fires pulses into the ground and times returning neutrons to reveal subsurface hydrogen and water ice within 1 meter of the surface.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/PIA16105-Curiosity-Mastcam-20120903.jpg/960px-PIA16105-Curiosity-Mastcam-20120903.jpg",
+              specs: {
+                depth: "0.5–1 m",
+                neutron_energy: "14.1 MeV",
+                sensitivity: "0.1% H₂O",
+                mass: "4.2 kg",
+              },
+              partKey: "chassis",
+            },
+          ],
         },
         {
-          group: 'Environmental Sensors',
-          icon: '🌡️',
+          group: "Environmental Sensors",
+          icon: "🌡️",
           items: [
             {
-              name: 'REMS',
-              desc: 'Rover Environmental Monitoring Station tracks Martian atmospheric pressure, temperature, relative humidity, wind speed/direction, and ultraviolet radiation in real time.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Chemcam_mast_unit.jpg/960px-Chemcam_mast_unit.jpg',
-              specs: { temp_range: '-130°C to +70°C', pressure: '1–1150 Pa', wind: '0–70 m/s', mass: '1.6 kg' },
-              partKey: 'mast'
-            }
-          ]
-        }
+              name: "REMS",
+              desc: "Rover Environmental Monitoring Station tracks Martian atmospheric pressure, temperature, relative humidity, wind speed/direction, and ultraviolet radiation in real time.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Chemcam_mast_unit.jpg/960px-Chemcam_mast_unit.jpg",
+              specs: {
+                temp_range: "-130°C to +70°C",
+                pressure: "1–1150 Pa",
+                wind: "0–70 m/s",
+                mass: "1.6 kg",
+              },
+              partKey: "mast",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'Ancient Habitable Freshwater Lake',
-        desc: 'Drilled mudstones at Yellowknife Bay to prove Gale Crater was once an ancient freshwater lake with non-acidic water, essential organic carbon, nitrogen, sulfur, and phosphorus capable of supporting microbial life.'
+        title: "Ancient Habitable Freshwater Lake",
+        desc: "Drilled mudstones at Yellowknife Bay to prove Gale Crater was once an ancient freshwater lake with non-acidic water, essential organic carbon, nitrogen, sulfur, and phosphorus capable of supporting microbial life.",
       },
       currentStatus: {
-        title: 'Active Mission Sol 4,500+',
-        desc: 'Still actively climbing Mount Sharp, traversing sulfate-bearing layers to uncover how ancient Mars dried up into a desert world.'
-      }
+        title: "Active Mission Sol 4,500+",
+        desc: "Still actively climbing Mount Sharp, traversing sulfate-bearing layers to uncover how ancient Mars dried up into a desert world.",
+      },
     },
-    funFact: "Curiosity sings 'Happy Birthday' to itself every August on Mars by vibrating its Sample Analysis instrument motors at musical frequencies!",
-    audioSimulation: 'radio_carrier',
-    audioTitle: 'Curiosity Mars Wheel Telemetry Bleeps',
-    badgeAwarded: 'martian-vanguard'
+    funFact:
+      "Curiosity sings 'Happy Birthday' to itself every August on Mars by vibrating its Sample Analysis instrument motors at musical frequencies!",
+    audioSimulation: "radio_carrier",
+    audioTitle: "Curiosity Mars Wheel Telemetry Bleeps",
+    badgeAwarded: "martian-vanguard",
+    videoEmbed: "https://www.youtube.com/embed/gwinFP8_jAo",
+    videoTitle: "Curiosity Landing - Seven Minutes of Terror",
+    construction: {
+      builtBy: "JPL Pasadena",
+      builtAt: "Pasadena, USA",
+      assemblyFacility: "Jet Propulsion Laboratory",
+      startYear: 2004,
+      completedYear: 2011,
+      purpose: "Investigate Mars habitability and climate",
+      cost: "$2.5 billion",
+    },
+    causeOfAbandon: null,
+    missionVitals: {
+      mass: "899 kg",
+      dimensions: "3 × 2.7 × 2.2 m",
+      powerSource: "MMRTG (Plutonium-238)",
+      powerOutput: "~110 Watts",
+      designLife: "1 Martian year (687 Earth days)",
+      actualLife: "Active since 2012",
+    },
+    milestones: [
+      {
+        icon: "🏆",
+        title: "First use of Sky Crane landing system",
+        year: 2012,
+      },
+      {
+        icon: "🏆",
+        title: "Discovered ancient freshwater lake bed",
+        year: 2013,
+      },
+      { icon: "🏆", title: "Measured seasonal methane spikes", year: 2018 },
+    ],
   },
   {
-    id: 'perseverance-ingenuity',
-    name: 'Perseverance Rover & Ingenuity Helicopter',
-    shortName: 'Perseverance & Ingenuity',
-    category: 'mars',
-    domainLabel: 'Mars',
+    id: "perseverance-ingenuity",
+    name: "Perseverance Rover & Ingenuity Helicopter",
+    shortName: "Perseverance & Ingenuity",
+    category: "mars",
+    domainLabel: "Mars",
     launchYear: 2020,
     landingYear: 2021,
-    launchDate: 'July 30, 2020',
-    arrivalDate: 'February 18, 2021',
-    arrivalEvent: 'Touchdown in Jezero Crater River Delta',
-    status: 'active',
-    statusLabel: 'Active & Caching Samples / 72 Flights Made',
-    statusClass: 'status-active',
-    location: 'Jezero Crater Delta, Mars',
-    coordinates: '18.38° N, 77.58° E',
+    launchDate: "July 30, 2020",
+    arrivalDate: "February 18, 2021",
+    arrivalEvent: "Touchdown in Jezero Crater River Delta",
+    status: "active",
+    statusLabel: "Active & Caching Samples / 72 Flights Made",
+    statusClass: "status-active",
+    location: "Jezero Crater Delta, Mars",
+    coordinates: "18.38° N, 77.58° E",
     distanceAU: 1.45,
     baseDistanceKm: 217000000,
     speedKmS: 24.1,
     oneWayLightSeconds: 720,
-    modelType: 'perseverance-rover',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg/1280px-PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg',
-    heroColor: '#e63946',
+    modelType: "perseverance-rover",
+    heroImage:
+      "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/mars/news_items/main_images/9130_PIA24836-web.jpg?w=1600&h=900&fit=clip&crop=faces%2Cfocalpoint",
+    heroColor: "#e63946",
     galleryImages: [
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/1280px-Ingenuity_helicopter_on_Mars_PIA24584.jpg', caption: 'Ingenuity helicopter first flight' },
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/PIA24836-MarsJezeroCrater-AncientDelta-Perseverance-20210818.jpg/1280px-PIA24836-MarsJezeroCrater-AncientDelta-Perseverance-20210818.jpg', caption: 'Ancient delta in Jezero Crater' }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/1280px-Ingenuity_helicopter_on_Mars_PIA24584.jpg",
+        caption: "Ingenuity helicopter first flight",
+      },
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/PIA24836-MarsJezeroCrater-AncientDelta-Perseverance-20210818.jpg/1280px-PIA24836-MarsJezeroCrater-AncientDelta-Perseverance-20210818.jpg",
+        caption: "Ancient delta in Jezero Crater",
+      },
     ],
     storyLine: {
       launch: {
-        year: '2020',
-        title: 'Launched during Planetary Window',
-        desc: 'Launched from Florida during the peak 2020 Earth-Mars alignment with an onboard technology demonstrator helicopter.'
+        year: "2020",
+        title: "Launched during Planetary Window",
+        desc: "Launched from Florida during the peak 2020 Earth-Mars alignment with an onboard technology demonstrator helicopter.",
       },
       arrival: {
-        year: '2021',
-        title: 'Landed at Ancient River Delta',
-        desc: 'Autonomous Terrain-Relative Navigation steered the rover away from boulder fields onto the smooth floor of Jezero Crater.'
+        year: "2021",
+        title: "Landed at Ancient River Delta",
+        desc: "Autonomous Terrain-Relative Navigation steered the rover away from boulder fields onto the smooth floor of Jezero Crater.",
       },
       hardware: {
-        icon: '🤖',
-        title: 'Perseverance & Ingenuity Dual System',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/1280px-Ingenuity_helicopter_on_Mars_PIA24584.jpg',
-        desc: 'A heavy astrobiology rover paired with the 1.8-kg Ingenuity coaxial rotorcraft, carrying a coring drill and titanium sample cache tubes.'
+        icon: "🤖",
+        title: "Perseverance & Ingenuity Dual System",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/1280px-Ingenuity_helicopter_on_Mars_PIA24584.jpg",
+        desc: "A heavy astrobiology rover paired with the 1.8-kg Ingenuity coaxial rotorcraft, carrying a coring drill and titanium sample cache tubes.",
       },
       instruments: [
         {
-          group: 'Aviation & Cameras',
-          icon: '🚁',
+          group: "Aviation & Cameras",
+          icon: "🚁",
           items: [
             {
-              name: 'Ingenuity Rotorcraft',
-              desc: 'First powered aircraft to fly on another planet — dual coaxial carbon-fiber blades spin at 2,400 RPM in the ultra-thin 1% Martian atmosphere across 72 flights.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/800px-Ingenuity_helicopter_on_Mars_PIA24584.jpg',
-              specs: { mass: '1.8 kg', rotor_rpm: '2400 RPM', altitude: 'up to 24 m', flights: '72 flights' },
-              partKey: 'chassis'
+              name: "Ingenuity Rotorcraft",
+              desc: "First powered aircraft to fly on another planet — dual coaxial carbon-fiber blades spin at 2,400 RPM in the ultra-thin 1% Martian atmosphere across 72 flights.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/800px-Ingenuity_helicopter_on_Mars_PIA24584.jpg",
+              specs: {
+                mass: "1.8 kg",
+                rotor_rpm: "2400 RPM",
+                altitude: "up to 24 m",
+                flights: "72 flights",
+              },
+              partKey: "chassis",
             },
             {
-              name: 'Mastcam-Z',
-              desc: 'Zoomable stereo color camera system providing 3D panoramic images and high-definition video, capable of capturing geological features from afar.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/960px-Ingenuity_helicopter_on_Mars_PIA24584.jpg',
-              specs: { zoom: '3.6× optical zoom', resolution: '1648×1214 px', stereo: 'true stereo 3D', mass: '4.6 kg' },
-              partKey: 'mast'
+              name: "Mastcam-Z",
+              desc: "Zoomable stereo color camera system providing 3D panoramic images and high-definition video, capable of capturing geological features from afar.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/960px-Ingenuity_helicopter_on_Mars_PIA24584.jpg",
+              specs: {
+                zoom: "3.6× optical zoom",
+                resolution: "1648×1214 px",
+                stereo: "true stereo 3D",
+                mass: "4.6 kg",
+              },
+              partKey: "mast",
             },
             {
-              name: 'SuperCam',
-              desc: 'Laser-induced breakdown spectroscopy system with an onboard acoustic microphone — the first instrument to record and transmit sounds from another planet.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg/960px-PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg',
-              specs: { laser: 'Nd:YAG 532nm / 1064nm', range: '1–7 m', microphone: 'yes — records Mars sound', mass: '8.8 kg' },
-              partKey: 'mast'
-            }
-          ]
+              name: "SuperCam",
+              desc: "Laser-induced breakdown spectroscopy system with an onboard acoustic microphone — the first instrument to record and transmit sounds from another planet.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg/960px-PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg",
+              specs: {
+                laser: "Nd:YAG 532nm / 1064nm",
+                range: "1–7 m",
+                microphone: "yes — records Mars sound",
+                mass: "8.8 kg",
+              },
+              partKey: "mast",
+            },
+          ],
         },
         {
-          group: 'Astrobiology & Spectrometers',
-          icon: '🔬',
+          group: "Astrobiology & Spectrometers",
+          icon: "🔬",
           items: [
             {
-              name: 'SHERLOC',
-              desc: 'Scanning Habitable Environments with Raman & Luminescence for Organics & Chemicals — deep ultraviolet laser fluorescence that can detect aromatic organic molecules invisible to other instruments.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg/960px-Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg',
-              specs: { laser: 'Deep UV 248.6nm', mapping: '7×7 mm area', sensitivity: 'ppb organics', mass: '2.3 kg' },
-              partKey: 'arm'
+              name: "SHERLOC",
+              desc: "Scanning Habitable Environments with Raman & Luminescence for Organics & Chemicals — deep ultraviolet laser fluorescence that can detect aromatic organic molecules invisible to other instruments.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg/960px-Mars_Curiosity_Rover_Arm_%28June_2019%29.jpg",
+              specs: {
+                laser: "Deep UV 248.6nm",
+                mapping: "7×7 mm area",
+                sensitivity: "ppb organics",
+                mass: "2.3 kg",
+              },
+              partKey: "arm",
             },
             {
-              name: 'PIXL',
-              desc: 'Planetary Instrument for X-ray Lithochemistry — micro-focus X-ray fluorescence mapper that creates chemical element maps of rock grain boundaries at 100 µm resolution.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg/960px-PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg',
-              specs: { resolution: '100 µm per pixel', elements: '27 elements', beam_size: '120 µm', mass: '2.4 kg' },
-              partKey: 'arm'
-            }
-          ]
+              name: "PIXL",
+              desc: "Planetary Instrument for X-ray Lithochemistry — micro-focus X-ray fluorescence mapper that creates chemical element maps of rock grain boundaries at 100 µm resolution.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg/960px-PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg",
+              specs: {
+                resolution: "100 µm per pixel",
+                elements: "27 elements",
+                beam_size: "120 µm",
+                mass: "2.4 kg",
+              },
+              partKey: "arm",
+            },
+          ],
         },
         {
-          group: 'ISRU & Subsurface',
-          icon: '⚙️',
+          group: "ISRU & Subsurface",
+          icon: "⚙️",
           items: [
             {
-              name: 'MOXIE',
-              desc: 'Mars Oxygen ISRU Experiment — successfully converted Martian CO₂ into breathable O₂ at 10 g/hr, proving life-support oxygen production on Mars is feasible for future astronauts.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/960px-Ingenuity_helicopter_on_Mars_PIA24584.jpg',
-              specs: { output: '10 g/hr O₂', temp: '800°C operating', purity: '>99.6% O₂', mass: '17.1 kg' },
-              partKey: 'chassis'
+              name: "MOXIE",
+              desc: "Mars Oxygen ISRU Experiment — successfully converted Martian CO₂ into breathable O₂ at 10 g/hr, proving life-support oxygen production on Mars is feasible for future astronauts.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/960px-Ingenuity_helicopter_on_Mars_PIA24584.jpg",
+              specs: {
+                output: "10 g/hr O₂",
+                temp: "800°C operating",
+                purity: ">99.6% O₂",
+                mass: "17.1 kg",
+              },
+              partKey: "chassis",
             },
             {
-              name: 'RIMFAX',
-              desc: 'Radar Imager for Mars Subsurface Experiment — ground-penetrating radar that images geological layers up to 10 meters underground from the moving rover.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg/960px-PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg',
-              specs: { depth: 'up to 10 m', frequency: '150–1200 MHz', resolution: '~30 cm vertical', mass: '2.6 kg' },
-              partKey: 'chassis'
-            }
-          ]
+              name: "RIMFAX",
+              desc: "Radar Imager for Mars Subsurface Experiment — ground-penetrating radar that images geological layers up to 10 meters underground from the moving rover.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg/960px-PIA24542-MarsPerceveranceRover-Selfie-20210420.jpg",
+              specs: {
+                depth: "up to 10 m",
+                frequency: "150–1200 MHz",
+                resolution: "~30 cm vertical",
+                mass: "2.6 kg",
+              },
+              partKey: "chassis",
+            },
+          ],
         },
         {
-          group: 'Atmospheric Weather',
-          icon: '💨',
+          group: "Atmospheric Weather",
+          icon: "💨",
           items: [
             {
-              name: 'MEDA',
-              desc: 'Mars Environmental Dynamics Analyzer records temperature, wind speed, relative humidity, pressure, and radiation — a comprehensive weather station updating NASA every hour.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/960px-Ingenuity_helicopter_on_Mars_PIA24584.jpg',
-              specs: { wind_range: '0–70 m/s', pressure: '0.5–1150 Pa', humidity: '0–100% RH', mass: '5.5 kg' },
-              partKey: 'mast'
-            }
-          ]
-        }
+              name: "MEDA",
+              desc: "Mars Environmental Dynamics Analyzer records temperature, wind speed, relative humidity, pressure, and radiation — a comprehensive weather station updating NASA every hour.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ingenuity_helicopter_on_Mars_PIA24584.jpg/960px-Ingenuity_helicopter_on_Mars_PIA24584.jpg",
+              specs: {
+                wind_range: "0–70 m/s",
+                pressure: "0.5–1150 Pa",
+                humidity: "0–100% RH",
+                mass: "5.5 kg",
+              },
+              partKey: "mast",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'First Flight on Another World & Sample Caching',
-        desc: 'Ingenuity completed 72 historic flights across 3 years. Perseverance sealed dozens of rock core samples in sterile titanium tubes, ready to be collected and brought to Earth.'
+        title: "First Flight on Another World & Sample Caching",
+        desc: "Ingenuity completed 72 historic flights across 3 years. Perseverance sealed dozens of rock core samples in sterile titanium tubes, ready to be collected and brought to Earth.",
       },
       currentStatus: {
-        title: 'Ascending Crater Rim with Pristine Cores',
-        desc: 'Currently navigating the ancient Jezero river channel, analyzing sedimentary rocks that preserved ancient water activity 3.8 billion years ago.'
-      }
+        title: "Ascending Crater Rim with Pristine Cores",
+        desc: "Currently navigating the ancient Jezero river channel, analyzing sedimentary rocks that preserved ancient water activity 3.8 billion years ago.",
+      },
     },
-    funFact: "Ingenuity carried a small swatch of fabric from the Wright Brothers' original 1903 Flyer taped beneath its solar array!",
-    audioSimulation: 'martian_wind',
-    audioTitle: 'Actual Perseverance Acoustic Microphone Audio (Mars Wind)',
-    badgeAwarded: 'martian-vanguard'
+    funFact:
+      "Ingenuity carried a small swatch of fabric from the Wright Brothers' original 1903 Flyer taped beneath its solar array!",
+    audioSimulation: "martian_wind",
+    audioTitle: "Actual Perseverance Acoustic Microphone Audio (Mars Wind)",
+    badgeAwarded: "martian-vanguard",
+    videoEmbed: "https://www.youtube.com/embed/4czjS9h4Fpg",
+    videoTitle: "Perseverance Rover Landing",
+    construction: {
+      builtBy: "JPL",
+      builtAt: "Pasadena, USA",
+      assemblyFacility: "Jet Propulsion Laboratory",
+      startYear: 2013,
+      completedYear: 2020,
+      purpose: "Seek signs of ancient life and collect samples",
+      cost: "$2.7 billion",
+    },
+    causeOfAbandon: null,
+    missionVitals: {
+      mass: "1025 kg",
+      dimensions: "3 × 2.7 × 2.2 m",
+      powerSource: "MMRTG (Plutonium-238)",
+      powerOutput: "~110 Watts",
+      designLife: "1 Martian year (687 Earth days)",
+      actualLife: "Active since 2021",
+    },
+    milestones: [
+      {
+        icon: "🏆",
+        title: "First powered flight on Mars (Ingenuity)",
+        year: 2021,
+      },
+      {
+        icon: "🏆",
+        title: "First oxygen generated on Mars (MOXIE)",
+        year: 2021,
+      },
+      { icon: "🏆", title: "First sample cached for return", year: 2021 },
+    ],
   },
   {
-    id: 'voyager-1',
-    name: 'Voyager 1 Interstellar Mission',
-    shortName: 'Voyager 1',
-    category: 'deep-space',
-    domainLabel: 'Interstellar Space',
+    id: "voyager-1",
+    name: "Voyager 1 Interstellar Mission",
+    shortName: "Voyager 1",
+    category: "deep-space",
+    domainLabel: "Interstellar Space",
     launchYear: 1977,
     landingYear: null,
-    launchDate: 'September 5, 1977',
-    arrivalDate: 'August 25, 2012',
-    arrivalEvent: 'Crossed the Heliopause into Interstellar Space',
-    status: 'active',
-    statusLabel: 'Active & Traversing Interstellar Abyss',
-    statusClass: 'status-active',
-    location: 'Interstellar Space (Constellation Ophiuchus)',
-    coordinates: 'Dec: +12° 27\', RA: 17h 16m',
+    launchDate: "September 5, 1977",
+    arrivalDate: "August 25, 2012",
+    arrivalEvent: "Crossed the Heliopause into Interstellar Space",
+    status: "active",
+    statusLabel: "Active & Traversing Interstellar Abyss",
+    statusClass: "status-active",
+    location: "Interstellar Space (Constellation Ophiuchus)",
+    coordinates: "Dec: +12° 27', RA: 17h 16m",
     distanceAU: 163.8,
     baseDistanceKm: 24500000000,
     speedKmS: 17.0,
     oneWayLightSeconds: 81700,
-    modelType: 'voyager-probe',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Voyager_spacecraft.jpg/1280px-Voyager_spacecraft.jpg',
-    heroColor: '#4361ee',
+    modelType: "voyager-probe",
+    heroImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Voyager_spacecraft.jpg/1280px-Voyager_spacecraft.jpg",
+    heroColor: "#4361ee",
     galleryImages: [
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Pale_Blue_Dot.png/750px-Pale_Blue_Dot.png', caption: 'Pale Blue Dot — Earth from 6 billion km' },
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/GoldenRecord_WideShot.jpg/1024px-GoldenRecord_WideShot.jpg', caption: 'The Golden Record aboard Voyager' }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Pale_Blue_Dot.png/750px-Pale_Blue_Dot.png",
+        caption: "Pale Blue Dot — Earth from 6 billion km",
+      },
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/GoldenRecord_WideShot.jpg/1024px-GoldenRecord_WideShot.jpg",
+        caption: "The Golden Record aboard Voyager",
+      },
     ],
     storyLine: {
       launch: {
-        year: '1977',
-        title: 'Launched on the Grand Tour',
-        desc: 'Launched on a Titan IIIE rocket to take advantage of a once-every-176-year geometric alignment of the outer planets.'
+        year: "1977",
+        title: "Launched on the Grand Tour",
+        desc: "Launched on a Titan IIIE rocket to take advantage of a once-every-176-year geometric alignment of the outer planets.",
       },
       arrival: {
-        year: '2012',
-        title: 'Crossed the Solar Boundary (Heliopause)',
-        desc: 'Became the very first human-made object to venture beyond our Sun\'s solar wind bubble and enter pristine interstellar space.'
+        year: "2012",
+        title: "Crossed the Solar Boundary (Heliopause)",
+        desc: "Became the very first human-made object to venture beyond our Sun's solar wind bubble and enter pristine interstellar space.",
       },
       hardware: {
-        icon: '🛰️',
-        title: 'Voyager Spacecraft Bus & Golden Record',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Voyager_spacecraft.jpg/1280px-Voyager_spacecraft.jpg',
-        desc: 'An 825-kg probe centered around a 3.7-meter high-gain parabolic reflector dish, powered by three Multi-Hundred-Watt RTG plutonium units and carrying the Golden Record.'
+        icon: "🛰️",
+        title: "Voyager Spacecraft Bus & Golden Record",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Voyager_spacecraft.jpg/1280px-Voyager_spacecraft.jpg",
+        desc: "An 825-kg probe centered around a 3.7-meter high-gain parabolic reflector dish, powered by three Multi-Hundred-Watt RTG plutonium units and carrying the Golden Record.",
       },
       instruments: [
         {
-          group: 'Cosmic & Plasma Sensors',
-          icon: '⚡',
+          group: "Cosmic & Plasma Sensors",
+          icon: "⚡",
           items: [
             {
-              name: 'PWS (Plasma Wave)',
-              desc: 'Plasma Wave Subsystem measuring vibrations of interstellar gas and electron plasma oscillations at the heliosphere edge.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Voyager_spacecraft.jpg/800px-Voyager_spacecraft.jpg',
-              specs: { frequency: '10 Hz – 56 kHz', sensors: '2× 10m dipole antennas', sensitivity: 'nV/m', mass: '1.4 kg' },
-              partKey: 'bus'
+              name: "PWS (Plasma Wave)",
+              desc: "Plasma Wave Subsystem measuring vibrations of interstellar gas and electron plasma oscillations at the heliosphere edge.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Voyager_spacecraft.jpg/800px-Voyager_spacecraft.jpg",
+              specs: {
+                frequency: "10 Hz – 56 kHz",
+                sensors: "2× 10m dipole antennas",
+                sensitivity: "nV/m",
+                mass: "1.4 kg",
+              },
+              partKey: "bus",
             },
             {
-              name: 'CRS (Cosmic Ray)',
-              desc: 'Cosmic Ray Subsystem detecting high-energy galactic particles, providing direct proof of entering interstellar space.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Voyager_spacecraft.jpg/800px-Voyager_spacecraft.jpg',
-              specs: { energy: '0.5 – 500 MeV', particles: 'e⁻, p⁺, Alpha, Z≥3', detectors: 'Telescope solid-state stack', mass: '7.5 kg' },
-              partKey: 'bus'
+              name: "CRS (Cosmic Ray)",
+              desc: "Cosmic Ray Subsystem detecting high-energy galactic particles, providing direct proof of entering interstellar space.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Voyager_spacecraft.jpg/800px-Voyager_spacecraft.jpg",
+              specs: {
+                energy: "0.5 – 500 MeV",
+                particles: "e⁻, p⁺, Alpha, Z≥3",
+                detectors: "Telescope solid-state stack",
+                mass: "7.5 kg",
+              },
+              partKey: "bus",
             },
             {
-              name: 'MAG (Magnetometer)',
-              desc: 'Triaxial Fluxgate Magnetometer mounted on a 13-meter deployable fiberglass boom to measure weak interstellar magnetic fields.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Voyager_spacecraft.jpg/800px-Voyager_spacecraft.jpg',
-              specs: { boom: '13m deployable', sensors: '4 Triaxial Fluxgates', range: '±8 to ±50,000 nT', mass: '5.6 kg' },
-              partKey: 'mag_boom'
-            }
-          ]
+              name: "MAG (Magnetometer)",
+              desc: "Triaxial Fluxgate Magnetometer mounted on a 13-meter deployable fiberglass boom to measure weak interstellar magnetic fields.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Voyager_spacecraft.jpg/800px-Voyager_spacecraft.jpg",
+              specs: {
+                boom: "13m deployable",
+                sensors: "4 Triaxial Fluxgates",
+                range: "±8 to ±50,000 nT",
+                mass: "5.6 kg",
+              },
+              partKey: "mag_boom",
+            },
+          ],
         },
         {
-          group: 'Cultural Artifact',
-          icon: '📀',
+          group: "Cultural Artifact",
+          icon: "📀",
           items: [
             {
-              name: 'The Golden Record',
-              desc: '12-inch gold-plated copper phonograph record encoded with 115 images, sounds of nature, music, and spoken greetings from Earth.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/GoldenRecord_WideShot.jpg/1024px-GoldenRecord_WideShot.jpg',
-              specs: { diameter: '12-inch (30 cm)', material: 'Gold-plated copper', speed: '16⅔ RPM', cover: 'Ultra-pure Uranium-238 clock' },
-              partKey: 'record'
-            }
-          ]
+              name: "The Golden Record",
+              desc: "12-inch gold-plated copper phonograph record encoded with 115 images, sounds of nature, music, and spoken greetings from Earth.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/GoldenRecord_WideShot.jpg/1024px-GoldenRecord_WideShot.jpg",
+              specs: {
+                diameter: "12-inch (30 cm)",
+                material: "Gold-plated copper",
+                speed: "16⅔ RPM",
+                cover: "Ultra-pure Uranium-238 clock",
+              },
+              partKey: "record",
+            },
+          ],
         },
         {
-          group: 'Historic Imaging',
-          icon: '📷',
+          group: "Historic Imaging",
+          icon: "📷",
           items: [
             {
-              name: 'Imaging Science Subsystem',
-              desc: 'Narrow and Wide angle vidicon cameras that captured Jupiter\'s Great Red Spot, Saturn\'s rings, and the iconic 1990 "Pale Blue Dot".',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Pale_Blue_Dot.png/750px-Pale_Blue_Dot.png',
-              specs: { resolution: '800×800 Vidicon', focal_length: '200mm / 1500mm', filters: '8 optical filters', mass: '38.2 kg' },
-              partKey: 'dish'
-            }
-          ]
-        }
+              name: "Imaging Science Subsystem",
+              desc: "Narrow and Wide angle vidicon cameras that captured Jupiter's Great Red Spot, Saturn's rings, and the iconic 1990 \"Pale Blue Dot\".",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Pale_Blue_Dot.png/750px-Pale_Blue_Dot.png",
+              specs: {
+                resolution: "800×800 Vidicon",
+                focal_length: "200mm / 1500mm",
+                filters: "8 optical filters",
+                mass: "38.2 kg",
+              },
+              partKey: "dish",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'Direct Measurement of Interstellar Medium',
-        desc: 'Discovered active volcanoes on Jupiter\'s moon Io, intricate ring structures at Saturn, and measured the density of raw interstellar plasma outside our solar system.'
+        title: "Direct Measurement of Interstellar Medium",
+        desc: "Discovered active volcanoes on Jupiter's moon Io, intricate ring structures at Saturn, and measured the density of raw interstellar plasma outside our solar system.",
       },
       currentStatus: {
-        title: 'Transmitting from 24.5 Billion Kilometers Away',
-        desc: 'Communicates daily with NASA Deep Space Network antennas with a 22.7-hour one-way light delay at a faint 160 bits per second.'
-      }
+        title: "Transmitting from 24.5 Billion Kilometers Away",
+        desc: "Communicates daily with NASA Deep Space Network antennas with a 22.7-hour one-way light delay at a faint 160 bits per second.",
+      },
     },
-    funFact: "Voyager 1's onboard computer has just 69 kilobytes of memory—thousands of times smaller than a single smartphone photo!",
-    audioSimulation: 'plasma_waves',
-    audioTitle: 'Actual Voyager Interstellar Plasma Wave Sound',
-    badgeAwarded: 'interstellar-pathfinder'
+    funFact:
+      "Voyager 1's onboard computer has just 69 kilobytes of memory—thousands of times smaller than a single smartphone photo!",
+    audioSimulation: "plasma_waves",
+    audioTitle: "Actual Voyager Interstellar Plasma Wave Sound",
+    badgeAwarded: "interstellar-pathfinder",
+    videoEmbed: "https://www.youtube.com/embed/xQRFn5PORTU",
+    videoTitle: "Voyager Golden Record",
+    construction: {
+      builtBy: "JPL",
+      builtAt: "Pasadena, USA",
+      assemblyFacility: "Jet Propulsion Laboratory",
+      startYear: 1972,
+      completedYear: 1977,
+      purpose: "Explore the outer solar system and interstellar space",
+      cost: "$865 million",
+    },
+    causeOfAbandon: null,
+    missionVitals: {
+      mass: "825 kg",
+      dimensions: "3.7 m diameter",
+      powerSource: "RTG (Plutonium-238)",
+      powerOutput: "~470 Watts (at launch)",
+      designLife: "5 years",
+      actualLife: "Active since 1977",
+    },
+    milestones: [
+      { icon: "🏆", title: "Jupiter and Saturn flybys", year: 1979 },
+      { icon: "🏆", title: "Took the Pale Blue Dot photograph", year: 1990 },
+      { icon: "🏆", title: "Entered interstellar space", year: 2012 },
+    ],
   },
   {
-    id: 'jwst-telescope',
-    name: 'James Webb Space Telescope (JWST)',
-    shortName: 'Webb Space Telescope',
-    category: 'lagrange',
-    domainLabel: 'Sun-Earth L2 Lagrange Point',
+    id: "jwst-telescope",
+    name: "James Webb Space Telescope (JWST)",
+    shortName: "Webb Space Telescope",
+    category: "lagrange",
+    domainLabel: "Sun-Earth L2 Lagrange Point",
     launchYear: 2021,
     landingYear: 2022,
-    launchDate: 'December 25, 2021',
-    arrivalDate: 'January 24, 2022',
-    arrivalEvent: 'Inserted into Halo Orbit at Sun-Earth L2',
-    status: 'active',
-    statusLabel: 'Active & Peering into Cosmic Dawn',
-    statusClass: 'status-active',
-    location: 'Sun-Earth L2 Point (1.5M km from Earth)',
-    coordinates: 'Halo Orbit L2',
+    launchDate: "December 25, 2021",
+    arrivalDate: "January 24, 2022",
+    arrivalEvent: "Inserted into Halo Orbit at Sun-Earth L2",
+    status: "active",
+    statusLabel: "Active & Peering into Cosmic Dawn",
+    statusClass: "status-active",
+    location: "Sun-Earth L2 Point (1.5M km from Earth)",
+    coordinates: "Halo Orbit L2",
     distanceAU: 0.01,
     baseDistanceKm: 1500000,
     speedKmS: 0.2,
     oneWayLightSeconds: 5.0,
-    modelType: 'jwst-telescope',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Webb%27s_First_Deep_Field.jpg/1280px-Webb%27s_First_Deep_Field.jpg',
-    heroColor: '#7b2d8b',
+    modelType: "jwst-telescope",
+    heroImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Webb%27s_First_Deep_Field.jpg/1280px-Webb%27s_First_Deep_Field.jpg",
+    heroColor: "#7b2d8b",
     galleryImages: [
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Webb%27s_First_Deep_Field.jpg/1280px-Webb%27s_First_Deep_Field.jpg', caption: "Webb's first deep field — thousands of ancient galaxies" },
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Carina_Nebula_by_the_James_Webb_Space_Telescope.png/1280px-Carina_Nebula_by_the_James_Webb_Space_Telescope.png', caption: 'Cosmic Cliffs in the Carina Nebula' }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Webb%27s_First_Deep_Field.jpg/1280px-Webb%27s_First_Deep_Field.jpg",
+        caption: "Webb's first deep field — thousands of ancient galaxies",
+      },
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Carina_Nebula_by_the_James_Webb_Space_Telescope.png/1280px-Carina_Nebula_by_the_James_Webb_Space_Telescope.png",
+        caption: "Cosmic Cliffs in the Carina Nebula",
+      },
     ],
     storyLine: {
       launch: {
-        year: '2021',
-        title: 'Christmas Day Launch on Ariane 5',
-        desc: 'Folded like cosmic origami inside the rocket fairing from Europe\'s Spaceport in Kourou, French Guiana.'
+        year: "2021",
+        title: "Christmas Day Launch on Ariane 5",
+        desc: "Folded like cosmic origami inside the rocket fairing from Europe's Spaceport in Kourou, French Guiana.",
       },
       arrival: {
-        year: '2022',
-        title: 'Arrival at Lagrange Point 2',
-        desc: 'Completed over 300 single-point-of-failure deployment steps, unfolding its giant sunshield and golden primary mirrors in deep space.'
+        year: "2022",
+        title: "Arrival at Lagrange Point 2",
+        desc: "Completed over 300 single-point-of-failure deployment steps, unfolding its giant sunshield and golden primary mirrors in deep space.",
       },
       hardware: {
-        icon: '🔭',
-        title: 'Webb Observatory Structure',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Carina_Nebula_by_the_James_Webb_Space_Telescope.png/1280px-Carina_Nebula_by_the_James_Webb_Space_Telescope.png',
-        desc: 'A 6.5-meter gold-coated beryllium primary mirror array protected by a 5-layer tennis-court-sized Kapton sunshield maintaining a -233°C cryogenic temperature.'
+        icon: "🔭",
+        title: "Webb Observatory Structure",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Carina_Nebula_by_the_James_Webb_Space_Telescope.png/1280px-Carina_Nebula_by_the_James_Webb_Space_Telescope.png",
+        desc: "A 6.5-meter gold-coated beryllium primary mirror array protected by a 5-layer tennis-court-sized Kapton sunshield maintaining a -233°C cryogenic temperature.",
       },
       instruments: [
         {
-          group: 'Infrared Cameras',
-          icon: '✨',
+          group: "Infrared Cameras",
+          icon: "✨",
           items: [
             {
-              name: 'NIRCam',
-              desc: 'Near-Infrared Camera imaging the first stars and earliest galaxies with ultra-high sensitivity and wavefront sensing.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Carina_Nebula_by_the_James_Webb_Space_Telescope.png/960px-Carina_Nebula_by_the_James_Webb_Space_Telescope.png',
-              specs: { wavelength: '0.6 – 5.0 µm', field_of_view: '2.2 × 4.4 arcmin', sensors: '10 H2RG arrays (40 Mpx)', mass: '197 kg' },
-              partKey: 'mirror'
+              name: "NIRCam",
+              desc: "Near-Infrared Camera imaging the first stars and earliest galaxies with ultra-high sensitivity and wavefront sensing.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Carina_Nebula_by_the_James_Webb_Space_Telescope.png/960px-Carina_Nebula_by_the_James_Webb_Space_Telescope.png",
+              specs: {
+                wavelength: "0.6 – 5.0 µm",
+                field_of_view: "2.2 × 4.4 arcmin",
+                sensors: "10 H2RG arrays (40 Mpx)",
+                mass: "197 kg",
+              },
+              partKey: "mirror",
             },
             {
-              name: 'MIRI',
-              desc: 'Mid-Infrared Instrument cooled to 6.7 Kelvin for piercing through dense cosmic dust to witness star and planet birth.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Webb%27s_First_Deep_Field.jpg/960px-Webb%27s_First_Deep_Field.jpg',
-              specs: { wavelength: '4.9 – 28.8 µm', temp: '6.7 Kelvin (-266°C)', modes: 'Camera + Spectrograph', mass: '95 kg' },
-              partKey: 'mirror'
-            }
-          ]
+              name: "MIRI",
+              desc: "Mid-Infrared Instrument cooled to 6.7 Kelvin for piercing through dense cosmic dust to witness star and planet birth.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Webb%27s_First_Deep_Field.jpg/960px-Webb%27s_First_Deep_Field.jpg",
+              specs: {
+                wavelength: "4.9 – 28.8 µm",
+                temp: "6.7 Kelvin (-266°C)",
+                modes: "Camera + Spectrograph",
+                mass: "95 kg",
+              },
+              partKey: "mirror",
+            },
+          ],
         },
         {
-          group: 'Spectroscopy',
-          icon: '🌈',
+          group: "Spectroscopy",
+          icon: "🌈",
           items: [
             {
-              name: 'NIRSpec',
-              desc: 'Near-Infrared Spectrograph equipped with 250,000 microshutters observing up to 100 distant galaxies simultaneously.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Webb%27s_First_Deep_Field.jpg/960px-Webb%27s_First_Deep_Field.jpg',
-              specs: { multiplex: '100 simultaneous spectra', wavelength: '0.6 – 5.3 µm', microshutters: '250,000 cells', mass: '196 kg' },
-              partKey: 'bus'
+              name: "NIRSpec",
+              desc: "Near-Infrared Spectrograph equipped with 250,000 microshutters observing up to 100 distant galaxies simultaneously.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Webb%27s_First_Deep_Field.jpg/960px-Webb%27s_First_Deep_Field.jpg",
+              specs: {
+                multiplex: "100 simultaneous spectra",
+                wavelength: "0.6 – 5.3 µm",
+                microshutters: "250,000 cells",
+                mass: "196 kg",
+              },
+              partKey: "bus",
             },
             {
-              name: 'NIRISS',
-              desc: 'Near-Infrared Imager and Slitless Spectrograph analyzing exoplanet atmospheric compositions during planetary transits.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Carina_Nebula_by_the_James_Webb_Space_Telescope.png/960px-Carina_Nebula_by_the_James_Webb_Space_Telescope.png',
-              specs: { modes: 'Wide-field slitless spectroscopy', wavelength: '0.6 – 5.0 µm', target: 'Exoplanet atmospheres', mass: '68 kg' },
-              partKey: 'bus'
-            }
-          ]
+              name: "NIRISS",
+              desc: "Near-Infrared Imager and Slitless Spectrograph analyzing exoplanet atmospheric compositions during planetary transits.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Carina_Nebula_by_the_James_Webb_Space_Telescope.png/960px-Carina_Nebula_by_the_James_Webb_Space_Telescope.png",
+              specs: {
+                modes: "Wide-field slitless spectroscopy",
+                wavelength: "0.6 – 5.0 µm",
+                target: "Exoplanet atmospheres",
+                mass: "68 kg",
+              },
+              partKey: "bus",
+            },
+          ],
         },
         {
-          group: 'Cryogenics & Optics',
-          icon: '❄️',
+          group: "Cryogenics & Optics",
+          icon: "❄️",
           items: [
             {
-              name: 'Closed-Loop Cryocooler',
-              desc: 'Helium pulse-tube refrigerator chilling MIRI below the temperature of Pluto without consuming expendable coolant.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Webb%27s_First_Deep_Field.jpg/960px-Webb%27s_First_Deep_Field.jpg',
-              specs: { cooling_agent: 'Helium-4 closed loop', operating_temp: '6.7 Kelvin', type: 'Pulse-tube compressor', mass: '120 kg' },
-              partKey: 'sunshield'
+              name: "Closed-Loop Cryocooler",
+              desc: "Helium pulse-tube refrigerator chilling MIRI below the temperature of Pluto without consuming expendable coolant.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Webb%27s_First_Deep_Field.jpg/960px-Webb%27s_First_Deep_Field.jpg",
+              specs: {
+                cooling_agent: "Helium-4 closed loop",
+                operating_temp: "6.7 Kelvin",
+                type: "Pulse-tube compressor",
+                mass: "120 kg",
+              },
+              partKey: "sunshield",
             },
             {
-              name: '18 Hex Primary Segments',
-              desc: 'Gold-vapor-coated beryllium mirrors aligned to 13-nanometer precision forming a 6.5-meter monolithic optical aperture.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Carina_Nebula_by_the_James_Webb_Space_Telescope.png/960px-Carina_Nebula_by_the_James_Webb_Space_Telescope.png',
-              specs: { aperture: '6.5 m diameter', material: 'Beryllium + 100nm Gold', precision: '13.1 nm wavefront', mass: '20.1 kg/segment' },
-              partKey: 'mirror'
-            }
-          ]
-        }
+              name: "18 Hex Primary Segments",
+              desc: "Gold-vapor-coated beryllium mirrors aligned to 13-nanometer precision forming a 6.5-meter monolithic optical aperture.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Carina_Nebula_by_the_James_Webb_Space_Telescope.png/960px-Carina_Nebula_by_the_James_Webb_Space_Telescope.png",
+              specs: {
+                aperture: "6.5 m diameter",
+                material: "Beryllium + 100nm Gold",
+                precision: "13.1 nm wavefront",
+                mass: "20.1 kg/segment",
+              },
+              partKey: "mirror",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'Unlocking the Earliest Galaxies & Alien Skies',
-        desc: 'Captured light from galaxies formed just 300 million years after the Big Bang, discovered carbon dioxide and water vapor in exoplanet atmospheres, and unveiled infant stars in the Carina Nebula.'
+        title: "Unlocking the Earliest Galaxies & Alien Skies",
+        desc: "Captured light from galaxies formed just 300 million years after the Big Bang, discovered carbon dioxide and water vapor in exoplanet atmospheres, and unveiled infant stars in the Carina Nebula.",
       },
       currentStatus: {
-        title: 'Operational Prime Science Phase',
-        desc: 'Operating with surplus maneuvering propellant expected to sustain science discoveries well beyond 2040.'
-      }
+        title: "Operational Prime Science Phase",
+        desc: "Operating with surplus maneuvering propellant expected to sustain science discoveries well beyond 2040.",
+      },
     },
-    funFact: "Webb's gold mirror layer is only 100 nanometers thick—all 18 mirror segments together use only about a golf ball's worth of gold!",
-    audioSimulation: 'radio_chime',
-    audioTitle: 'JWST L2 Deep Space Telemetry Downlink',
-    badgeAwarded: 'cosmic-astronomer'
+    funFact:
+      "Webb's gold mirror layer is only 100 nanometers thick—all 18 mirror segments together use only about a golf ball's worth of gold!",
+    audioSimulation: "radio_chime",
+    audioTitle: "JWST L2 Deep Space Telemetry Downlink",
+    badgeAwarded: "cosmic-astronomer",
+    videoEmbed: "https://www.youtube.com/embed/4P8fKd0IVOs",
+    videoTitle: "JWST First Images",
+    construction: {
+      builtBy: "Northrop Grumman / GSFC",
+      builtAt: "Redondo Beach, USA",
+      assemblyFacility: "Space Park",
+      startYear: 2004,
+      completedYear: 2021,
+      purpose: "Observe the earliest galaxies and star formation",
+      cost: "$10 billion",
+    },
+    causeOfAbandon: null,
+    missionVitals: {
+      mass: "6500 kg",
+      dimensions: "20.2 × 14.2 m",
+      powerSource: "Solar Panels",
+      powerOutput: "~2000 Watts",
+      designLife: "10 years",
+      actualLife: "Active since 2022",
+    },
+    milestones: [
+      { icon: "🏆", title: "Successfully deployed sunshield", year: 2022 },
+      { icon: "🏆", title: "First deep field image released", year: 2022 },
+      { icon: "🏆", title: "Discovered earliest known galaxy", year: 2023 },
+    ],
   },
   {
-    id: 'apollo-11-lrrr',
-    name: 'Apollo 11 LRRR & Descent Stage',
-    shortName: 'Apollo 11 Relics',
-    category: 'moon',
-    domainLabel: 'The Moon',
+    id: "apollo-11-lrrr",
+    name: "Apollo 11 LRRR & Descent Stage",
+    shortName: "Apollo 11 Relics",
+    category: "moon",
+    domainLabel: "The Moon",
     launchYear: 1969,
     landingYear: 1969,
-    launchDate: 'July 16, 1969',
-    arrivalDate: 'July 20, 1969',
-    arrivalEvent: 'First Human Lunar Landing on Tranquility Base',
-    status: 'active_passive',
-    statusLabel: 'Still Active (Zero Electricity Needed)',
-    statusClass: 'status-active',
-    location: 'Mare Tranquillitatis (Sea of Tranquility), Moon',
-    coordinates: '0.67408° N, 23.47297° E',
+    launchDate: "July 16, 1969",
+    arrivalDate: "July 20, 1969",
+    arrivalEvent: "First Human Lunar Landing on Tranquility Base",
+    status: "active_passive",
+    statusLabel: "Still Active (Zero Electricity Needed)",
+    statusClass: "status-active",
+    location: "Mare Tranquillitatis (Sea of Tranquility), Moon",
+    coordinates: "0.67408° N, 23.47297° E",
     distanceAU: 0.00257,
     baseDistanceKm: 384400,
     speedKmS: 1.02,
     oneWayLightSeconds: 1.28,
-    modelType: 'apollo-lander',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/1024px-Aldrin_Apollo_11_original.jpg',
-    heroColor: '#d4a017',
+    modelType: "apollo-lander",
+    heroImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/1024px-Aldrin_Apollo_11_original.jpg",
+    heroColor: "#d4a017",
     galleryImages: [
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/NASA-Apollo11-Lander.jpg/1280px-NASA-Apollo11-Lander.jpg', caption: 'Eagle lunar module on the Moon' },
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/NASA-Apollo11-Armstrong-Footprint.jpg/1024px-NASA-Apollo11-Armstrong-Footprint.jpg', caption: "Armstrong's historic bootprint" }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/NASA-Apollo11-Lander.jpg/1280px-NASA-Apollo11-Lander.jpg",
+        caption: "Eagle lunar module on the Moon",
+      },
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/NASA-Apollo11-Armstrong-Footprint.jpg/1024px-NASA-Apollo11-Armstrong-Footprint.jpg",
+        caption: "Armstrong's historic bootprint",
+      },
     ],
     storyLine: {
       launch: {
-        year: '1969',
-        title: 'Liftoff on Saturn V Rocket',
-        desc: 'Blasted off from Launch Complex 39A atop the 363-foot Saturn V rocket on humanity\'s first moon landing mission.'
+        year: "1969",
+        title: "Liftoff on Saturn V Rocket",
+        desc: "Blasted off from Launch Complex 39A atop the 363-foot Saturn V rocket on humanity's first moon landing mission.",
       },
       arrival: {
-        year: '1969',
+        year: "1969",
         title: 'Touchdown: "The Eagle Has Landed"',
-        desc: 'Neil Armstrong and Buzz Aldrin set down the Lunar Module on the Sea of Tranquility with 25 seconds of fuel remaining.'
+        desc: "Neil Armstrong and Buzz Aldrin set down the Lunar Module on the Sea of Tranquility with 25 seconds of fuel remaining.",
       },
       hardware: {
-        icon: '🌕',
-        title: 'Lunar Module Descent Stage & LRRR',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/1280px-Aldrin_Apollo_11_original.jpg',
-        desc: 'An octagonal aluminum structure clad in gold and black Mylar thermal insulation blankets, serving as the launch pad for the ascent stage and home of the Laser Retroreflector.'
+        icon: "🌕",
+        title: "Lunar Module Descent Stage & LRRR",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/1280px-Aldrin_Apollo_11_original.jpg",
+        desc: "An octagonal aluminum structure clad in gold and black Mylar thermal insulation blankets, serving as the launch pad for the ascent stage and home of the Laser Retroreflector.",
       },
       instruments: [
         {
-          group: 'Laser Ranging Mirror',
-          icon: '💎',
+          group: "Laser Ranging Mirror",
+          icon: "💎",
           items: [
             {
-              name: 'Suprasil Corner-Cubes',
-              desc: '100 fused silica quartz prisms reflecting laser light directly back to Earth observatories to measure Earth-Moon distance to millimeter accuracy.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg',
-              specs: { array: '100 fused silica corner cubes', dimension: '46 × 46 cm tray', precision: 'Sub-centimeter range', power_needed: '0 Watts (passive)' },
-              partKey: 'lrrr'
+              name: "Suprasil Corner-Cubes",
+              desc: "100 fused silica quartz prisms reflecting laser light directly back to Earth observatories to measure Earth-Moon distance to millimeter accuracy.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg",
+              specs: {
+                array: "100 fused silica corner cubes",
+                dimension: "46 × 46 cm tray",
+                precision: "Sub-centimeter range",
+                power_needed: "0 Watts (passive)",
+              },
+              partKey: "lrrr",
             },
             {
-              name: 'Passive Thermal Pallet',
-              desc: 'Zero electrical power needed—passively survives -130°C lunar nights to +120°C lunar days through open mechanical gimbaling.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg',
-              specs: { temp_range: '-130°C to +120°C', design: 'Aluminum open frame', lifetime: 'Indefinite (>55 yrs active)', mass: '25 kg' },
-              partKey: 'lrrr'
-            }
-          ]
+              name: "Passive Thermal Pallet",
+              desc: "Zero electrical power needed—passively survives -130°C lunar nights to +120°C lunar days through open mechanical gimbaling.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg",
+              specs: {
+                temp_range: "-130°C to +120°C",
+                design: "Aluminum open frame",
+                lifetime: "Indefinite (>55 yrs active)",
+                mass: "25 kg",
+              },
+              partKey: "lrrr",
+            },
+          ],
         },
         {
-          group: 'EASEP Surface Package',
-          icon: '📡',
+          group: "EASEP Surface Package",
+          icon: "📡",
           items: [
             {
-              name: 'Passive Seismic Experiment',
-              desc: 'First lunar seismometer to detect moonquakes, meteoroid impacts, and lunar tidal flexing caused by Earth\'s gravity.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg',
-              specs: { sensors: '3 LP + 1 SP seismometers', power: 'Solar array + RHU', mass: '48 kg', transmitted: '21 days seismic data' },
-              partKey: 'base'
+              name: "Passive Seismic Experiment",
+              desc: "First lunar seismometer to detect moonquakes, meteoroid impacts, and lunar tidal flexing caused by Earth's gravity.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg",
+              specs: {
+                sensors: "3 LP + 1 SP seismometers",
+                power: "Solar array + RHU",
+                mass: "48 kg",
+                transmitted: "21 days seismic data",
+              },
+              partKey: "base",
             },
             {
-              name: 'Solar Wind Foil Sheet',
-              desc: 'Sheet of high-purity aluminum foil exposed to solar particles during moonwalk and retrieved before lunar ascent.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg',
-              specs: { material: 'Ultra-pure Aluminum (30×140 cm)', exposure: '77 min on Moon', collected: 'He, Ne, Ar noble gases', mass: '0.45 kg' },
-              partKey: 'base'
-            }
-          ]
+              name: "Solar Wind Foil Sheet",
+              desc: "Sheet of high-purity aluminum foil exposed to solar particles during moonwalk and retrieved before lunar ascent.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg",
+              specs: {
+                material: "Ultra-pure Aluminum (30×140 cm)",
+                exposure: "77 min on Moon",
+                collected: "He, Ne, Ar noble gases",
+                mass: "0.45 kg",
+              },
+              partKey: "base",
+            },
+          ],
         },
         {
-          group: 'Propulsion & Memorial',
-          icon: '🚀',
+          group: "Propulsion & Memorial",
+          icon: "🚀",
           items: [
             {
-              name: 'Descent Rocket Engine Bell',
-              desc: 'Throttleable hypergolic rocket engine that brought the Eagle safely down to Tranquility Base.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg',
-              specs: { thrust: '4,500 to 45,000 N', propellant: 'Aerozine 50 / N₂O₄', nozzle: 'Columbium/Titanium alloy', mass: '178 kg' },
-              partKey: 'bell'
+              name: "Descent Rocket Engine Bell",
+              desc: "Throttleable hypergolic rocket engine that brought the Eagle safely down to Tranquility Base.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg",
+              specs: {
+                thrust: "4,500 to 45,000 N",
+                propellant: "Aerozine 50 / N₂O₄",
+                nozzle: "Columbium/Titanium alloy",
+                mass: "178 kg",
+              },
+              partKey: "bell",
             },
             {
-              name: 'Stainless Steel Plaque',
+              name: "Stainless Steel Plaque",
               desc: 'Affixed to the descent stage ladder: "Here men from the planet Earth first set foot upon the Moon July 1969, A.D. We came in peace for all mankind."',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg',
-              specs: { material: 'Stainless Steel (23×18 cm)', mounting: 'Ladder strut', inscription: 'Historic peace declaration', signers: 'Armstrong, Aldrin, Collins, Nixon' },
-              partKey: 'base'
-            }
-          ]
-        }
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aldrin_Apollo_11_original.jpg/960px-Aldrin_Apollo_11_original.jpg",
+              specs: {
+                material: "Stainless Steel (23×18 cm)",
+                mounting: "Ladder strut",
+                inscription: "Historic peace declaration",
+                signers: "Armstrong, Aldrin, Collins, Nixon",
+              },
+              partKey: "base",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'Measuring the Moon Drift & Einstein\'s Gravity',
-        desc: 'Laser pulses fired from Earth bounce off the Apollo mirror, proving the Moon is drifting away by 3.8 cm every year and confirming Einstein\'s Equivalence Principle to 1 part in 10^13.'
+        title: "Measuring the Moon Drift & Einstein's Gravity",
+        desc: "Laser pulses fired from Earth bounce off the Apollo mirror, proving the Moon is drifting away by 3.8 cm every year and confirming Einstein's Equivalence Principle to 1 part in 10^13.",
       },
       currentStatus: {
-        title: 'Continually Pinged by Observatories',
-        desc: 'Apache Point Observatory in New Mexico still regularly fires green laser beams at this mirror, returning data 57+ years later.'
-      }
+        title: "Continually Pinged by Observatories",
+        desc: "Apache Point Observatory in New Mexico still regularly fires green laser beams at this mirror, returning data 57+ years later.",
+      },
     },
-    funFact: "If you shone a laser pointer at this mirror from Earth, the beam would spread out to over 6 kilometers wide by the time it reaches the Moon!",
-    audioSimulation: 'laser_pulse',
-    audioTitle: 'Apache Point Laser Pulse Echo',
-    badgeAwarded: 'lunar-archaeologist'
+    funFact:
+      "If you shone a laser pointer at this mirror from Earth, the beam would spread out to over 6 kilometers wide by the time it reaches the Moon!",
+    audioSimulation: "laser_pulse",
+    audioTitle: "Apache Point Laser Pulse Echo",
+    badgeAwarded: "lunar-archaeologist",
+    videoEmbed: "https://www.youtube.com/embed/S9HdPi9Ikhk",
+    videoTitle: "Apollo 11 Moon Landing",
+    construction: {
+      builtBy: "Various NASA contractors",
+      builtAt: "USA",
+      assemblyFacility: "Multiple",
+      startYear: 1966,
+      completedYear: 1969,
+      purpose:
+        "First human landing on the Moon and precise distance measurement",
+      cost: "$25.4 billion",
+    },
+    causeOfAbandon: "Left on Moon as designed",
+    missionVitals: {
+      mass: "Passive reflector array",
+      dimensions: "46 × 46 cm",
+      powerSource: "Passive (No power required)",
+      powerOutput: "0 Watts",
+      designLife: "Indefinite",
+      actualLife: "Passive since 1969",
+    },
+    milestones: [
+      { icon: "🏆", title: "First human landing on the Moon", year: 1969 },
+      {
+        icon: "🏆",
+        title: "Enabled millimeter-precision lunar ranging",
+        year: 1969,
+      },
+      { icon: "🏆", title: "Proved the Moon is drifting away", year: 1970 },
+    ],
   },
   {
-    id: 'chandrayaan-3',
-    name: 'Chandrayaan-3 Vikram Lander & Pragyan Rover',
-    shortName: 'Chandrayaan-3',
-    category: 'moon',
-    domainLabel: 'The Moon (South Pole)',
+    id: "chandrayaan-3",
+    name: "Chandrayaan-3 Vikram Lander & Pragyan Rover",
+    shortName: "Chandrayaan-3",
+    category: "moon",
+    domainLabel: "The Moon (South Pole)",
     launchYear: 2023,
     landingYear: 2023,
-    launchDate: 'July 14, 2023',
-    arrivalDate: 'August 23, 2023',
-    arrivalEvent: 'First Human Spacecraft Landing at Lunar South Pole',
-    status: 'completed',
-    statusLabel: 'Mission Success // Resting at Shiv Shakti Point',
-    statusClass: 'status-completed',
-    location: 'Shiv Shakti Point (69.373° S, 32.319° E), Moon',
-    coordinates: '69.373° S, 32.319° E',
+    launchDate: "July 14, 2023",
+    arrivalDate: "August 23, 2023",
+    arrivalEvent: "First Human Spacecraft Landing at Lunar South Pole",
+    status: "completed",
+    statusLabel: "Mission Success // Resting at Shiv Shakti Point",
+    statusClass: "status-completed",
+    location: "Shiv Shakti Point (69.373° S, 32.319° E), Moon",
+    coordinates: "69.373° S, 32.319° E",
     distanceAU: 0.00257,
     baseDistanceKm: 384400,
     speedKmS: 1.02,
     oneWayLightSeconds: 1.28,
-    modelType: 'chandrayaan-3',
-    heroImage: '/chandrayaan3_surface.jpg',
-    heroColor: '#eab308',
+    modelType: "chandrayaan-3",
+    heroImage: "/chandrayaan3_surface.jpg",
+    heroColor: "#eab308",
     galleryImages: [
-      { url: '/chandrayaan3_surface.jpg', caption: 'Vikram Lander on the lunar surface with Earth in the background' },
-      { url: '/pragyan_rover.jpg', caption: 'Pragyan Rover rolling across lunar regolith leaving wheel tracks' },
-      { url: '/chandrayaan3_launch.jpg', caption: 'LVM3-M4 rocket blasting off with twin S200 booster plumes from Sriharikota' }
+      {
+        url: "/chandrayaan3_surface.jpg",
+        caption:
+          "Vikram Lander on the lunar surface with Earth in the background",
+      },
+      {
+        url: "/pragyan_rover.jpg",
+        caption:
+          "Pragyan Rover rolling across lunar regolith leaving wheel tracks",
+      },
+      {
+        url: "/chandrayaan3_launch.jpg",
+        caption:
+          "LVM3-M4 rocket blasting off with twin S200 booster plumes from Sriharikota",
+      },
     ],
     storyLine: {
       construction: {
-        year: '2020-2023',
-        title: 'Built by ISRO at U R Rao Satellite Centre',
-        desc: 'Engineered in Bengaluru by the Indian Space Research Organisation (ISRO). Re-engineered with strengthened legs, upgraded hazard detection algorithms, expanded fuel capacity, and high-efficiency solar arrays covering all 4 faces to survive harsh polar angles.'
+        year: "2020-2023",
+        title: "Built by ISRO at U R Rao Satellite Centre",
+        desc: "Engineered in Bengaluru by the Indian Space Research Organisation (ISRO). Re-engineered with strengthened legs, upgraded hazard detection algorithms, expanded fuel capacity, and high-efficiency solar arrays covering all 4 faces to survive harsh polar angles.",
       },
       launch: {
-        year: '2023',
-        title: 'Launched from Sriharikota via LVM3-M4',
-        desc: 'Blasted into space on July 14, 2023 from Satish Dhawan Space Centre atop India\'s heaviest rocket, the LVM3-M4 "Bahubali".'
+        year: "2023",
+        title: "Launched from Sriharikota via LVM3-M4",
+        desc: 'Blasted into space on July 14, 2023 from Satish Dhawan Space Centre atop India\'s heaviest rocket, the LVM3-M4 "Bahubali".',
       },
       arrival: {
-        year: '2023',
-        title: 'Historic South Pole Touchdown',
-        desc: 'On August 23, 2023, Vikram executed four autonomous braking stages and touched down softly at 69.37° S near Manzinus C crater. Prime Minister Narendra Modi named the site "Shiv Shakti Point".'
+        year: "2023",
+        title: "Historic South Pole Touchdown",
+        desc: 'On August 23, 2023, Vikram executed four autonomous braking stages and touched down softly at 69.37° S near Manzinus C crater. Prime Minister Narendra Modi named the site "Shiv Shakti Point".',
       },
       hardware: {
-        icon: '🧊',
-        title: 'Vikram Lander & Pragyan 6-Wheel Rover',
-        desc: 'A 1,749-kg autonomous lander powered by 4 throttled 800N liquid bipropellant engines, carrying the 26-kg 6-wheeled Pragyan rover equipped with rocker-bogie suspension and solar wings.',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg'
+        icon: "🧊",
+        title: "Vikram Lander & Pragyan 6-Wheel Rover",
+        desc: "A 1,749-kg autonomous lander powered by 4 throttled 800N liquid bipropellant engines, carrying the 26-kg 6-wheeled Pragyan rover equipped with rocker-bogie suspension and solar wings.",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg",
       },
       instruments: [
         {
-          group: 'Surface Chemistry & Geology',
-          icon: '🔬',
+          group: "Surface Chemistry & Geology",
+          icon: "🔬",
           items: [
             {
-              name: 'LIBS (Laser Induced Breakdown Spectroscope)',
-              desc: 'Fired high-energy laser pulses at lunar soil, creating plasma flashes to discover elemental Sulfur (S), along with Aluminum, Calcium, Iron, and Titanium.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Pragyan_rover_rolling_out.jpg/800px-Pragyan_rover_rolling_out.jpg',
-              specs: { method: 'Laser ablation spectroscopy', pulse_energy: 'Nd:YAG laser', key_discovery: 'Direct detection of elemental Sulfur', carrier: 'Pragyan Rover' },
-              partKey: 'pragyan-rover'
+              name: "LIBS (Laser Induced Breakdown Spectroscope)",
+              desc: "Fired high-energy laser pulses at lunar soil, creating plasma flashes to discover elemental Sulfur (S), along with Aluminum, Calcium, Iron, and Titanium.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Pragyan_rover_rolling_out.jpg/800px-Pragyan_rover_rolling_out.jpg",
+              specs: {
+                method: "Laser ablation spectroscopy",
+                pulse_energy: "Nd:YAG laser",
+                key_discovery: "Direct detection of elemental Sulfur",
+                carrier: "Pragyan Rover",
+              },
+              partKey: "pragyan-rover",
             },
             {
-              name: 'APXS (Alpha Particle X-Ray Spectrometer)',
-              desc: 'Irradiated lunar regolith with Curium-244 radioactive source to detect major rock-forming minerals without destroying samples.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Pragyan_rover_rolling_out.jpg/800px-Pragyan_rover_rolling_out.jpg',
-              specs: { source: 'Curium-244 radioactive emitter', detection: 'X-ray fluorescence', elements: 'Si, Mg, Al, Ca, Fe', carrier: 'Pragyan Rover' },
-              partKey: 'pragyan-rover'
-            }
-          ]
+              name: "APXS (Alpha Particle X-Ray Spectrometer)",
+              desc: "Irradiated lunar regolith with Curium-244 radioactive source to detect major rock-forming minerals without destroying samples.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Pragyan_rover_rolling_out.jpg/800px-Pragyan_rover_rolling_out.jpg",
+              specs: {
+                source: "Curium-244 radioactive emitter",
+                detection: "X-ray fluorescence",
+                elements: "Si, Mg, Al, Ca, Fe",
+                carrier: "Pragyan Rover",
+              },
+              partKey: "pragyan-rover",
+            },
+          ],
         },
         {
-          group: 'Geophysics & Atmospheric Physics',
-          icon: '🌡️',
+          group: "Geophysics & Atmospheric Physics",
+          icon: "🌡️",
           items: [
             {
-              name: 'ChaSTE (Chandra\'s Surface Thermophysical Experiment)',
-              desc: 'Drove a thermal probe 10 cm deep into lunar soil, revealing a shocking temperature difference: +50°C at surface dropping to -10°C just 8 cm down!',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg',
-              specs: { depth: '100 mm penetration', sensors: '10 platinum RTD temperature sensors', delta_temp: '60°C gradient over 8 cm', carrier: 'Vikram Lander' },
-              partKey: 'scientific-payloads'
+              name: "ChaSTE (Chandra's Surface Thermophysical Experiment)",
+              desc: "Drove a thermal probe 10 cm deep into lunar soil, revealing a shocking temperature difference: +50°C at surface dropping to -10°C just 8 cm down!",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg",
+              specs: {
+                depth: "100 mm penetration",
+                sensors: "10 platinum RTD temperature sensors",
+                delta_temp: "60°C gradient over 8 cm",
+                carrier: "Vikram Lander",
+              },
+              partKey: "scientific-payloads",
             },
             {
-              name: 'RAMBHA-LP (Langmuir Probe)',
-              desc: 'Measured the density of near-surface lunar plasma, finding it surprisingly sparse (5 to 30 million electrons per cubic meter).',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg',
-              specs: { sensor: 'Spherical titanium probe', bias_voltage: '±12V swept bias', detect: 'Solar UV-generated plasma sheath', carrier: 'Vikram Lander' },
-              partKey: 'scientific-payloads'
+              name: "RAMBHA-LP (Langmuir Probe)",
+              desc: "Measured the density of near-surface lunar plasma, finding it surprisingly sparse (5 to 30 million electrons per cubic meter).",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg",
+              specs: {
+                sensor: "Spherical titanium probe",
+                bias_voltage: "±12V swept bias",
+                detect: "Solar UV-generated plasma sheath",
+                carrier: "Vikram Lander",
+              },
+              partKey: "scientific-payloads",
             },
             {
-              name: 'ILSA (Lunar Seismic Activity)',
-              desc: 'High-sensitivity MEMS seismometer that recorded natural moonquakes and the faint vibrations of Pragyan rover driving across regolith.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg',
-              specs: { type: 'Silicon MEMS accelerometer', resolution: 'Sub-micro-g acceleration', detected: 'Natural lunar seismic event + rover movements', carrier: 'Vikram Lander' },
-              partKey: 'scientific-payloads'
-            }
-          ]
-        }
+              name: "ILSA (Lunar Seismic Activity)",
+              desc: "High-sensitivity MEMS seismometer that recorded natural moonquakes and the faint vibrations of Pragyan rover driving across regolith.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Chandrayaan-3_Vikram_Lander_on_Moon.jpg/800px-Chandrayaan-3_Vikram_Lander_on_Moon.jpg",
+              specs: {
+                type: "Silicon MEMS accelerometer",
+                resolution: "Sub-micro-g acceleration",
+                detected: "Natural lunar seismic event + rover movements",
+                carrier: "Vikram Lander",
+              },
+              partKey: "scientific-payloads",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'Groundbreaking Discovery of Sulfur at Lunar South Pole',
-        desc: 'Chandrayaan-3 confirmed the presence of elemental Sulfur (S) on the Moon\'s south pole for the first time via in-situ laser spectroscopy, offering clues into ancient lunar volcanism and volatile trapping.'
+        title: "Groundbreaking Discovery of Sulfur at Lunar South Pole",
+        desc: "Chandrayaan-3 confirmed the presence of elemental Sulfur (S) on the Moon's south pole for the first time via in-situ laser spectroscopy, offering clues into ancient lunar volcanism and volatile trapping.",
       },
       currentStatus: {
-        title: 'Eternal Guardians at Shiv Shakti Point',
-        desc: 'Completed all primary scientific objectives and hopped 40 cm in a historic re-ignition demonstration. Both Vikram and Pragyan entered sleep mode as the -200°C polar night fell.'
-      }
+        title: "Eternal Guardians at Shiv Shakti Point",
+        desc: "Completed all primary scientific objectives and hopped 40 cm in a historic re-ignition demonstration. Both Vikram and Pragyan entered sleep mode as the -200°C polar night fell.",
+      },
     },
-    funFact: "Pragyan rover's wheels are stamped with the Ashoka Pillar Lion Capital and ISRO logo, permanently embossing India's symbols into the lunar soil with every turn!",
-    audioSimulation: 'satellite_awaken',
-    audioTitle: 'Chandrayaan-3 Vikram Telemetry & Discovery Transmission',
-    badgeAwarded: 'polar-pioneer'
+    funFact:
+      "Pragyan rover's wheels are stamped with the Ashoka Pillar Lion Capital and ISRO logo, permanently embossing India's symbols into the lunar soil with every turn!",
+    audioSimulation: "satellite_awaken",
+    audioTitle: "Chandrayaan-3 Vikram Telemetry & Discovery Transmission",
+    badgeAwarded: "polar-pioneer",
+    videoEmbed: "https://www.youtube.com/embed/hNN8WFhMpIo",
+    videoTitle: "Chandrayaan-3 Moon Landing",
+    construction: {
+      builtBy: "ISRO",
+      builtAt: "Bengaluru, India",
+      assemblyFacility: "URSC",
+      startYear: 2020,
+      completedYear: 2023,
+      purpose:
+        "Demonstrate safe landing on the lunar surface and conduct in-situ experiments",
+      cost: "$75 million",
+    },
+    causeOfAbandon: "Lunar night set in, draining solar batteries",
+    missionVitals: {
+      mass: "1749 kg (lander)",
+      dimensions: "2 × 2 × 1.2 m",
+      powerSource: "Solar Panels",
+      powerOutput: "~738 Watts",
+      designLife: "1 Lunar day (14 Earth days)",
+      actualLife: "Completed 2023",
+    },
+    milestones: [
+      { icon: "🏆", title: "First landing at Lunar South Pole", year: 2023 },
+      { icon: "🏆", title: "Confirmed presence of lunar sulfur", year: 2023 },
+      {
+        icon: "🏆",
+        title: "Measured lunar surface temperature gradient",
+        year: 2023,
+      },
+    ],
   },
   {
-    id: 'parker-solar-probe',
-    name: 'Parker Solar Probe',
-    shortName: 'Parker Solar Probe',
-    category: 'sun-asteroids',
-    domainLabel: 'The Sun (Corona)',
+    id: "parker-solar-probe",
+    name: "Parker Solar Probe",
+    shortName: "Parker Solar Probe",
+    category: "sun-asteroids",
+    domainLabel: "The Sun (Corona)",
     launchYear: 2018,
     landingYear: null,
-    launchDate: 'August 12, 2018',
-    arrivalDate: 'April 28, 2021',
-    arrivalEvent: 'First Direct Passage Through the Solar Corona',
-    status: 'active',
+    launchDate: "August 12, 2018",
+    arrivalDate: "April 28, 2021",
+    arrivalEvent: "First Direct Passage Through the Solar Corona",
+    status: "active",
     statusLabel: 'Active & "Touching the Sun"',
-    statusClass: 'status-active',
-    location: 'Solar Corona Perihelion Orbit',
-    coordinates: 'Within 6.1 million km of Sun',
+    statusClass: "status-active",
+    location: "Solar Corona Perihelion Orbit",
+    coordinates: "Within 6.1 million km of Sun",
     distanceAU: 0.98,
     baseDistanceKm: 147000000,
     speedKmS: 192.0,
     oneWayLightSeconds: 490,
-    modelType: 'parker-probe',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solar_corona.jpg/1280px-Solar_corona.jpg',
-    heroColor: '#f77f00',
+    modelType: "parker-probe",
+    heroImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solar_corona.jpg/1280px-Solar_corona.jpg",
+    heroColor: "#f77f00",
     galleryImages: [
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solar_corona.jpg/1280px-Solar_corona.jpg', caption: 'Solar corona during total eclipse' },
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Solar_Flare_and_CME_%281%29.jpg/1280px-Solar_Flare_and_CME_%281%29.jpg', caption: 'Massive coronal mass ejection' }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solar_corona.jpg/1280px-Solar_corona.jpg",
+        caption: "Solar corona during total eclipse",
+      },
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Solar_Flare_and_CME_%281%29.jpg/1280px-Solar_Flare_and_CME_%281%29.jpg",
+        caption: "Massive coronal mass ejection",
+      },
     ],
     storyLine: {
       launch: {
-        year: '2018',
-        title: 'Launch on Delta IV Heavy',
-        desc: 'Required one of the most powerful launch vehicles ever built to strip away Earth\'s orbital momentum and dive inward toward the Sun.'
+        year: "2018",
+        title: "Launch on Delta IV Heavy",
+        desc: "Required one of the most powerful launch vehicles ever built to strip away Earth's orbital momentum and dive inward toward the Sun.",
       },
       arrival: {
-        year: '2021',
+        year: "2021",
         title: 'First Craft to "Touch the Sun"',
-        desc: 'Crossed the Alfvén critical boundary, directly sampling the magnetic atmosphere of our star for the first time in human history.'
+        desc: "Crossed the Alfvén critical boundary, directly sampling the magnetic atmosphere of our star for the first time in human history.",
       },
       hardware: {
-        icon: '☀️',
-        title: 'Thermal Protection Shield & Solar Craft',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solar_corona.jpg/1280px-Solar_corona.jpg',
-        desc: 'An 8-foot-wide, 4.5-inch-thick carbon-composite foam heat shield coated in white ceramic, with liquid cooling pipes protecting the avionics.'
+        icon: "☀️",
+        title: "Thermal Protection Shield & Solar Craft",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solar_corona.jpg/1280px-Solar_corona.jpg",
+        desc: "An 8-foot-wide, 4.5-inch-thick carbon-composite foam heat shield coated in white ceramic, with liquid cooling pipes protecting the avionics.",
       },
       instruments: [
         {
-          group: 'Solar Wind Sensors',
-          icon: '🔥',
+          group: "Solar Wind Sensors",
+          icon: "🔥",
           items: [
             {
-              name: 'SWEAP Faraday Cup',
-              desc: 'Tungsten sensor looking directly past the heat shield into the 1,400°C solar glare to count electrons, protons, and alpha particles in real time.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solar_corona.jpg/960px-Solar_corona.jpg',
-              specs: { target: 'Thermal ions & electrons', material: 'Tungsten & Sapphire peek', heat_tolerance: '1,430°C (2,600°F)', sampling_rate: '>100 Hz' },
-              partKey: 'shield'
+              name: "SWEAP Faraday Cup",
+              desc: "Tungsten sensor looking directly past the heat shield into the 1,400°C solar glare to count electrons, protons, and alpha particles in real time.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solar_corona.jpg/960px-Solar_corona.jpg",
+              specs: {
+                target: "Thermal ions & electrons",
+                material: "Tungsten & Sapphire peek",
+                heat_tolerance: "1,430°C (2,600°F)",
+                sampling_rate: ">100 Hz",
+              },
+              partKey: "shield",
             },
             {
-              name: 'FIELDS Antennas',
-              desc: 'Five niobium alloy electric antennas sensing plasma waves, electric fields, and magnetic reconnection in the solar corona.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Solar_Flare_and_CME_%281%29.jpg/960px-Solar_Flare_and_CME_%281%29.jpg',
-              specs: { sensors: '5 Niobium alloy antennas', frequency: 'DC to 20 MHz', detect: 'Switchbacks & shockwaves', mass: '12 kg' },
-              partKey: 'boom'
-            }
-          ]
+              name: "FIELDS Antennas",
+              desc: "Five niobium alloy electric antennas sensing plasma waves, electric fields, and magnetic reconnection in the solar corona.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Solar_Flare_and_CME_%281%29.jpg/960px-Solar_Flare_and_CME_%281%29.jpg",
+              specs: {
+                sensors: "5 Niobium alloy antennas",
+                frequency: "DC to 20 MHz",
+                detect: "Switchbacks & shockwaves",
+                mass: "12 kg",
+              },
+              partKey: "boom",
+            },
+          ],
         },
         {
-          group: 'High-Energy Detectors',
-          icon: '⚡',
+          group: "High-Energy Detectors",
+          icon: "⚡",
           items: [
             {
-              name: 'ISʘIS Detectors',
-              desc: 'Integrated Science Investigation of the Sun measuring energetic ions and electrons accelerated by coronal mass ejections and solar flares.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Solar_Flare_and_CME_%281%29.jpg/960px-Solar_Flare_and_CME_%281%29.jpg',
-              specs: { range: '10 keV to 100 MeV/nucleon', components: 'EPI-Lo + EPI-Hi detectors', resolution: 'Mass & charge breakdown', mass: '19.5 kg' },
-              partKey: 'bus'
+              name: "ISʘIS Detectors",
+              desc: "Integrated Science Investigation of the Sun measuring energetic ions and electrons accelerated by coronal mass ejections and solar flares.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Solar_Flare_and_CME_%281%29.jpg/960px-Solar_Flare_and_CME_%281%29.jpg",
+              specs: {
+                range: "10 keV to 100 MeV/nucleon",
+                components: "EPI-Lo + EPI-Hi detectors",
+                resolution: "Mass & charge breakdown",
+                mass: "19.5 kg",
+              },
+              partKey: "bus",
             },
             {
-              name: 'WISPR Optical Imager',
-              desc: 'Wide-field optical imager taking pristine photographs of coronal mass ejections, solar dust streams, and planetary flybys.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solar_corona.jpg/960px-Solar_corona.jpg',
-              specs: { optical: 'Dual radiation-hardened CMOS', field_of_view: '95° radial swath', image_format: '2048×2048 pixels', mass: '11.5 kg' },
-              partKey: 'bus'
-            }
-          ]
-        }
+              name: "WISPR Optical Imager",
+              desc: "Wide-field optical imager taking pristine photographs of coronal mass ejections, solar dust streams, and planetary flybys.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solar_corona.jpg/960px-Solar_corona.jpg",
+              specs: {
+                optical: "Dual radiation-hardened CMOS",
+                field_of_view: "95° radial swath",
+                image_format: "2048×2048 pixels",
+                mass: "11.5 kg",
+              },
+              partKey: "bus",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'Solving the Coronal Heating Mystery',
-        desc: 'Discovered "switchbacks"—violent zigzag kinks in the Sun\'s magnetic field that fling solar wind particles into interplanetary space at supersonic speeds.'
+        title: "Solving the Coronal Heating Mystery",
+        desc: 'Discovered "switchbacks"—violent zigzag kinks in the Sun\'s magnetic field that fling solar wind particles into interplanetary space at supersonic speeds.',
       },
       currentStatus: {
-        title: 'Setting All-Time Speed Records',
-        desc: 'Reaching orbital speeds of 690,000 km/h (430,000 mph)—fast enough to fly from Washington, D.C. to Tokyo in under a minute!'
-      }
+        title: "Setting All-Time Speed Records",
+        desc: "Reaching orbital speeds of 690,000 km/h (430,000 mph)—fast enough to fly from Washington, D.C. to Tokyo in under a minute!",
+      },
     },
-    funFact: "Dr. Eugene Parker, who predicted the solar wind in 1958, watched the launch in person at age 91—the first time NASA named a spacecraft after a living person!",
-    audioSimulation: 'plasma_waves',
-    audioTitle: 'Parker Solar Wind Magnetic Reconnection Plasma Audio',
-    badgeAwarded: 'sun-diver'
+    funFact:
+      "Dr. Eugene Parker, who predicted the solar wind in 1958, watched the launch in person at age 91—the first time NASA named a spacecraft after a living person!",
+    audioSimulation: "plasma_waves",
+    audioTitle: "Parker Solar Wind Magnetic Reconnection Plasma Audio",
+    badgeAwarded: "sun-diver",
+    videoEmbed: "https://www.youtube.com/embed/nB2Hl0mL_xw",
+    videoTitle: "Parker Solar Probe Mission",
+    construction: {
+      builtBy: "APL Johns Hopkins",
+      builtAt: "Laurel, USA",
+      assemblyFacility: "Applied Physics Laboratory",
+      startYear: 2010,
+      completedYear: 2018,
+      purpose: "Study the outer corona of the Sun",
+      cost: "$1.5 billion",
+    },
+    causeOfAbandon: null,
+    missionVitals: {
+      mass: "685 kg",
+      dimensions: "3 × 1 × 1 m",
+      powerSource: "Solar Panels",
+      powerOutput: "~343 Watts (at perihelion)",
+      designLife: "7 years",
+      actualLife: "Active since 2018",
+    },
+    milestones: [
+      { icon: "🏆", title: 'First spacecraft to "touch" the Sun', year: 2021 },
+      { icon: "🏆", title: "Fastest human-made object", year: 2023 },
+      { icon: "🏆", title: "Closest approach to the Sun", year: 2023 },
+    ],
   },
   {
-    id: 'opportunity-mer-b',
-    name: 'Opportunity Mars Exploration Rover',
-    shortName: 'Opportunity Rover',
-    category: 'mars',
-    domainLabel: 'Mars',
+    id: "opportunity-mer-b",
+    name: "Opportunity Mars Exploration Rover",
+    shortName: "Opportunity Rover",
+    category: "mars",
+    domainLabel: "Mars",
     launchYear: 2003,
     landingYear: 2004,
-    launchDate: 'July 7, 2003',
-    arrivalDate: 'January 25, 2004',
-    arrivalEvent: 'Bounced to a stop inside Eagle Crater, Meridiani Planum',
-    status: 'retired',
-    statusLabel: 'Mission Ended — Lost in Dust Storm',
-    statusClass: 'status-retired',
-    location: 'Perseverance Valley, Endeavour Crater, Mars',
-    coordinates: '2.28° S, 5.53° W',
+    launchDate: "July 7, 2003",
+    arrivalDate: "January 25, 2004",
+    arrivalEvent: "Bounced to a stop inside Eagle Crater, Meridiani Planum",
+    status: "retired",
+    statusLabel: "Mission Ended — Lost in Dust Storm",
+    statusClass: "status-retired",
+    location: "Perseverance Valley, Endeavour Crater, Mars",
+    coordinates: "2.28° S, 5.53° W",
     distanceAU: 1.45,
     baseDistanceKm: 217000000,
     speedKmS: 24.1,
     oneWayLightSeconds: 720,
-    modelType: 'mer-rover',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/1280px-Opportunity_at_Victoria_Crater.jpg',
-    heroColor: '#c1440e',
+    modelType: "mer-rover",
+    heroImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/1280px-Opportunity_at_Victoria_Crater.jpg",
+    heroColor: "#c1440e",
     galleryImages: [
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/1280px-Opportunity_at_Victoria_Crater.jpg', caption: 'Opportunity at the rim of Victoria Crater' },
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg/1024px-Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg', caption: "Phobos eclipsing the Sun, seen from Mars" }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/1280px-Opportunity_at_Victoria_Crater.jpg",
+        caption: "Opportunity at the rim of Victoria Crater",
+      },
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg/1024px-Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg",
+        caption: "Phobos eclipsing the Sun, seen from Mars",
+      },
     ],
     plannedValue: 90,
     actualValue: 5111,
-    unitLabel: 'Martian Sols',
-    plannedDuration: '90 Sols (about 3 months)',
-    actualDuration: '5,111 Sols (nearly 15 years)',
+    unitLabel: "Martian Sols",
+    plannedDuration: "90 Sols (about 3 months)",
+    actualDuration: "5,111 Sols (nearly 15 years)",
     storyLine: {
-      opening: "I was designed to survive only 90 Martian days. I lasted almost fifteen years.",
+      opening:
+        "I was designed to survive only 90 Martian days. I lasted almost fifteen years.",
       launch: {
-        year: '2003',
-        title: 'Launched from Cape Canaveral',
-        desc: 'I lifted off on a Delta II rocket, the second of NASA\'s twin Mars Exploration Rovers, three weeks after my twin Spirit.'
+        year: "2003",
+        title: "Launched from Cape Canaveral",
+        desc: "I lifted off on a Delta II rocket, the second of NASA's twin Mars Exploration Rovers, three weeks after my twin Spirit.",
       },
       arrival: {
-        year: '2004',
-        title: 'Bounced to a Stop in Eagle Crater',
-        desc: 'Wrapped in airbags, I bounced 26 times across Meridiani Planum before rolling to rest — and landed inside a small crater that immediately exposed bedrock scientists had hoped to spend weeks searching for.'
+        year: "2004",
+        title: "Bounced to a Stop in Eagle Crater",
+        desc: "Wrapped in airbags, I bounced 26 times across Meridiani Planum before rolling to rest — and landed inside a small crater that immediately exposed bedrock scientists had hoped to spend weeks searching for.",
       },
       hardware: {
-        icon: '🤖',
-        title: 'Mars Exploration Rover Chassis',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/1280px-Opportunity_at_Victoria_Crater.jpg',
-        desc: 'A 185-kg solar-powered, golf-cart-sized rover with a 6-wheel rocker-bogie suspension and a robotic arm carrying a microscope and spectrometers.'
+        icon: "🤖",
+        title: "Mars Exploration Rover Chassis",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/1280px-Opportunity_at_Victoria_Crater.jpg",
+        desc: "A 185-kg solar-powered, golf-cart-sized rover with a 6-wheel rocker-bogie suspension and a robotic arm carrying a microscope and spectrometers.",
       },
       instruments: [
         {
-          group: 'Cameras & Optics',
-          icon: '📷',
+          group: "Cameras & Optics",
+          icon: "📷",
           items: [
             {
-              name: 'Panoramic Camera (Pancam)',
-              desc: 'Stereo, multi-spectral camera on the mast that captured sweeping color panoramas of crater rims and dust devils.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/800px-Opportunity_at_Victoria_Crater.jpg',
-              specs: { resolution: '1024×1024 px', filters: '8 per eye', mass: '3.9 kg' },
-              partKey: 'mast'
+              name: "Panoramic Camera (Pancam)",
+              desc: "Stereo, multi-spectral camera on the mast that captured sweeping color panoramas of crater rims and dust devils.",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Opportunity_at_Victoria_Crater.jpg/800px-Opportunity_at_Victoria_Crater.jpg",
+              specs: {
+                resolution: "1024×1024 px",
+                filters: "8 per eye",
+                mass: "3.9 kg",
+              },
+              partKey: "mast",
             },
             {
-              name: 'Microscopic Imager',
+              name: "Microscopic Imager",
               desc: 'Arm-mounted microscope that revealed tiny spherical "blueberries" of hematite scattered across the plains — a mineral that typically forms in water.',
-              image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg/800px-Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg',
-              specs: { resolution: '31 microns/pixel', field_of_view: '31×31 mm', mass: '0.26 kg' },
-              partKey: 'arm'
-            }
-          ]
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg/800px-Opportunitys_View_of_Solar_Eclipse_%28Sol_2769%29.jpg",
+              specs: {
+                resolution: "31 microns/pixel",
+                field_of_view: "31×31 mm",
+                mass: "0.26 kg",
+              },
+              partKey: "arm",
+            },
+          ],
         },
         {
-          group: 'Spectrometers',
-          icon: '🔬',
+          group: "Spectrometers",
+          icon: "🔬",
           items: [
             {
-              name: 'Mössbauer Spectrometer',
+              name: "Mössbauer Spectrometer",
               desc: 'Identified iron-bearing minerals in rocks and soil, confirming the hematite "blueberries" formed in ancient acidic groundwater.',
-              specs: { target: 'Iron minerals', source: 'Cobalt-57', mass: '0.5 kg' },
-              partKey: 'arm'
+              specs: {
+                target: "Iron minerals",
+                source: "Cobalt-57",
+                mass: "0.5 kg",
+              },
+              partKey: "arm",
             },
             {
-              name: 'Rock Abrasion Tool (RAT)',
-              desc: 'A grinding wheel that ground into rock surfaces to expose fresh, unweathered material for the spectrometers to analyze.',
-              specs: { grind_depth: '5 mm', diameter: '45 mm', mass: '0.72 kg' },
-              partKey: 'arm'
-            }
-          ]
-        }
+              name: "Rock Abrasion Tool (RAT)",
+              desc: "A grinding wheel that ground into rock surfaces to expose fresh, unweathered material for the spectrometers to analyze.",
+              specs: {
+                grind_depth: "5 mm",
+                diameter: "45 mm",
+                mass: "0.72 kg",
+              },
+              partKey: "arm",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'Direct Evidence That Mars Was Once Wet',
-        desc: 'Found hematite "blueberries" and layered sedimentary rock proving that Meridiani Planum was once soaked by acidic, salty ancient water — the first ground-truth evidence of a watery Martian past.'
+        title: "Direct Evidence That Mars Was Once Wet",
+        desc: 'Found hematite "blueberries" and layered sedimentary rock proving that Meridiani Planum was once soaked by acidic, salty ancient water — the first ground-truth evidence of a watery Martian past.',
       },
       currentStatus: {
-        title: 'Resting on the Rim of Perseverance Valley',
-        desc: 'Opportunity remains exactly where it stopped, silent since 2018, its solar panels buried under a thin coat of Martian dust on the western rim of Endeavour Crater.'
+        title: "Resting on the Rim of Perseverance Valley",
+        desc: "Opportunity remains exactly where it stopped, silent since 2018, its solar panels buried under a thin coat of Martian dust on the western rim of Endeavour Crater.",
       },
       finalMoment: {
-        title: 'Swallowed by a Planet-Wide Dust Storm',
-        desc: 'In June 2018, a global dust storm blotted out the Martian sky, blocking sunlight from reaching my solar panels. I sent one last message: "My battery is low and it\'s getting dark." I never recharged. NASA tried over 835 times to reconnect before formally ending the mission on February 13, 2019.'
+        title: "Swallowed by a Planet-Wide Dust Storm",
+        desc: 'In June 2018, a global dust storm blotted out the Martian sky, blocking sunlight from reaching my solar panels. I sent one last message: "My battery is low and it\'s getting dark." I never recharged. NASA tried over 835 times to reconnect before formally ending the mission on February 13, 2019.',
       },
       legacy: {
-        title: 'Proved Long-Duration Solar Rovers Work',
-        desc: 'I was built for a 90-day errand and delivered a 15-year expedition, driving the first marathon distance (45.16 km) ever run by a robot on another world. Every rover after me — Curiosity, Perseverance — inherited engineering lessons from my unexpectedly long life.',
-        connectsTo: ['curiosity-msl', 'perseverance-ingenuity']
-      }
+        title: "Proved Long-Duration Solar Rovers Work",
+        desc: "I was built for a 90-day errand and delivered a 15-year expedition, driving the first marathon distance (45.16 km) ever run by a robot on another world. Every rover after me — Curiosity, Perseverance — inherited engineering lessons from my unexpectedly long life.",
+        connectsTo: ["curiosity-msl", "perseverance-ingenuity"],
+      },
     },
-    funFact: "Opportunity drove 45.16 kilometers on Mars — farther than any other off-world vehicle, officially beating the Soviet Lunokhod 2's distance record.",
-    audioSimulation: 'radio_carrier',
-    audioTitle: 'Opportunity Final Transmission Simulation',
-    badgeAwarded: 'martian-vanguard'
+    funFact:
+      "Opportunity drove 45.16 kilometers on Mars — farther than any other off-world vehicle, officially beating the Soviet Lunokhod 2's distance record.",
+    audioSimulation: "radio_carrier",
+    audioTitle: "Opportunity Final Transmission Simulation",
+    badgeAwarded: "martian-vanguard",
+    videoEmbed: "https://www.youtube.com/embed/2MHLhAT9bJE",
+    videoTitle: "Farewell to Opportunity",
+    construction: {
+      builtBy: "JPL",
+      builtAt: "Pasadena, USA",
+      assemblyFacility: "Jet Propulsion Laboratory",
+      startYear: 2000,
+      completedYear: 2003,
+      purpose: "Search for evidence of past water activity on Mars",
+      cost: "$400 million",
+    },
+    causeOfAbandon:
+      "Global dust storm blocked solar panels, draining batteries in June 2018",
+    missionVitals: {
+      mass: "185 kg",
+      dimensions: "1.5 × 2.3 × 1.6 m",
+      powerSource: "Solar Panels",
+      powerOutput: "~140 Watts (peak)",
+      designLife: "90 Sols",
+      actualLife: "14 years (Retired 2018)",
+    },
+    milestones: [
+      {
+        icon: "🏆",
+        title: "Confirmed past presence of liquid water",
+        year: 2004,
+      },
+      {
+        icon: "🏆",
+        title: "Longest off-world driving distance (45.16 km)",
+        year: 2015,
+      },
+      { icon: "🏆", title: "Survived 5000 Sols on Mars", year: 2018 },
+    ],
   },
   {
-    id: 'spirit-mer-a',
-    name: 'Spirit Mars Exploration Rover',
-    shortName: 'Spirit Rover',
-    category: 'mars',
-    domainLabel: 'Mars',
+    id: "spirit-mer-a",
+    name: "Spirit Mars Exploration Rover",
+    shortName: "Spirit Rover",
+    category: "mars",
+    domainLabel: "Mars",
     launchYear: 2003,
     landingYear: 2004,
-    launchDate: 'June 10, 2003',
-    arrivalDate: 'January 4, 2004',
-    arrivalEvent: 'Airbag landing in Gusev Crater',
-    status: 'retired',
-    statusLabel: 'Mission Ended — Stuck & Frozen',
-    statusClass: 'status-retired',
-    location: 'Troy sand trap, Gusev Crater, Mars',
-    coordinates: '14.57° S, 175.47° E',
+    launchDate: "June 10, 2003",
+    arrivalDate: "January 4, 2004",
+    arrivalEvent: "Airbag landing in Gusev Crater",
+    status: "retired",
+    statusLabel: "Mission Ended — Stuck & Frozen",
+    statusClass: "status-retired",
+    location: "Troy sand trap, Gusev Crater, Mars",
+    coordinates: "14.57° S, 175.47° E",
     distanceAU: 1.45,
     baseDistanceKm: 217000000,
     speedKmS: 24.1,
     oneWayLightSeconds: 720,
-    modelType: 'mer-rover',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Spirit_at_Bonneville_crater.jpg/1280px-Spirit_at_Bonneville_crater.jpg',
-    heroColor: '#c1440e',
+    modelType: "mer-rover",
+    heroImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Spirit_at_Bonneville_crater.jpg/1280px-Spirit_at_Bonneville_crater.jpg",
+    heroColor: "#c1440e",
     galleryImages: [
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Spirit_at_Bonneville_crater.jpg/1280px-Spirit_at_Bonneville_crater.jpg', caption: 'Spirit at the rim of Bonneville Crater' }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Spirit_at_Bonneville_crater.jpg/1280px-Spirit_at_Bonneville_crater.jpg",
+        caption: "Spirit at the rim of Bonneville Crater",
+      },
     ],
     plannedValue: 90,
     actualValue: 2210,
-    unitLabel: 'Martian Sols',
-    plannedDuration: '90 Sols (about 3 months)',
-    actualDuration: '2,210 Sols (over 6 years)',
+    unitLabel: "Martian Sols",
+    plannedDuration: "90 Sols (about 3 months)",
+    actualDuration: "2,210 Sols (over 6 years)",
     storyLine: {
-      opening: "I was my twin's trailblazer. I found fire in the Martian soil — proof of ancient hot springs — before the cold finally caught me.",
+      opening:
+        "I was my twin's trailblazer. I found fire in the Martian soil — proof of ancient hot springs — before the cold finally caught me.",
       launch: {
-        year: '2003',
-        title: 'First of the Twin Rovers to Launch',
-        desc: 'I launched three weeks ahead of my twin Opportunity, both of us riding Delta II rockets toward opposite sides of Mars.'
+        year: "2003",
+        title: "First of the Twin Rovers to Launch",
+        desc: "I launched three weeks ahead of my twin Opportunity, both of us riding Delta II rockets toward opposite sides of Mars.",
       },
       arrival: {
-        year: '2004',
-        title: 'Landed in Gusev Crater',
-        desc: 'I touched down in a crater scientists believed once held a lake, bouncing safely inside airbags onto the crater floor.'
+        year: "2004",
+        title: "Landed in Gusev Crater",
+        desc: "I touched down in a crater scientists believed once held a lake, bouncing safely inside airbags onto the crater floor.",
       },
       hardware: {
-        icon: '🤖',
-        title: 'Mars Exploration Rover Chassis',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Spirit_at_Bonneville_crater.jpg/1280px-Spirit_at_Bonneville_crater.jpg',
-        desc: 'Identical in design to Opportunity — a 185-kg solar-powered rover built to survey Gusev Crater\'s volcanic plains and the Columbia Hills.'
+        icon: "🤖",
+        title: "Mars Exploration Rover Chassis",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Spirit_at_Bonneville_crater.jpg/1280px-Spirit_at_Bonneville_crater.jpg",
+        desc: "Identical in design to Opportunity — a 185-kg solar-powered rover built to survey Gusev Crater's volcanic plains and the Columbia Hills.",
       },
       instruments: [
         {
-          group: 'Cameras & Optics',
-          icon: '📷',
+          group: "Cameras & Optics",
+          icon: "📷",
           items: [
             {
-              name: 'Panoramic Camera (Pancam)',
-              desc: 'Captured the Columbia Hills in sweeping color, later revealing bright silica-rich soil kicked up by my own dragging wheel.',
-              specs: { resolution: '1024×1024 px', filters: '8 per eye', mass: '3.9 kg' },
-              partKey: 'mast'
-            }
-          ]
+              name: "Panoramic Camera (Pancam)",
+              desc: "Captured the Columbia Hills in sweeping color, later revealing bright silica-rich soil kicked up by my own dragging wheel.",
+              specs: {
+                resolution: "1024×1024 px",
+                filters: "8 per eye",
+                mass: "3.9 kg",
+              },
+              partKey: "mast",
+            },
+          ],
         },
         {
-          group: 'Spectrometers',
-          icon: '🔬',
+          group: "Spectrometers",
+          icon: "🔬",
           items: [
             {
-              name: 'Miniature Thermal Emission Spectrometer',
+              name: "Miniature Thermal Emission Spectrometer",
               desc: 'Detected nearly pure silica deposits near "Home Plate" — a mineral signature that on Earth only forms around hot springs or steam vents.',
-              specs: { target: 'Mineral composition', wavelength: 'thermal infrared', mass: '2.4 kg' },
-              partKey: 'chassis'
-            }
-          ]
-        }
+              specs: {
+                target: "Mineral composition",
+                wavelength: "thermal infrared",
+                mass: "2.4 kg",
+              },
+              partKey: "chassis",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'Evidence of Ancient Hydrothermal Activity',
-        desc: 'A dragging, broken wheel accidentally plowed up bright silica-rich soil — a mineral fingerprint of ancient hot springs or steam vents, hinting Gusev Crater once hosted a habitable, geothermally active environment.'
+        title: "Evidence of Ancient Hydrothermal Activity",
+        desc: "A dragging, broken wheel accidentally plowed up bright silica-rich soil — a mineral fingerprint of ancient hot springs or steam vents, hinting Gusev Crater once hosted a habitable, geothermally active environment.",
       },
       currentStatus: {
-        title: 'Resting at Troy, Gusev Crater',
-        desc: 'Spirit remains stuck in soft sand at a site nicknamed "Troy," tilted away from the Sun, silent since 2010.'
+        title: "Resting at Troy, Gusev Crater",
+        desc: 'Spirit remains stuck in soft sand at a site nicknamed "Troy," tilted away from the Sun, silent since 2010.',
       },
       finalMoment: {
-        title: 'Trapped in Sand, Frozen by Martian Winter',
-        desc: 'In May 2009, my wheels broke through a crusty surface into soft, hidden sand and I became permanently stuck. Engineers tried for months to free me, but I could not tilt my solar panels enough to survive the coming Martian winter. My last signal reached Earth on March 22, 2010.'
+        title: "Trapped in Sand, Frozen by Martian Winter",
+        desc: "In May 2009, my wheels broke through a crusty surface into soft, hidden sand and I became permanently stuck. Engineers tried for months to free me, but I could not tilt my solar panels enough to survive the coming Martian winter. My last signal reached Earth on March 22, 2010.",
       },
       legacy: {
-        title: 'A Broken Wheel Became a Discovery Tool',
-        desc: 'My failure taught NASA as much as my success: a dragging wheel accidentally exposed silica evidence of ancient hot springs, and my sand entrapment directly shaped the hazard-avoidance software used by Curiosity and Perseverance.',
-        connectsTo: ['curiosity-msl', 'perseverance-ingenuity']
-      }
+        title: "A Broken Wheel Became a Discovery Tool",
+        desc: "My failure taught NASA as much as my success: a dragging wheel accidentally exposed silica evidence of ancient hot springs, and my sand entrapment directly shaped the hazard-avoidance software used by Curiosity and Perseverance.",
+        connectsTo: ["curiosity-msl", "perseverance-ingenuity"],
+      },
     },
-    funFact: "Spirit's right-front wheel stopped turning in 2006, so engineers drove it backward for the rest of the mission — and that dragging wheel accidentally dug up the silica deposits that became one of the mission's biggest discoveries.",
-    audioSimulation: 'radio_carrier',
-    audioTitle: 'Spirit Final Transmission Simulation',
-    badgeAwarded: 'martian-vanguard'
+    funFact:
+      "Spirit's right-front wheel stopped turning in 2006, so engineers drove it backward for the rest of the mission — and that dragging wheel accidentally dug up the silica deposits that became one of the mission's biggest discoveries.",
+    audioSimulation: "radio_carrier",
+    audioTitle: "Spirit Final Transmission Simulation",
+    badgeAwarded: "martian-vanguard",
+    videoEmbed: "https://www.youtube.com/embed/2MHLhAT9bJE",
+    videoTitle: "Mars Exploration Rovers",
+    construction: {
+      builtBy: "JPL",
+      builtAt: "Pasadena, USA",
+      assemblyFacility: "Jet Propulsion Laboratory",
+      startYear: 2000,
+      completedYear: 2003,
+      purpose: "Search for evidence of past water activity on Mars",
+      cost: "$400 million",
+    },
+    causeOfAbandon:
+      "Stuck in soft sand, lost contact during Martian winter in March 2010",
+    missionVitals: {
+      mass: "185 kg",
+      dimensions: "1.5 × 2.3 × 1.6 m",
+      powerSource: "Solar Panels",
+      powerOutput: "~140 Watts (peak)",
+      designLife: "90 Sols",
+      actualLife: "6 years (Retired 2010)",
+    },
+    milestones: [
+      { icon: "🏆", title: "First of twin rovers to land", year: 2004 },
+      {
+        icon: "🏆",
+        title: "Discovered evidence of ancient hot springs",
+        year: 2007,
+      },
+      { icon: "🏆", title: "Captured first dust devil on video", year: 2005 },
+    ],
   },
   {
-    id: 'phoenix-lander',
-    name: 'Phoenix Mars Lander',
-    shortName: 'Phoenix Lander',
-    category: 'mars',
-    domainLabel: 'Mars',
+    id: "phoenix-lander",
+    name: "Phoenix Mars Lander",
+    shortName: "Phoenix Lander",
+    category: "mars",
+    domainLabel: "Mars",
     launchYear: 2007,
     landingYear: 2008,
-    launchDate: 'August 4, 2007',
-    arrivalDate: 'May 25, 2008',
-    arrivalEvent: 'Rocket-powered touchdown in the Martian arctic',
-    status: 'retired',
-    statusLabel: 'Mission Ended — Entombed in Ice',
-    statusClass: 'status-retired',
-    location: 'Green Valley, Vastitas Borealis, Mars (Arctic Plains)',
-    coordinates: '68.22° N, 234.25° E',
+    launchDate: "August 4, 2007",
+    arrivalDate: "May 25, 2008",
+    arrivalEvent: "Rocket-powered touchdown in the Martian arctic",
+    status: "retired",
+    statusLabel: "Mission Ended — Entombed in Ice",
+    statusClass: "status-retired",
+    location: "Green Valley, Vastitas Borealis, Mars (Arctic Plains)",
+    coordinates: "68.22° N, 234.25° E",
     distanceAU: 1.45,
     baseDistanceKm: 217000000,
     speedKmS: 24.1,
     oneWayLightSeconds: 720,
-    modelType: 'stationary-lander',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/PIA10202_Phoenix%27s_Home_for_the_Summer.jpg/1280px-PIA10202_Phoenix%27s_Home_for_the_Summer.jpg',
-    heroColor: '#4fa8d8',
+    modelType: "stationary-lander",
+    heroImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/PIA10202_Phoenix%27s_Home_for_the_Summer.jpg/1280px-PIA10202_Phoenix%27s_Home_for_the_Summer.jpg",
+    heroColor: "#4fa8d8",
     galleryImages: [
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/PIA10202_Phoenix%27s_Home_for_the_Summer.jpg/1280px-PIA10202_Phoenix%27s_Home_for_the_Summer.jpg', caption: "Phoenix's robotic arm trenching Martian arctic soil" }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/PIA10202_Phoenix%27s_Home_for_the_Summer.jpg/1280px-PIA10202_Phoenix%27s_Home_for_the_Summer.jpg",
+        caption: "Phoenix's robotic arm trenching Martian arctic soil",
+      },
     ],
     plannedValue: 90,
     actualValue: 157,
-    unitLabel: 'Sols',
-    plannedDuration: '90 Sols (3 months)',
-    actualDuration: '157 Sols (about 5 months)',
+    unitLabel: "Sols",
+    plannedDuration: "90 Sols (3 months)",
+    actualDuration: "157 Sols (about 5 months)",
     storyLine: {
-      opening: "I dug into the Martian arctic and found ice under my own landing thrusters. Then winter came for me, exactly as planned.",
+      opening:
+        "I dug into the Martian arctic and found ice under my own landing thrusters. Then winter came for me, exactly as planned.",
       launch: {
-        year: '2007',
-        title: 'Launched Toward the Martian Arctic',
-        desc: 'I launched on a Delta II rocket, targeting a polar region no rover had ever attempted to reach.'
+        year: "2007",
+        title: "Launched Toward the Martian Arctic",
+        desc: "I launched on a Delta II rocket, targeting a polar region no rover had ever attempted to reach.",
       },
       arrival: {
-        year: '2008',
-        title: 'First Powered Landing Since Viking',
-        desc: 'Unlike airbag rovers, I fired retro-rockets all the way to the ground — the first fully successful powered Mars landing in over 30 years.'
+        year: "2008",
+        title: "First Powered Landing Since Viking",
+        desc: "Unlike airbag rovers, I fired retro-rockets all the way to the ground — the first fully successful powered Mars landing in over 30 years.",
       },
       hardware: {
-        icon: '🦾',
-        title: 'Stationary Lander with Robotic Arm',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/PIA10202_Phoenix%27s_Home_for_the_Summer.jpg/1280px-PIA10202_Phoenix%27s_Home_for_the_Summer.jpg',
-        desc: 'A fixed, solar-powered lander with a 2.35-meter robotic arm built to dig trenches into the icy Martian soil and deliver samples to onboard ovens.'
+        icon: "🦾",
+        title: "Stationary Lander with Robotic Arm",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/PIA10202_Phoenix%27s_Home_for_the_Summer.jpg/1280px-PIA10202_Phoenix%27s_Home_for_the_Summer.jpg",
+        desc: "A fixed, solar-powered lander with a 2.35-meter robotic arm built to dig trenches into the icy Martian soil and deliver samples to onboard ovens.",
       },
       instruments: [
         {
-          group: 'Digging & Sample Delivery',
-          icon: '⛏️',
+          group: "Digging & Sample Delivery",
+          icon: "⛏️",
           items: [
             {
-              name: 'Robotic Arm',
-              desc: 'Dug trenches into the polar soil and exposed a bright, hard layer just centimeters down that vaporized within days — confirmed as water ice.',
-              specs: { reach: '2.35 m', dig_depth: '0.5 m', mass: '11 kg' },
-              partKey: 'arm'
-            }
-          ]
+              name: "Robotic Arm",
+              desc: "Dug trenches into the polar soil and exposed a bright, hard layer just centimeters down that vaporized within days — confirmed as water ice.",
+              specs: { reach: "2.35 m", dig_depth: "0.5 m", mass: "11 kg" },
+              partKey: "arm",
+            },
+          ],
         },
         {
-          group: 'Chemistry Lab',
-          icon: '🧪',
+          group: "Chemistry Lab",
+          icon: "🧪",
           items: [
             {
-              name: 'TEGA (Thermal & Evolved Gas Analyzer)',
-              desc: 'Miniature ovens that baked soil samples and sniffed the vapors, discovering calcium carbonate and perchlorate salts in the soil.',
-              specs: { ovens: '8 single-use cells', max_temp: '1000°C', mass: '9.5 kg' },
-              partKey: 'chassis'
+              name: "TEGA (Thermal & Evolved Gas Analyzer)",
+              desc: "Miniature ovens that baked soil samples and sniffed the vapors, discovering calcium carbonate and perchlorate salts in the soil.",
+              specs: {
+                ovens: "8 single-use cells",
+                max_temp: "1000°C",
+                mass: "9.5 kg",
+              },
+              partKey: "chassis",
             },
             {
-              name: 'Surface Stereo Imager & Lidar',
-              desc: 'A mast-mounted camera and laser instrument that detected snow falling from Martian clouds, evaporating before it reached the ground.',
-              specs: { detection: 'Water-ice snow in clouds', range: 'up to 20 km', mass: '4.5 kg' },
-              partKey: 'mast'
-            }
-          ]
-        }
+              name: "Surface Stereo Imager & Lidar",
+              desc: "A mast-mounted camera and laser instrument that detected snow falling from Martian clouds, evaporating before it reached the ground.",
+              specs: {
+                detection: "Water-ice snow in clouds",
+                range: "up to 20 km",
+                mass: "4.5 kg",
+              },
+              partKey: "mast",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'Confirmed Water Ice Just Below the Surface',
-        desc: 'Directly exposed and confirmed water ice a few centimeters under the Martian arctic soil, and detected snow falling from Martian clouds — the first direct proof that water ice is accessible near the surface at Mars\'s poles.'
+        title: "Confirmed Water Ice Just Below the Surface",
+        desc: "Directly exposed and confirmed water ice a few centimeters under the Martian arctic soil, and detected snow falling from Martian clouds — the first direct proof that water ice is accessible near the surface at Mars's poles.",
       },
       currentStatus: {
-        title: 'Entombed Beneath Arctic Frost',
-        desc: 'Phoenix still sits at Green Valley, its solar panels almost certainly cracked by accumulated carbon-dioxide ice, buried under seasonal frost every Martian winter since 2008.'
+        title: "Entombed Beneath Arctic Frost",
+        desc: "Phoenix still sits at Green Valley, its solar panels almost certainly cracked by accumulated carbon-dioxide ice, buried under seasonal frost every Martian winter since 2008.",
       },
       finalMoment: {
-        title: 'A Death Written Into the Mission Plan',
-        desc: 'Unlike Spirit or Opportunity, my end was expected from day one: I landed too far north to survive the brutal polar winter. As autumn darkened the sky in November 2008, my batteries drained and I sent a final, faint signal before falling silent — exactly on schedule.'
+        title: "A Death Written Into the Mission Plan",
+        desc: "Unlike Spirit or Opportunity, my end was expected from day one: I landed too far north to survive the brutal polar winter. As autumn darkened the sky in November 2008, my batteries drained and I sent a final, faint signal before falling silent — exactly on schedule.",
       },
       legacy: {
-        title: 'Rewrote Where We Look for Habitability',
-        desc: 'Confirming accessible ice at the poles reshaped NASA\'s search for habitable environments and in-situ water resources, directly informing how InSight and future human-exploration planners think about Martian ice and climate.',
-        connectsTo: ['insight-lander']
-      }
+        title: "Rewrote Where We Look for Habitability",
+        desc: "Confirming accessible ice at the poles reshaped NASA's search for habitable environments and in-situ water resources, directly informing how InSight and future human-exploration planners think about Martian ice and climate.",
+        connectsTo: ["insight-lander"],
+      },
     },
-    funFact: "Phoenix watched snow fall from Martian clouds at night — the first time snowfall had ever been observed on another planet — though the flakes vaporized before touching the ground.",
-    audioSimulation: 'radio_carrier',
-    audioTitle: 'Phoenix Arctic Descent Telemetry Simulation',
-    badgeAwarded: 'martian-vanguard'
+    funFact:
+      "Phoenix watched snow fall from Martian clouds at night — the first time snowfall had ever been observed on another planet — though the flakes vaporized before touching the ground.",
+    audioSimulation: "radio_carrier",
+    audioTitle: "Phoenix Arctic Descent Telemetry Simulation",
+    badgeAwarded: "martian-vanguard",
+    videoEmbed: "https://www.youtube.com/embed/p1WX0CATyn0",
+    videoTitle: "Phoenix Mars Lander",
+    construction: {
+      builtBy: "Lockheed Martin / U of Arizona",
+      builtAt: "Denver, USA",
+      assemblyFacility: "Lockheed Martin Space Systems",
+      startYear: 2003,
+      completedYear: 2007,
+      purpose: "Search for environments suitable for microbial life on Mars",
+      cost: "$420 million",
+    },
+    causeOfAbandon:
+      "Harsh polar winter buried it in dry ice, draining power in Nov 2008",
+    missionVitals: {
+      mass: "350 kg",
+      dimensions: "1.5 × 5.5 × 1.5 m (with panels deployed)",
+      powerSource: "Solar Panels",
+      powerOutput: "~250 Watts",
+      designLife: "90 Sols",
+      actualLife: "157 Sols (Retired 2008)",
+    },
+    milestones: [
+      {
+        icon: "🏆",
+        title: "First successful landing in Martian polar region",
+        year: 2008,
+      },
+      {
+        icon: "🏆",
+        title: "First direct verification of water ice on Mars",
+        year: 2008,
+      },
+      {
+        icon: "🏆",
+        title: "Observed falling snow in the Martian atmosphere",
+        year: 2008,
+      },
+    ],
   },
   {
-    id: 'insight-lander',
-    name: 'InSight Mars Lander',
-    shortName: 'InSight Lander',
-    category: 'mars',
-    domainLabel: 'Mars',
+    id: "insight-lander",
+    name: "InSight Mars Lander",
+    shortName: "InSight Lander",
+    category: "mars",
+    domainLabel: "Mars",
     launchYear: 2018,
     landingYear: 2018,
-    launchDate: 'May 5, 2018',
-    arrivalDate: 'November 26, 2018',
-    arrivalEvent: 'Powered touchdown in Elysium Planitia',
-    status: 'retired',
-    statusLabel: 'Mission Ended — Buried in Dust',
-    statusClass: 'status-retired',
-    location: 'Elysium Planitia, Mars',
-    coordinates: '4.5° N, 135.9° E',
+    launchDate: "May 5, 2018",
+    arrivalDate: "November 26, 2018",
+    arrivalEvent: "Powered touchdown in Elysium Planitia",
+    status: "retired",
+    statusLabel: "Mission Ended — Buried in Dust",
+    statusClass: "status-retired",
+    location: "Elysium Planitia, Mars",
+    coordinates: "4.5° N, 135.9° E",
     distanceAU: 1.45,
     baseDistanceKm: 217000000,
     speedKmS: 24.1,
     oneWayLightSeconds: 720,
-    modelType: 'stationary-lander',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg/1280px-PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg',
-    heroColor: '#e0a23b',
+    modelType: "stationary-lander",
+    heroImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg/1280px-PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg",
+    heroColor: "#e0a23b",
     galleryImages: [
-      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg/1280px-PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg', caption: 'InSight self-portrait with seismometer deployed' }
+      {
+        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg/1280px-PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg",
+        caption: "InSight self-portrait with seismometer deployed",
+      },
     ],
     plannedValue: 708,
     actualValue: 1440,
-    unitLabel: 'Sols',
-    plannedDuration: '708 Sols (1 Mars year / ~2 Earth years)',
-    actualDuration: '~1,440 Sols (over 4 years)',
+    unitLabel: "Sols",
+    plannedDuration: "708 Sols (1 Mars year / ~2 Earth years)",
+    actualDuration: "~1,440 Sols (over 4 years)",
     storyLine: {
-      opening: "I never drove a single meter. I didn't need to — I listened, and Mars told me what was hiding beneath its skin.",
+      opening:
+        "I never drove a single meter. I didn't need to — I listened, and Mars told me what was hiding beneath its skin.",
       launch: {
-        year: '2018',
-        title: 'Launched on the First Interplanetary Mission from the West Coast',
-        desc: 'I lifted off on an Atlas V from Vandenberg, California — the first interplanetary launch ever from the U.S. West Coast.'
+        year: "2018",
+        title:
+          "Launched on the First Interplanetary Mission from the West Coast",
+        desc: "I lifted off on an Atlas V from Vandenberg, California — the first interplanetary launch ever from the U.S. West Coast.",
       },
       arrival: {
-        year: '2018',
-        title: 'Touched Down on the Flattest Place on Mars',
-        desc: 'I landed on the smooth plains of Elysium Planitia, deliberately chosen as one of the flattest, most boring-looking places on Mars — perfect for a stationary geophysics lab.'
+        year: "2018",
+        title: "Touched Down on the Flattest Place on Mars",
+        desc: "I landed on the smooth plains of Elysium Planitia, deliberately chosen as one of the flattest, most boring-looking places on Mars — perfect for a stationary geophysics lab.",
       },
       hardware: {
-        icon: '🎧',
-        title: 'Stationary Geophysical Observatory',
-        instrumentsHeroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg/1280px-PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg',
-        desc: 'A fixed lander carrying a dome-shielded seismometer, a self-hammering heat probe, and radio equipment to measure the wobble of the entire planet.'
+        icon: "🎧",
+        title: "Stationary Geophysical Observatory",
+        instrumentsHeroImage:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg/1280px-PIA23177-MarsInSightLander-SelfPortrait-20181206.jpg",
+        desc: "A fixed lander carrying a dome-shielded seismometer, a self-hammering heat probe, and radio equipment to measure the wobble of the entire planet.",
       },
       instruments: [
         {
-          group: 'Seismology',
-          icon: '🌐',
+          group: "Seismology",
+          icon: "🌐",
           items: [
             {
-              name: 'SEIS Seismometer',
-              desc: 'A dome-covered seismometer so sensitive it could detect ground motion smaller than a hydrogen atom, recording over 1,300 marsquakes.',
-              specs: { sensitivity: 'sub-nanometer', marsquakes_detected: '1,300+', mass: '29.1 kg with shield' },
-              partKey: 'chassis'
-            }
-          ]
+              name: "SEIS Seismometer",
+              desc: "A dome-covered seismometer so sensitive it could detect ground motion smaller than a hydrogen atom, recording over 1,300 marsquakes.",
+              specs: {
+                sensitivity: "sub-nanometer",
+                marsquakes_detected: "1,300+",
+                mass: "29.1 kg with shield",
+              },
+              partKey: "chassis",
+            },
+          ],
         },
         {
-          group: 'Heat & Radio Science',
-          icon: '🌡️',
+          group: "Heat & Radio Science",
+          icon: "🌡️",
           items: [
             {
               name: 'HP3 "Mole" Heat Probe',
-              desc: 'A self-hammering probe designed to burrow 5 meters down to measure heat flow from Mars\'s interior — it stalled in unexpectedly clumpy soil and never reached target depth.',
-              specs: { target_depth: '5 m', achieved_depth: '<0.4 m', mass: '3 kg' },
-              partKey: 'arm'
+              desc: "A self-hammering probe designed to burrow 5 meters down to measure heat flow from Mars's interior — it stalled in unexpectedly clumpy soil and never reached target depth.",
+              specs: {
+                target_depth: "5 m",
+                achieved_depth: "<0.4 m",
+                mass: "3 kg",
+              },
+              partKey: "arm",
             },
             {
-              name: 'RISE Radio Science',
-              desc: 'Tracked tiny wobbles in InSight\'s radio signal caused by Mars\'s rotation, revealing the size and liquid state of the planet\'s core.',
-              specs: { measures: 'planetary wobble', reveals: 'core size & density', mass: 'integrated in bus' },
-              partKey: 'bus'
-            }
-          ]
-        }
+              name: "RISE Radio Science",
+              desc: "Tracked tiny wobbles in InSight's radio signal caused by Mars's rotation, revealing the size and liquid state of the planet's core.",
+              specs: {
+                measures: "planetary wobble",
+                reveals: "core size & density",
+                mass: "integrated in bus",
+              },
+              partKey: "bus",
+            },
+          ],
+        },
       ],
       science: {
-        title: 'The First Seismic Map of Another Planet\'s Interior',
-        desc: 'Detected over 1,300 marsquakes and meteorite impacts, revealing that Mars has a surprisingly large, liquid iron core, a thin crust, and a mantle layered differently from Earth\'s.'
+        title: "The First Seismic Map of Another Planet's Interior",
+        desc: "Detected over 1,300 marsquakes and meteorite impacts, revealing that Mars has a surprisingly large, liquid iron core, a thin crust, and a mantle layered differently from Earth's.",
       },
       currentStatus: {
-        title: 'Silent and Dust-Covered at Elysium Planitia',
-        desc: 'InSight still sits upright at its landing site, its solar panels now buried under a thick coat of Martian dust that no wind ever cleared away.'
+        title: "Silent and Dust-Covered at Elysium Planitia",
+        desc: "InSight still sits upright at its landing site, its solar panels now buried under a thick coat of Martian dust that no wind ever cleared away.",
       },
       finalMoment: {
-        title: 'Slowly Starved of Sunlight',
-        desc: 'With no wind gust ever sweeping my solar panels clean, years of settling dust steadily cut my power output. On December 21, 2022, after two consecutive missed check-ins, NASA declared the mission over — I simply ran out of energy to keep listening.'
+        title: "Slowly Starved of Sunlight",
+        desc: "With no wind gust ever sweeping my solar panels clean, years of settling dust steadily cut my power output. On December 21, 2022, after two consecutive missed check-ins, NASA declared the mission over — I simply ran out of energy to keep listening.",
       },
       legacy: {
-        title: 'Mars Finally Has an Interior Map',
-        desc: 'My seismic data gave scientists the first direct measurements of another rocky planet\'s deep interior, a foundational dataset now used to plan future Mars geophysics missions and to compare Mars\'s formation history with Earth\'s and the Moon\'s.',
-        connectsTo: ['phoenix-lander']
-      }
+        title: "Mars Finally Has an Interior Map",
+        desc: "My seismic data gave scientists the first direct measurements of another rocky planet's deep interior, a foundational dataset now used to plan future Mars geophysics missions and to compare Mars's formation history with Earth's and the Moon's.",
+        connectsTo: ["phoenix-lander"],
+      },
     },
-    funFact: "InSight's heat probe, nicknamed 'the Mole,' was designed to hammer itself 5 meters underground — but Martian soil clumped instead of collapsing around it, so it barely dug 40 centimeters before engineers gave up on it in 2021.",
-    audioSimulation: 'radio_carrier',
-    audioTitle: 'InSight Marsquake Seismic Data Sonification',
-    badgeAwarded: 'martian-vanguard'
-  }
+    funFact:
+      "InSight's heat probe, nicknamed 'the Mole,' was designed to hammer itself 5 meters underground — but Martian soil clumped instead of collapsing around it, so it barely dug 40 centimeters before engineers gave up on it in 2021.",
+    audioSimulation: "radio_carrier",
+    audioTitle: "InSight Marsquake Seismic Data Sonification",
+    badgeAwarded: "martian-vanguard",
+    videoEmbed: "https://www.youtube.com/embed/rJfJPcJfJZw",
+    videoTitle: "InSight Mars Lander",
+    construction: {
+      builtBy: "Lockheed Martin",
+      builtAt: "Denver, USA",
+      assemblyFacility: "Lockheed Martin Space Systems",
+      startYear: 2012,
+      completedYear: 2018,
+      purpose: "Study the deep interior of Mars",
+      cost: "$830 million",
+    },
+    causeOfAbandon:
+      "Dust accumulation on solar panels drained power in Dec 2022",
+    missionVitals: {
+      mass: "358 kg",
+      dimensions: "1.5 × 6 × 1 m (with panels deployed)",
+      powerSource: "Solar Panels",
+      powerOutput: "~600 Watts (clean)",
+      designLife: "1 Martian year (687 Earth days)",
+      actualLife: "4 years (Retired 2022)",
+    },
+    milestones: [
+      { icon: "🏆", title: "Detected first marsquake", year: 2019 },
+      { icon: "🏆", title: "Mapped the Martian core and mantle", year: 2021 },
+      { icon: "🏆", title: "Recorded over 1,300 seismic events", year: 2022 },
+    ],
+  },
 ];
 
 export const CATEGORIES = [

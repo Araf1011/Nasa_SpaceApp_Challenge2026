@@ -1,0 +1,209 @@
+/*
+ * Frontend overlay and modal styling for image/video downloads.
+ */
+.smd-image-downloads {
+	position: absolute;
+	right: 8px;
+	z-index: 5;
+	pointer-events: auto;
+	transform: translate(0, calc(-100% - 8px));
+}
+
+/* SMD Patch: Video overlays are rendered inside the media frame and should pin to the lower-right corner. */
+.smd-image-downloads--media-corner {
+	top: auto;
+	left: auto;
+	bottom: 8px;
+	transform: none;
+}
+
+/* SMD Patch: Video overlays should live in the top-right to avoid player controls overlap. */
+.smd-image-downloads--video-corner {
+	top: 8px;
+	left: auto;
+	right: 8px;
+	bottom: auto;
+	transform: none;
+}
+
+.wp-block-image.has-smd-downloads .hds-media-wrapper,
+.hds-cover-wrapper.smd-downloads-frame {
+	position: relative;
+}
+
+.smd-downloads-frame {
+	position: relative;
+	/* SMD Patch: Panel should overflow outside media bounds when anchored to wrapper. */
+	overflow: visible;
+}
+
+.smd-downloads-toggle {
+	border: none;
+	background: transparent;
+	padding: 4px;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* SMD Patch: Only show button outline for keyboard focus to avoid sticky mouse focus ring. */
+.smd-downloads-toggle:focus {
+	outline: none;
+}
+
+.smd-downloads-toggle:focus-visible {
+	outline: 2px solid #1c67e3;
+	outline-offset: 2px;
+}
+
+/* SMD Patch: Shared custom-row panel uses class-based layout instead of inline styles. */
+.smd-downloads-panel__custom-row-header--inline {
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	gap: 8px;
+}
+
+.smd-downloads-modal {
+	position: absolute;
+	right: 0;
+	bottom: 44px;
+	/* Directly enqueued runtime CSS mirrors source SCSS: fixed responsive width gives long names an ellipsis boundary. */
+	box-sizing: border-box;
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+	min-width: min(375px, calc(100vw - 32px));
+	width: min(375px, calc(100vw - 32px));
+	max-width: calc(100vw - 32px);
+	padding: 12px;
+	border: 1px solid #dfe1e6;
+	z-index: 20;
+}
+
+/* SMD Patch: For top-right video button placement, open modal downward from the icon. */
+.smd-image-downloads--video-corner .smd-downloads-modal {
+	top: 44px;
+	bottom: auto;
+}
+
+.smd-downloads-modal__title {
+	font-weight: 600;
+	margin-bottom: 8px;
+	padding-right: 40px;
+}
+
+.smd-downloads-modal__list {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+.smd-downloads-modal__list > li {
+	min-width: 0;
+	max-width: 100%;
+}
+
+.smd-downloads-modal__item {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	line-height: 1.5;
+	/* Keep each row inside the modal so long frame-set paths cannot widen the panel. */
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 0;
+	max-width: 100%;
+}
+
+.smd-downloads-modal__item > * {
+	flex-grow: 0;
+	min-width: 0;
+}
+
+.smd-downloads-modal__item:hover {
+	border-color: #1c67e3;
+}
+
+.smd-downloads-modal__meta {
+	font-size: 12px;
+	color: #4a4f55;
+	flex: 0 0 auto;
+	white-space: nowrap;
+}
+
+.smd-downloads-modal__meta-ext {
+	font-weight: 600;
+	font-size: 12px;
+	color: #4a4f55;
+	margin-left: auto;
+}
+
+.smd-downloads-modal__name {
+	display: block;
+	font-size: 14px;
+	font-weight: 500;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	/* Only the name column shrinks; extension and dimensions remain visible. */
+	flex: 1 1 0;
+	min-width: 0;
+	max-width: 100%;
+}
+
+.smd-downloads-modal__item > .smd-downloads-modal__name {
+	flex: 1 1 0;
+	min-width: 0;
+}
+
+.smd-downloads-close {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	margin: 0;
+	background: none;
+	border: none;
+	color: #4a4f55;
+	cursor: pointer;
+	padding: 0;
+	border-radius: 999px;
+	line-height: 1;
+}
+
+.smd-downloads-close:hover,
+.smd-downloads-close:focus {
+	background: #eef0f3;
+	color: #14181d;
+}
+
+.smd-downloads-close:focus-visible {
+	outline: 2px solid #1c67e3;
+	outline-offset: 2px;
+}
+
+.smd-downloads-close__icon {
+	display: block;
+	width: 20px;
+	height: 20px;
+}
+
+.smd-downloads-close + .smd-downloads-modal__list {
+	padding-top: 32px;
+}
+
+.smd-downloads-modal__heading {
+	padding: 4px 0;
+}
+
+.smd-downloads-modal__heading .smd-downloads-modal__name {
+	font-weight: 600;
+	display: block;
+}

@@ -1,0 +1,54 @@
+// Run ECMAScript in strict mode.
+'use strict';
+
+jQuery( () => {
+
+	// Check if the post-type-hdsnav is on the page.
+	if ( ! jQuery( 'body' ).hasClass( 'post-type-hdsnav' ) ) {
+
+		// If the secondary navigation "usa-accordion__button" is clicked, change "aria-expanded" to
+		// true and remove "hidden" from the "usa-nav__submenu" item directly beneath it.
+		jQuery(document).on( 'click', '.hds-secondary-navigation .usa-accordion__button', function() {
+
+			// Before we do this, we need to close any other open submenus.
+			// Any submenu that is not this one, and is open, should be closed.
+			jQuery( '.hds-secondary-navigation .usa-accordion__button' ).not(this).attr( 'aria-expanded', 'false' );
+			jQuery( '.hds-secondary-navigation .usa-accordion__button' ).not(this).next().attr( 'hidden', 'hidden' );
+
+			// Now we can open the submenu that was clicked.
+			// Toggle this in case the menu is already open.
+			jQuery( this ).attr( 'aria-expanded', function(index, attr) {
+				return attr === 'true' ? 'false' : 'true';
+			});
+
+			jQuery( this ).next( '.usa-nav__submenu' ).attr( 'hidden', function(index, attr) {
+				return attr === 'hidden' ? null : 'hidden';
+			});
+		});
+
+		// Let's make sure the .hds-secondary-navigation-menu-items is hidden but set to flex.
+		jQuery( '.hds-secondary-navigation-menu-items' ).attr( 'hidden', 'hidden' );
+
+		// If the user clicks on the mobile secondary nav trigger, let's open the mobile nav.
+		jQuery(document).on( 'click', '.hds-secondary-nav-mobile-button', function() {
+
+			// Add an "is-active" class to both.
+			jQuery( this ).toggleClass( 'hds-active' );
+			jQuery( '.hds-secondary-navigation-menu-items' ).toggleClass( 'hds-active' );
+
+			// Slide toggle the secondary nav track.
+			jQuery( '.hds-secondary-navigation-menu-items' ).slideToggle(300);
+
+			// Toggle the "hidden" attribute on the "hds-secondary-nav-mobile" class.
+			jQuery( '.hds-secondary-navigation-menu-items' ).attr( 'hidden', function(index, attr) {
+				return attr === 'hidden' ? null : 'hidden';
+			});
+
+			// Now, toggle the "hds-secondary-nav-mobile-button" class to aria-expanded.
+			jQuery( '.hds-secondary-nav-mobile-button' ).attr( 'aria-expanded', function(index, attr) {
+				return attr === 'true' ? 'false' : 'true';
+			}
+			);
+		});
+	}
+});

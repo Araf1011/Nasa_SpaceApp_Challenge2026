@@ -1,0 +1,218 @@
+/**
+ * Frontend image downloads toggle behavior.
+ *
+ * @package nasa-blocks
+ */
+
+// SMD Patch Start: Shared frontend downloads dialog controller used by image/video/global-viewer/3D.
+(function () {
+	const controllerMap = new WeakMap();
+	let idCounter = 0;
+
+	const getFocusableElements = (modal) =>
+		Array.from(
+			modal.querySelectorAll(
+				'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+			)
+		).filter((element) => element.offsetParent !== null);
+
+	const wireAria = ({ modal, button, titleEl, idPrefix = 'smd-downloads' }) => {
+		idCounter += 1;
+		const modalId = `${idPrefix}-${idCounter}`;
+		const modalTitleId = `${idPrefix}-title-${idCounter}`;
+
+		if (!modal.id) {
+			modal.id = modalId;
+		}
+		button.setAttribute('aria-controls', modal.id);
+		button.setAttribute('aria-haspopup', 'dialog');
+		button.setAttribute('aria-expanded', String(!modal.hidden));
+
+		if (titleEl) {
+			if (!titleEl.id) {
+				titleEl.id = modalTitleId;
+			}
+			modal.setAttribute('aria-labelledby', titleEl.id);
+			modal.removeAttribute('aria-label');
+		}
+	};
+
+	const createDialogController = ({
+		wrapper,
+		modal,
+		button,
+		closeButton = null,
+		titleEl = null,
+		idPrefix = 'smd-downloads',
+		onOpenChange = null,
+	}) => {
+		if (!wrapper || !modal || !button) {
+			return null;
+		}
+
+		if (controllerMap.has(wrapper)) {
+			return controllerMap.get(wrapper);
+		}
+
+		wireAria({ modal, button, titleEl, idPrefix });
+
+		let previousFocus = null;
+
+		const isOpen = () => modal.hidden === false;
+
+		const announce = (open) => {
+			if (typeof onOpenChange === 'function') {
+				onOpenChange(open);
+			}
+		};
+
+		const closeModal = ({ restoreFocus = true } = {}) => {
+			if (!isOpen()) {
+				return;
+			}
+
+			modal.hidden = true;
+			button.setAttribute('aria-expanded', 'false');
+			announce(false);
+
+			if (!restoreFocus) {
+				previousFocus = null;
+				button.blur();
+				return;
+			}
+
+			if (previousFocus && typeof previousFocus.focus === 'function') {
+				previousFocus.focus();
+			} else {
+				button.focus();
+			}
+		};
+
+		const openModal = () => {
+			if (isOpen()) {
+				return;
+			}
+
+			previousFocus = document.activeElement;
+			modal.hidden = false;
+			button.setAttribute('aria-expanded', 'true');
+			announce(true);
+			// Keep focus on the toggle by default; keyboard users can tab into the modal.
+			button.focus();
+		};
+
+		const onButtonClick = () => {
+			if (isOpen()) {
+				closeModal();
+				return;
+			}
+			openModal();
+		};
+
+		const onWrapperKeydown = (event) => {
+			if (!isOpen()) {
+				return;
+			}
+
+			if (event.key === 'Escape') {
+				event.preventDefault();
+				closeModal();
+			}
+		};
+
+		const onModalKeydown = (event) => {
+			if (event.key !== 'Tab' || !isOpen()) {
+				return;
+			}
+
+			const focusables = getFocusableElements(modal);
+			if (focusables.length === 0) {
+				event.preventDefault();
+				return;
+			}
+
+			const first = focusables[0];
+			const last = focusables[focusables.length - 1];
+			const active = document.activeElement;
+
+			if (event.shiftKey && active === first) {
+				event.preventDefault();
+				last.focus();
+				return;
+			}
+
+			if (!event.shiftKey && active === last) {
+				event.preventDefault();
+				first.focus();
+			}
+		};
+
+		const onDocumentClick = (event) => {
+			if (!isOpen()) {
+				return;
+			}
+
+			if (!wrapper.contains(event.target)) {
+				// Pointer interactions outside the dialog should not steal focus back to the toggle.
+				closeModal({ restoreFocus: false });
+			}
+		};
+
+		const onCloseButtonClick = () => closeModal();
+
+		button.addEventListener('click', onButtonClick);
+		if (closeButton) {
+			closeButton.addEventListener('click', onCloseButtonClick);
+		}
+		wrapper.addEventListener('keydown', onWrapperKeydown);
+		modal.addEventListener('keydown', onModalKeydown);
+		document.addEventListener('click', onDocumentClick);
+
+		const controller = {
+			open: openModal,
+			close: closeModal,
+			toggle: onButtonClick,
+			destroy: () => {
+				button.removeEventListener('click', onButtonClick);
+				if (closeButton) {
+					closeButton.removeEventListener('click', onCloseButtonClick);
+				}
+				wrapper.removeEventListener('keydown', onWrapperKeydown);
+				modal.removeEventListener('keydown', onModalKeydown);
+				document.removeEventListener('click', onDocumentClick);
+				controllerMap.delete(wrapper);
+			},
+		};
+
+		controllerMap.set(wrapper, controller);
+		return controller;
+	};
+
+	const initDownloadsWrappers = (root = document) => {
+		const wrappers = root.querySelectorAll('.smd-image-downloads');
+		wrappers.forEach((wrapper) => {
+			const modal = wrapper.querySelector('.smd-downloads-modal');
+			const button = wrapper.querySelector('.smd-downloads-toggle');
+			const closeBtn = wrapper.querySelector('.smd-downloads-close');
+			const titleEl = wrapper.querySelector('.smd-downloads-modal__title');
+
+			createDialogController({
+				wrapper,
+				modal,
+				button,
+				closeButton: closeBtn,
+				titleEl,
+				idPrefix: 'smd-downloads',
+			});
+		});
+	};
+
+	window.NasaHdsDownloads = window.NasaHdsDownloads || {};
+	window.NasaHdsDownloads.createDialogController = createDialogController;
+	window.NasaHdsDownloads.initDownloadsWrappers = initDownloadsWrappers;
+
+	document.addEventListener('DOMContentLoaded', () => {
+		initDownloadsWrappers(document);
+	});
+})();
+// SMD Patch End

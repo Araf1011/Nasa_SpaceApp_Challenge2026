@@ -1,0 +1,93 @@
+/**
+ * JQuery Wrapper
+ */
+(function($) {
+    /**
+    * Timezone Conversion
+    */
+
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function deleteCookie(cname) {
+        const d = new Date();
+        d.setTime(d.getTime() - 3600);
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=;" + expires + ";path=/";
+    }
+
+    function resetCookie( selector_value ) {
+        deleteCookie('timezoneset_cookie');
+        setCookie('timezoneset_cookie', selector_value, 30);
+    }
+
+    $(document).ready(function(){
+
+        const DateTime = luxon.DateTime;
+        let timezoneString = "America/New_York";
+        
+        // find all event dates on page
+        const eventdates = $('.localized-date');
+        
+        // timezone selector and reset button
+        const timezoneSelect = $('.timezone-select');
+        const reset = $('#reset-timezone');
+        
+        // change the timezone when changing select
+        // make it persist
+        // show the reset button
+        if( timezoneSelect.length ) {
+            timezoneSelect.on('change', function() {
+                timezoneString = $(this).val();
+                updateTimezone( timezoneString );
+                resetCookie( timezoneString );
+                reset.addClass('show');
+            });
+        }
+        
+        // reset back to default
+        // clear cookie
+        // hide reset buttion
+        if( reset.length ) {
+            reset.on('click', function(){
+                timezoneSelect.val('America/New_York');
+                timezoneString = timezoneSelect.val();
+                updateTimezone( timezoneString );
+                deleteCookie('timezoneset_cookie');
+                $(this).removeClass('show'); 
+            });
+        }
+
+        // search for all relevant times on the page
+        function updateTimezone( timezoneString ) {
+            if(eventdates.length) {
+                eventdates.each(function() {
+                    let starttimestamp = Number($(this).attr('data-event-timestamp-start'));
+                    let endtimestamp = Number($(this).attr('data-event-timestamp-end'));
+                    let currentDateTimeStart = DateTime.fromSeconds( starttimestamp, { zone: timezoneString });
+                    let currentDateTimeEnd = DateTime.fromSeconds( endtimestamp, { zone: timezoneString });
+                    let startDate = currentDateTimeStart.hasSame(DateTime.now(), "day") ? 'Today' : currentDateTimeStart.toFormat('MMMM d, y');
+                    let startTime = currentDateTimeStart.toFormat('t');
+                    let endDate = currentDateTimeEnd.hasSame(DateTime.now(), "day") ? 'Today' : currentDateTimeEnd.toFormat('MMMM d, y');
+                    let endTime = currentDateTimeEnd.toFormat('t');
+
+                    if(startDate === endDate) {
+                        endDate = '';
+                    }
+        
+                    $(this).find('.start-date').text(startDate + ' ');
+                    $(this).find('.start-time').text(startTime);
+                    $(this).find('.end-date').text(endDate + ' ');
+                    $(this).find('.end-time').text(endTime);
+                }); 
+            }           
+        }
+
+        
+    });
+
+})( jQuery );

@@ -1,0 +1,81 @@
+/**
+* Social Share
+* Vanilla JS
+*/
+
+document.addEventListener( 'DOMContentLoaded', function() {
+    var btn = document.getElementById( 'social-share-button' );
+    var popover = document.getElementById( 'social-share-popover' );
+    var calbtn = document.getElementById( 'calendar-share-button' );
+    var calpopover = document.getElementById( 'calendar-share-popover' );
+    var copy = document.getElementById('copy-url');
+    var copiedUrl = document.getElementById('copy-to-clipboard');
+    var label = document.getElementById('alert-label');
+    var html = document.body.parentNode;
+
+    if( btn && popover ) {
+        const outsideClickListener = event => {
+            if (!popover.contains(event.target) && !btn.contains(event.target)) { 
+                popover.classList.remove('open');
+                if( calpopover ) {
+                    calpopover.classList.remove('open');
+                }
+                removeClickListener();
+            }
+        }
+        const removeClickListener = () => {
+            document.removeEventListener('click', outsideClickListener);
+        }
+        btn.addEventListener('click', function(){
+            popover.classList.toggle('open');
+            document.addEventListener('click', outsideClickListener);
+            if( calpopover ) {
+                calpopover.classList.remove('open');
+            }
+        });
+
+        
+
+        
+        if( copy && label ) {
+            // Clipboard only works when content is served over SSL
+            if (window.isSecureContext && navigator.clipboard) {
+                copy.addEventListener( 'click', function(){
+                    navigator.clipboard.writeText(copiedUrl.innerText).then(() => {
+                        /* Text copied to clipboard */
+                        label.innerText = "Copied successfully!";
+                        label.classList.remove('error');
+                    },() => {
+                        /* Rejected - text failed to copy to the clipboard */
+                        label.innerText = "Failed to copy URL";
+                        label.classList.add('error');
+                    });
+                })
+            } else {
+                popover.classList.add('no-ssl');
+            }
+        }    
+    }
+    
+    if( calbtn && calpopover ) {
+        const outsideClickListener = event => {
+            if (!calpopover.contains(event.target) && !calbtn.contains(event.target)) { 
+                calpopover.classList.remove('open');
+                if( popover ) {
+                    popover.classList.remove('open');
+                }
+                removeClickListener();
+            }
+        }
+        const removeClickListener = () => {
+            document.removeEventListener('click', outsideClickListener);
+        }
+        calbtn.addEventListener( 'click', function(){
+            calpopover.classList.toggle('open');
+            document.addEventListener('click', outsideClickListener);
+            if( popover ) {
+                popover.classList.remove('open');
+            }
+        });
+    }    
+});

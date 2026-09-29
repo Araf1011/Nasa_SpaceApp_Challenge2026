@@ -1,0 +1,227 @@
+/* Tailwind CSS v3 Base Layer — imported alongside existing style.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   TAILWIND COMPONENT LAYER — Reusable classes for new dashboard features
+   All NEW features from this point forward use Tailwind.
+   Existing style.css is left untouched.
+   ============================================================================ */
+
+@layer components {
+
+  /* ── Draggable Resize Handle ──────────────────────────────────── */
+  .drawer-resize-handle {
+    @apply absolute left-0 top-0 h-full cursor-col-resize z-30 flex items-center justify-center;
+    width: 1vw;
+    min-width: 8px;
+    max-width: 14px;
+    background: linear-gradient(90deg, rgba(0,240,255,0.06) 0%, transparent 100%);
+    transition: background 0.2s ease;
+  }
+  .drawer-resize-handle:hover,
+  .drawer-resize-handle.dragging {
+    background: linear-gradient(90deg, rgba(0,240,255,0.18) 0%, rgba(0,240,255,0.04) 100%);
+  }
+  .drawer-resize-handle::after {
+    content: '';
+    @apply block rounded-full;
+    width: 4px;
+    height: 6vh;
+    background: rgba(0, 240, 255, 0.3);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    border-radius: 4px;
+    transition: height 0.2s ease, background 0.2s ease;
+  }
+  .drawer-resize-handle:hover::after,
+  .drawer-resize-handle.dragging::after {
+    height: 10vh;
+    background: rgba(0, 240, 255, 0.6);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+  }
+
+  /* ── Dashboard Mode Grid Layout ──────────────────────────────── */
+  .storyline-drawer.dashboard-mode .storyline-flow-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 1.5vh 1.2vw;
+    align-items: start;
+    align-content: start;
+  }
+  .storyline-drawer.dashboard-mode .storyline-flow-container .flow-connector-line {
+    display: none;
+  }
+  .storyline-drawer.dashboard-mode .storyline-flow-container .flow-step {
+    width: 100%;
+  }
+  .storyline-drawer.dashboard-mode .storyline-flow-container .flow-arrow-down {
+    display: none;
+  }
+  .storyline-drawer.dashboard-mode .storyline-flow-container .flow-year-node {
+    @apply mb-1;
+  }
+
+  /* Full-span items in dashboard grid */
+  .storyline-drawer.dashboard-mode .flow-step:has(.instrument-section-card),
+  .storyline-drawer.dashboard-mode .flow-step:has(.fun-fact-card),
+  .storyline-drawer.dashboard-mode .flow-step:has(.legacy-card) {
+    grid-column: 1 / -1;
+  }
+
+  /* 3-column when extra wide (>70vw) */
+  .storyline-drawer.dashboard-mode.dashboard-wide .storyline-flow-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* ── New Dashboard Card Styles ───────────────────────────────── */
+
+  /* Coordinates Display */
+  .coord-display-card {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, rgba(13, 23, 50, 0.7) 100%);
+    border: 1px solid rgba(0, 240, 255, 0.18);
+  }
+  .coord-display-card .coord-grid {
+    @apply grid gap-2 font-mono text-sm;
+    grid-template-columns: 1fr 1fr;
+  }
+  .coord-display-card .coord-label {
+    @apply text-xs uppercase tracking-wider font-bold;
+    color: #64748b;
+  }
+  .coord-display-card .coord-value {
+    @apply text-base font-bold;
+    color: #00f0ff;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+  }
+  .coord-display-card .coord-icon-bg {
+    @apply absolute -right-4 -bottom-4 opacity-10;
+    font-size: 8rem;
+    pointer-events: none;
+  }
+
+  /* Video Embed */
+  .video-embed-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(13, 23, 50, 0.7) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+  }
+  .video-embed-card .video-wrapper {
+    @apply relative w-full overflow-hidden rounded-lg;
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .video-embed-card .video-wrapper iframe {
+    @apply absolute inset-0 w-full h-full;
+    border: none;
+  }
+
+  /* Construction / Creation Card */
+  .construction-card {
+    background: linear-gradient(135deg, rgba(255, 183, 3, 0.06) 0%, rgba(13, 23, 50, 0.7) 100%);
+    border: 1px solid rgba(255, 183, 3, 0.2);
+  }
+  .construction-card .construction-grid {
+    @apply grid gap-3 text-sm;
+    grid-template-columns: 1fr 1fr;
+  }
+  .construction-card .construction-item .const-label {
+    @apply text-xs uppercase tracking-wider font-bold font-mono block mb-0.5;
+    color: #64748b;
+  }
+  .construction-card .construction-item .const-value {
+    @apply font-semibold;
+    color: #e2e8f0;
+  }
+  .construction-card .purpose-block {
+    @apply mt-2 pt-2;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .construction-card .purpose-block .purpose-text {
+    @apply text-sm italic;
+    color: #cbd5e1;
+  }
+
+  /* Cause of Abandonment Card */
+  .abandon-cause-card {
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.08) 0%, rgba(13, 23, 50, 0.8) 100%);
+    border: 1px solid rgba(244, 63, 94, 0.3);
+  }
+  .abandon-cause-card .abandon-title {
+    @apply font-display font-bold text-sm;
+    color: #f43f5e;
+  }
+  .abandon-cause-card .abandon-desc {
+    @apply text-sm leading-relaxed;
+    color: #fecdd3;
+  }
+
+  /* Mission Vitals Dashboard */
+  .vitals-dashboard-card {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(13, 23, 50, 0.7) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.18);
+  }
+  .vitals-dashboard-card .vitals-grid {
+    @apply grid gap-3;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .vitals-dashboard-card .vital-item {
+    @apply flex flex-col gap-0.5 p-2 rounded-lg;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .vitals-dashboard-card .vital-label {
+    @apply text-xs uppercase tracking-wider font-bold font-mono;
+    color: #64748b;
+  }
+  .vitals-dashboard-card .vital-value {
+    @apply text-sm font-bold;
+    color: #ffffff;
+  }
+
+  /* Milestones Timeline */
+  .milestones-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(13, 23, 50, 0.7) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.18);
+  }
+  .milestones-card .milestone-list {
+    @apply flex flex-col gap-2;
+  }
+  .milestones-card .milestone-item {
+    @apply flex items-start gap-3 p-2 rounded-lg transition-all duration-200;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  .milestones-card .milestone-item:hover {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.2);
+    transform: translateX(4px);
+  }
+  .milestones-card .milestone-icon {
+    @apply text-lg flex-shrink-0 mt-0.5;
+  }
+  .milestones-card .milestone-content {
+    @apply flex flex-col gap-0.5;
+  }
+  .milestones-card .milestone-title {
+    @apply text-sm font-semibold;
+    color: #e2e8f0;
+  }
+  .milestones-card .milestone-year {
+    @apply text-xs font-mono font-bold;
+    color: #64748b;
+  }
+}
+
+@layer utilities {
+  /* Viewport-relative sizing utilities beyond what Tailwind ships */
+  .w-30vw { width: 30vw; }
+  .min-w-28vw { min-width: 28vw; }
+  .max-w-95vw { max-width: 95vw; }
+  .max-w-85vw { max-width: 85vw; }
+  .h-32vh { height: 32vh; }
+  .h-24vh { height: 24vh; }
+  .h-screen { height: 100vh; }
+  .p-2vh-1\.5vw { padding: 2vh 1.5vw; }
+}
